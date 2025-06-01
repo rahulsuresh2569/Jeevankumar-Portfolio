@@ -1,0 +1,19 @@
+import React from 'react';
+
+const Navbar = () => {
+  return (
+    <nav className="bg-primary text-tertiary p-4 sticky top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="text-2xl font-bold">Jeevan Kumar</div>
+        <div>
+          <a href="#hero" className="px-3 hover:text-gray-300">Home</a>
+          <a href="#about" className="px-3 hover:text-gray-300">About</a>
+          <a href="#projects" className="px-3 hover:text-gray-300">Projects</a>
+          <a href="#contact" className="px-3 hover:text-gray-300">Contact</a>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar; 
