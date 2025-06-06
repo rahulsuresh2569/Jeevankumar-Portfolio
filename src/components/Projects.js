@@ -1,25 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import project1Img from '../assets/images/project-1.png';
+import project2Img from '../assets/images/project-2.png';
+import project3Img from '../assets/images/project-3.png';
+
 gsap.registerPlugin(ScrollTrigger);
 
-// 1. Moved projectsData outside the component for stability
 const projectsData = [
-    {
-      id: 1,
+  {
+    id: 1,
     title: 'AIDIT',
     subtitle: 'UI/UX Case Study',
     description: 'A UI/UX case study for a donation application. Focused on intuitive navigation and user engagement, aiming to connect donors with causes seamlessly.',
-    imageUrl: 'https://placehold.co/1200x900?text=AIDIT+Project',
+    imageUrl: project1Img,
     behanceUrl: 'YOUR_BEHANCE_PROJECT_LINK_HERE'
-    },
-    {
-      id: 2,
+  },
+  {
+    id: 2,
     title: 'Hospital Management',
     subtitle: 'System UI/UX Design',
     description: 'Comprehensive UI/UX design for a hospital management system, enhancing usability for medical staff and improving patient care coordination.',
-    imageUrl: 'https://placehold.co/1200x900?text=Hospital+Mgmt',
+    imageUrl: project2Img,
     behanceUrl: 'YOUR_BEHANCE_PROJECT_LINK_HERE'
   },
   {
@@ -27,121 +30,104 @@ const projectsData = [
     title: 'E-commerce Platform',
     subtitle: 'Full-Stack Development',
     description: 'Designed and developed a responsive e-commerce platform with a focus on seamless user experience and robust backend functionality for inventory and sales.',
-    imageUrl: 'https://placehold.co/1200x900?text=E-commerce+Platform',
-      behanceUrl: 'YOUR_BEHANCE_PROJECT_LINK_HERE'
-    },
+    imageUrl: project3Img,
+    behanceUrl: 'YOUR_BEHANCE_PROJECT_LINK_HERE'
+  },
 ];
 
 const Projects = () => {
   const sectionRef = useRef(null);
   const mainTitleRef = useRef(null);
-  const stickyContainerRef = useRef(null); // This will be the main pinned element containing both columns
-  const leftColumnRef = useRef(null); // The sticky left column itself
-  const textListScrollContainerRef = useRef(null); // The div inside left col that scrolls
+  const stickyContainerRef = useRef(null); 
+  const leftColumnRef = useRef(null); 
+  const textListScrollContainerRef = useRef(null); 
   
   const projectTextItemRefs = useRef([]);
   const projectImageRefs = useRef([]);
 
-  // To store the current active index, mainly for GSAP logic if needed outside onUpdate
-  const activeProjectIndex = useRef(0); 
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const titleEl = mainTitleRef.current;
+      const stickyEl = stickyContainerRef.current; 
+      const leftCol = leftColumnRef.current;
+      const textList = textListScrollContainerRef.current;
+      const texts = projectTextItemRefs.current.filter(Boolean);
+      const images = projectImageRefs.current.filter(Boolean);
 
-  useEffect(() => {
-    projectTextItemRefs.current = projectTextItemRefs.current.slice(0, projectsData.length);
-    projectImageRefs.current = projectImageRefs.current.slice(0, projectsData.length);
+      if (!section || !titleEl || !stickyEl || !leftCol || !textList || texts.length !== projectsData.length || images.length !== projectsData.length) {
+        return;
+      }
+      
+      gsap.set(texts, { opacity: 0, y: 30 });
+      gsap.set(images, { opacity: 0, scale: 0.9, y: 30 });
 
-    const section = sectionRef.current;
-    const titleEl = mainTitleRef.current;
-    const stickyEl = stickyContainerRef.current; 
-    const leftCol = leftColumnRef.current;
-    const textList = textListScrollContainerRef.current;
-    const texts = projectTextItemRefs.current.filter(Boolean);
-    const images = projectImageRefs.current.filter(Boolean);
+      if (texts[0]) gsap.to(texts[0], { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+      if (images[0]) gsap.to(images[0], { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power2.out" });
 
-    if (!section || !titleEl || !stickyEl || !leftCol || !textList || texts.length !== projectsData.length || images.length !== projectsData.length) {
-      console.warn("Projects Section: Missing crucial refs or element mismatch. GSAP setup skipped.");
-      return;
-    }
+      const leftColViewportHeight = leftCol.clientHeight;
+      const scrollDistance = textList.scrollHeight - leftColViewportHeight;
+      
+      if (scrollDistance <= 0) {
+          return;
+      }
 
-    // Initial visual setup
-    gsap.set(images, { opacity: 0, scale: 0.95 });
-    if (images[0]) gsap.set(images[0], { opacity: 1, scale: 1 });
-    texts.forEach((text, i) => gsap.set(text, { opacity: i === 0 ? 1 : 0.3})); // Dim non-active texts
+      gsap.to(textList, {
+          y: -scrollDistance,
+          ease: "none",
+          scrollTrigger: {
+              trigger: stickyEl,
+              pin: true,
+              scrub: 1,
+              start: "top top",
+              end: () => `+=${scrollDistance}`,
+              onUpdate: self => {
+                  const progress = self.progress;
+                  const sectionDuration = 1 / (texts.length - 1);
+                  
+                  texts.forEach((text, i) => {
+                    const sectionStart = i * sectionDuration;
+                    const sectionEnd = (i + 1) * sectionDuration;
+                    const sectionProgress = (progress - sectionStart) / sectionDuration;
 
-    // Height of the viewport for text items within the left column
-    const leftColViewportHeight = leftCol.clientHeight;
-    // Total scroll distance for the text list: (Number of items - 1) * height of one item viewport
-    const scrollDistance = (texts.length - 1) * leftColViewportHeight;
-
-    if (scrollDistance <= 0 && texts.length > 0) {
-        console.warn("Text list content might not be correctly set up for scrolling one item at a time.");
-        // Fallback for single item or no scroll needed
-        if(images[0]) gsap.to(images[0], {opacity: 1, scale: 1, duration: 0.3});
-        if(texts[0]) gsap.to(texts[0], {opacity: 1, duration: 0.3});
-        // No return here, allow title animation
-    }
-
-    let pinTween;
-    if (scrollDistance > 0) {
-        pinTween = gsap.to(textList, {
-            y: -scrollDistance,
-            ease: "none",
-            scrollTrigger: {
-                trigger: stickyEl,
-                pin: true,
-                scrub: 0.5, // Smoother scrub
-                start: "top top",
-                end: () => `+=${scrollDistance}`,
-                // markers: {startColor: "green", endColor: "red", indent: 80},
-                onUpdate: self => {
-                    const progress = self.progress;
-                    let currentIndex = Math.floor(progress * texts.length);
-                    currentIndex = Math.min(currentIndex, texts.length - 1); // Clamp to max index
-                    
-                    if (currentIndex !== activeProjectIndex.current) {
-                        activeProjectIndex.current = currentIndex;
-
-                        gsap.to(images, { 
-                            opacity: 0, 
-                            scale: 0.95, 
-                            duration: 0.4, 
-                            ease: "power2.inOut",
-                            overwrite: 'auto' 
-                        });
-                        if (images[currentIndex]) {
-                            gsap.to(images[currentIndex], { 
-                                opacity: 1, 
-                                scale: 1, 
-                                duration: 0.4, 
-                                ease: "power2.out",
-                                overwrite: 'auto' 
-                            });
-                        }
-                        
-                        texts.forEach((textEl, i) => {
-                            gsap.to(textEl, { 
-                                opacity: i === currentIndex ? 1 : 0.3, // Active text fully visible, others dimmed
-                                duration: 0.4,
-                                ease: "power2.inOut",
-                                overwrite: 'auto'
-                            });
-                        });
+                    if (progress >= sectionStart && progress < sectionEnd) {
+                        gsap.set(text, { opacity: 1 - sectionProgress, y: -30 * sectionProgress });
+                        gsap.set(images[i], { opacity: 1 - sectionProgress, scale: 1 - (0.1 * sectionProgress), y: -30 * sectionProgress });
+                    } else if (progress >= sectionEnd) {
+                        gsap.set(text, { opacity: 0, y: -30 });
+                        gsap.set(images[i], { opacity: 0, scale: 0.9, y: -30 });
+                    } else {
+                        gsap.set(text, { opacity: 0, y: 30 });
+                        gsap.set(images[i], { opacity: 0, scale: 0.9, y: 30 });
                     }
-                }
-            }
-        });
-    }
-    
-    gsap.fromTo(titleEl, { opacity: 0, y: 50 }, {
-        opacity: 1, y: 0, duration: 0.8, scrollTrigger: {
-            trigger: section, start: 'top 80%', toggleActions: 'play none none none'
-        }
-    });
+                    
+                    const nextIndex = i + 1;
+                    if (nextIndex < texts.length) {
+                        const nextText = texts[nextIndex];
+                        const nextImage = images[nextIndex];
+                        if (progress >= sectionStart && progress < sectionEnd) {
+                            gsap.set(nextText, { opacity: sectionProgress, y: 30 * (1 - sectionProgress) });
+                            gsap.set(nextImage, { opacity: sectionProgress, scale: 0.9 + (0.1 * sectionProgress), y: 30 * (1 - sectionProgress) });
+                        }
+                    }
+                  });
+              }
+          }
+      });
+  
+      gsap.fromTo(titleEl, { opacity: 0, y: 50 }, {
+          opacity: 1, y: 0, duration: 0.8, scrollTrigger: {
+              trigger: section, start: 'top 80%', toggleActions: 'play none none none'
+          }
+      });
 
-    return () => {
-        ScrollTrigger.getAll().forEach(st => st.kill());
-        gsap.killTweensOf([textList, titleEl, ...images, ...texts]);
-    };
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
+
+  // Assuming main navbar is approx 4rem (64px) and sticky title is approx 7rem (112px). Total offset = 11rem
+  const topOffset = "11rem"; 
 
   if (projectsData.length === 0) {
     return (
@@ -159,22 +145,18 @@ const Projects = () => {
       </h2>
 
       <div ref={stickyContainerRef} className="relative max-w-7xl mx-auto">
-        {/* The height of this container will be determined by the total scroll needed for the left column animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
-          {/* Left Column: Sticky with internal scroll via GSAP translateY */}
-          {/* Height of this column defines the viewport for one text item */}
-          <div ref={leftColumnRef} className="md:sticky md:top-[10rem] h-[calc(100vh-12rem)] max-h-[700px] md:max-h-none overflow-hidden">
+          <div ref={leftColumnRef} className="md:sticky overflow-hidden" style={{ top: topOffset, height: `calc(100vh - ${topOffset})` }}>
              <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none"></div>
-            {/* This container scrolls its children (project-text-item) */}
             <div ref={textListScrollContainerRef} className="relative">
               {projectsData.map((project, index) => (
                 <div 
                   key={project.id} 
                   ref={el => projectTextItemRefs.current[index] = el}
-                  // Each item takes full height of the leftCol viewport. Content is centered.
-                  className={`project-text-item h-[calc(100vh-12rem)] max-h-[700px] md:max-h-none flex flex-col justify-center items-start p-6 md:p-8 lg:p-12 box-border transition-opacity duration-300`}
+                  className={`project-text-item flex flex-col justify-center p-6 md:p-8 lg:p-12 box-border`}
+                  style={{ height: `calc(100vh - ${topOffset})` }}
                 >
-                  <div> {/* Inner div for content alignment if needed, or apply padding to parent */}
+                  <div>
                     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-3">
                       {project.title}
                     </h3>
@@ -199,16 +181,15 @@ const Projects = () => {
             <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none"></div>
           </div>
 
-          {/* Right Column: Image reveal */}
-          <div className="relative flex items-center justify-center md:sticky md:top-[10rem] h-[calc(100vh-12rem)] max-h-[700px] md:max-h-none">
-            <div className="w-full h-full max-w-2xl aspect-auto md:aspect-[4/3]">
+          <div className="md:sticky flex items-center justify-center" style={{ top: topOffset, height: `calc(100vh - ${topOffset})` }}>
+            <div className="relative w-full h-full max-w-2xl">
                 {projectsData.map((project, index) => (
                     <img 
                         key={project.id} 
                         ref={el => projectImageRefs.current[index] = el}
                         src={project.imageUrl} 
                         alt={`${project.title} screenshot`} 
-                        className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-xl"
+                        className="absolute inset-0 w-full h-full object-contain rounded-lg"
                     />
                 ))}
             </div>
