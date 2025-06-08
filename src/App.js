@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import Lenis from 'lenis'
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,6 +12,18 @@ import Footer from './components/Footer';
 import './App.css'; // Keep App.css for any global App-specific styles if needed
 
 function App() {
+
+  useLayoutEffect(() => {
+    const lenis = new Lenis()
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+  }, [])
+
   return (
     <div className="App font-sans">
       <Navbar />
