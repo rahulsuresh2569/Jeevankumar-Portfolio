@@ -14,7 +14,9 @@ import './App.css'; // Keep App.css for any global App-specific styles if needed
 function App() {
 
   useLayoutEffect(() => {
-    const lenis = new Lenis()
+    const lenis = new Lenis({
+      lerp: 0.07,
+    })
 
     function raf(time) {
       lenis.raf(time)

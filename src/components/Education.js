@@ -14,9 +14,9 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="min-h-screen bg-primary text-secondary py-20 px-10">
+    <section id="education" className="min-h-screen bg-secondary text-primary py-20 px-10">
       <h2 className="text-4xl font-bold text-center mb-12">Education</h2>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {educationHistory.map(edu => (
           <div key={edu.id} className="mb-8 p-6 border border-gray-700 rounded-lg">
             <h3 className="text-2xl font-semibold">{edu.degree}</h3>
