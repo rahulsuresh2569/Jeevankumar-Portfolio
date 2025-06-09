@@ -1,5 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import Lenis from 'lenis'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -18,12 +20,13 @@ function App() {
       lerp: 0.07,
     })
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
+    lenis.on('scroll', ScrollTrigger.update)
 
-    requestAnimationFrame(raf)
+    gsap.ticker.add((time)=>{
+      lenis.raf(time * 1000)
+    })
+    
+    gsap.ticker.lagSmoothing(0)
   }, [])
 
   return (
