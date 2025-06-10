@@ -1,15 +1,26 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
   const designations = [
-    { symbol: '◆', text: 'Product Designer' },
-    { symbol: '◆', text: 'UI UX Designer' }, 
-    { symbol: '◆', text: 'Visual Designer' },
-    { symbol: '◆', text: 'Logo Designer' },
-    { symbol: '◆', text: 'Banner & Poster Designer' }
+    { symbol: '✦', text: 'Product Designer' },
+    { symbol: '✦', text: 'UI UX Designer' }, 
+    { symbol: '✦', text: 'Visual Designer' }
+    // { symbol: '✦', text: 'Logo Designer' },
+    // { symbol: '✦', text: 'Banner & Poster Designer' }
+  ];
+
+  // Color palette for each designation
+  const colorGradients = [
+    { from: '#9333ea', to: '#8b5cf6' }, // Purple - Product Designer
+    { from: '#2563eb', to: '#3b82f6' }, // Blue - UI UX Designer
+    { from: '#059669', to: '#10b981' } // Emerald - Visual Designer
+    // { from: '#e11d48', to: '#f43f5e' }, // Rose - Logo Designer
+    // { from: '#d97706', to: '#f59e0b' }  // Amber - Banner & Poster Designer
   ];
 
   const [translateX, setTranslateX] = useState(0);
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const animationRef = useRef(null);
@@ -35,21 +46,54 @@ const Hero = () => {
     return 0;
   }, [designations.length]);
 
+  // Improved timing calculation - triggers when word is centered in container
+  const calculateCurrentWordIndex = useCallback((translateXValue, oneElementWidth, containerWidth) => {
+    if (oneElementWidth === 0 || containerWidth === 0) return 0;
+    
+    // Calculate the position where the word should be centered
+    // Add half container width to account for centering
+    const adjustedPosition = Math.abs(translateXValue) + (containerWidth / 2);
+    
+    // Calculate which element should be centered now
+    const elementsScrolled = adjustedPosition / oneElementWidth;
+    
+    // Get the current word index (0-4) and handle the looping
+    const currentIndex = Math.floor(elementsScrolled) % designations.length;
+    
+    return currentIndex;
+  }, [designations.length]);
+
   useEffect(() => {
     let setWidth = 0;
+    let oneElementWidth = 0;
+    let containerWidth = 0;
     
     const animate = () => {
       setTranslateX(prev => {
-        const newValue = prev - 0.8; // Reduced speed for slower motion
+        const newValue = prev - 1.0; // Animation speed
         
-        // Calculate set width on first frame
-        if (setWidth === 0) {
+        // Calculate dimensions on first frame
+        if (setWidth === 0 && containerRef.current) {
           setWidth = calculateElementWidth();
+          oneElementWidth = setWidth / designations.length;
+          containerWidth = containerRef.current.offsetWidth;
           if (setWidth === 0) return newValue; // Wait for elements to render
         }
         
+        // Calculate current word and update color with improved timing
+        if (oneElementWidth > 0 && containerWidth > 0) {
+          const currentWordIndex = calculateCurrentWordIndex(newValue, oneElementWidth, containerWidth);
+          
+          // Only update if the index actually changed to prevent rapid updates
+          setCurrentColorIndex(prev => {
+            if (prev !== currentWordIndex) {
+              return currentWordIndex;
+            }
+            return prev;
+          });
+        }
+        
         // Use modulo to create seamless loop
-        // When we've moved one complete set width, reset to create infinite effect
         if (Math.abs(newValue) >= setWidth) {
           return newValue + setWidth; // Seamless reset by one set width
         }
@@ -71,11 +115,11 @@ const Hero = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [calculateElementWidth]);
+  }, [calculateElementWidth, calculateCurrentWordIndex, designations.length]);
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-secondary text-primary px-6 lg:px-10">
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-[92%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto w-full">
         
         {/* Main Content Container */}
         <div className="space-y-6 lg:space-y-8">
@@ -86,10 +130,18 @@ const Hero = () => {
               I'm
             </h1>
             
-            {/* Continuous Scrolling Container - Full Width with Increased Height */}
-            <div 
+            {/* Continuous Scrolling Container with Framer Motion Color Transitions */}
+            <motion.div 
               ref={containerRef}
-              className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-500 rounded-full px-8 py-6 lg:px-12 lg:py-8 xl:py-10 w-full flex-1"
+              className="relative overflow-hidden px-8 py-4 lg:px-12 w-full flex-1"
+              style={{ borderRadius: '60px' }}
+              animate={{
+                background: `linear-gradient(to right, ${colorGradients[currentColorIndex].from}, ${colorGradients[currentColorIndex].to})`
+              }}
+              transition={{
+                duration: 0.8,
+                ease: "easeInOut"
+              }}
             >
               <div 
                 ref={trackRef}
@@ -103,18 +155,18 @@ const Hero = () => {
                   <div
                     key={index}
                     ref={el => elementRefs.current[index] = el}
-                    className="flex items-center mr-10 lg:mr-16 flex-shrink-0"
+                    className="flex items-center mr-4 lg:mr-5 flex-shrink-0"
                   >
-                    <span className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none w-16 md:w-20 lg:w-24 xl:w-28 text-center flex-shrink-0">
+                    <span className="text-white text-[8rem] leading-none w-32 lg:w-40 text-center flex-shrink-0">
                       {designation.symbol}
                     </span>
-                    <span className="text-white text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold leading-none ml-3 lg:ml-4 xl:ml-5">
+                    <span className="text-white text-[10rem] leading-none ml-4 lg:ml-5 xl:ml-5">
                       {designation.text}
                     </span>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Second Row: Name + Subtext */}
@@ -124,7 +176,7 @@ const Hero = () => {
             </h2>
             
             {/* Supporting Text - Left Aligned */}
-            <div className="lg:mb-4 xl:mb-8">
+            <div className="lg:mb-4">
               <p className="text-sm md:text-base lg:text-lg text-primary/70 leading-relaxed max-w-xs lg:max-w-sm text-left">
                 I craft user-centered, interactive designs and continually pushing creative boundaries to deliver impactful solutions
               </p>
