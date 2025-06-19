@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import DesignGallery from './components/DesignGallery';
 import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
@@ -33,6 +34,7 @@ function App() {
     <div className="App font-sans">
       <Navbar />
       <Hero />
+      <DesignGallery />
       <About />
       <Experience />
       <Projects />
