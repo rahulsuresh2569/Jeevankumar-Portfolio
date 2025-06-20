@@ -13,14 +13,14 @@ import watch2 from '../assets/images/design-gallery/Watch_2.png';
 
 const DesignGallery = () => {
 
-  // Gallery data with absolute positioning matching expected layout
+  // Gallery data with responsive positioning for all screen sizes
   const galleryItems = [
     {
       id: 1,
       src: iPad1, // Top left - AI explore tablet (background)
       alt: 'iPad Design',
-      position: 'left-4 lg:left-8',
-      spacing: 'top-4 lg:top-8',
+      position: '-left-[2rem] sm:-left-[2rem] md:-left-[3rem] lg:-left-[4rem] xl:-left-[6rem]',
+      spacing: 'top-2 sm:top-4 md:top-6 lg:top-8 xl:top-8',
       zIndex: 1
     },
     {
@@ -28,63 +28,63 @@ const DesignGallery = () => {
       src: laptop, // Top center - dashboard laptop
       alt: 'Laptop Design',
       position: 'left-1/2 transform -translate-x-1/2',
-      spacing: 'top-8 lg:top-12',
+      spacing: 'top-4 sm:top-6 md:top-8 lg:top-10 xl:top-12',
       zIndex: 3
     },
     {
       id: 3,
       src: watch1, // Top right - first watch
       alt: 'Watch Design 1',
-      position: 'right-40 lg:right-60',
-      spacing: 'top-4 lg:top-8',
+      position: 'right-20 sm:right-24 md:right-32 lg:right-36 xl:right-40',
+      spacing: 'top-2 sm:top-4 md:top-6 lg:top-16 xl:top-20',
       zIndex: 4
     },
     {
       id: 4,
       src: iPhone3, // Top right - analytics phone
       alt: 'iPhone Design 3',
-      position: 'right-4 lg:right-8',
-      spacing: 'top-16 lg:top-[9rem]',
+      position: '-right-[1rem] sm:-right-[1rem] md:-right-[2rem] lg:-right-[3rem] xl:-right-[4rem]',
+      spacing: 'top-8 sm:top-12 md:top-16 lg:top-24 xl:top-[9rem]',
       zIndex: 5
     },
     {
       id: 5,
       src: iPhone1, // Overlapping iPad - white phone with cards
       alt: 'iPhone Design 1',
-      position: 'left-16 lg:left-32',
-      spacing: 'top-32 lg:top-[21rem]',
+      position: 'left-8 sm:left-12 md:left-14 lg:left-16 xl:left-10',
+      spacing: 'top-16 sm:top-20 md:top-24 lg:top-32 xl:top-[22rem]',
       zIndex: 6
     },
     {
       id: 6,
       src: watch2, // Bottom left - second watch
       alt: 'Watch Design 2',
-      position: 'left-2 lg:left-20',
-      spacing: 'top-80 lg:top-[47rem]',
+      position: 'left-1 sm:left-2 md:left-4 lg:left-6 xl:left-10',
+      spacing: 'top-40 sm:top-52 md:top-[22rem] lg:top-[28rem] xl:top-[50rem]',
       zIndex: 7
     },
     {
       id: 7,
       src: iPhone2, // Bottom center-left - purple/blue phone
       alt: 'iPhone Design 2',
-      position: 'left-16 lg:left-80',
-      spacing: 'top-96 lg:top-[38rem]',
+      position: 'left-[3rem] sm:left-[5rem] md:left-[8rem] lg:left-[10rem] xl:left-[14rem]',
+      spacing: 'top-[15rem] sm:top-[20rem] md:top-[26rem] lg:top-[32rem] xl:top-[46rem]',
       zIndex: 8
     },
     {
       id: 8,
       src: tablet, // Bottom center-right - AINO tablet
       alt: 'Tablet Design',
-      position: 'right-96 lg:right-[30rem]',
-      spacing: 'top-88 lg:top-[32rem]',
+      position: 'left-1/2 transform -translate-x-1/2',
+      spacing: 'top-44 sm:top-[17rem] md:top-80 lg:top-[26rem] xl:top-[36rem]',
       zIndex: 4
     },
     {
       id: 9,
-      src: surfacePro, // Bottom far right - dark analytics surface (off viewport)
+      src: surfacePro, // Bottom far right - dark analytics surface
       alt: 'Surface Pro Design',
-      position: 'right-0 transform translate-x-1/2 lg:translate-x-1/4',
-      spacing: 'top-88 lg:top-[39rem]',
+      position: '-right-[7rem] sm:-right-[4rem] md:-right-[6rem] lg:-right-[8rem] xl:-right-[10rem]',
+      spacing: 'top-[14rem] sm:top-[17rem] md:top-[24rem] lg:top-[32rem] xl:top-[46rem]',
       zIndex: 9
     }
   ];
@@ -94,8 +94,7 @@ const DesignGallery = () => {
   return (
     <section 
       id="design-gallery" 
-      className="relative bg-secondary overflow-hidden"
-      style={{ minHeight: '150vh' }}
+      className="relative bg-secondary overflow-hidden min-h-[64vh] sm:min-h-[78vh] md:min-h-[92vh] lg:min-h-[122vh] xl:min-h-[157vh]"
     >
       {/* Gallery Container - No padding, starts immediately */}
       <div className="relative w-full">
@@ -110,12 +109,17 @@ const DesignGallery = () => {
               alt={item.alt}
               className="w-auto h-auto object-cover"
               style={{
-                maxWidth: item.src.includes('Watch') ? '300px' : 
-                         item.src.includes('iPhone') ? '300px' :
-                         item.src.includes('iPad') ? '500px' :
-                         item.src.includes('Tablet') ? '700px' :
-                         item.src.includes('Laptop') ? '2000px' :
-                         '800px'
+                maxWidth: item.src.includes('Watch') ? 
+                  'clamp(50px, 13vw, 230px)' : 
+                item.src.includes('iPhone') ? 
+                  'clamp(100px, 15vw, 280px)' :
+                item.src.includes('iPad') ? 
+                  'clamp(200px, 30vw, 470px)' :
+                item.src.includes('Tablet') ? 
+                  'clamp(280px, 50vw, 820px)' :
+                item.src.includes('Laptop') ? 
+                  'clamp(400px, 72vw, 1300px)' :
+                  'clamp(250px, 35vw, 760px)'
               }}
               loading="lazy"
             />

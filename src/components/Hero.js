@@ -118,23 +118,23 @@ const Hero = () => {
   }, [calculateElementWidth, calculateCurrentWordIndex, designations.length]);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-secondary text-primary px-6 lg:px-10">
-      <div className="max-w-[92%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto w-full">
+    <section id="hero" className="h-[75vh] sm:h-[70vh] md:h-[68vh] lg:h-[65vh] xl:h-[73vh] flex items-center justify-center bg-secondary text-primary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-20 sm:pt-16 md:pt-12 lg:pt-8">
+      <div className="max-w-[98%] sm:max-w-[95%] md:max-w-[92%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-[85%] mx-auto w-full">
         
         {/* Main Content Container */}
-        <div className="space-y-6 lg:space-y-8">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8">
           
           {/* First Row: "I'm" + Animation Container */}
-          <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-            <h1 className="text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none flex-shrink-0">
+          <div className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[10rem] font-bold leading-none flex-shrink-0">
               I'm
             </h1>
             
             {/* Continuous Scrolling Container with Framer Motion Color Transitions */}
             <motion.div 
               ref={containerRef}
-              className="relative overflow-hidden px-8 py-4 lg:px-12 w-full flex-1"
-              style={{ borderRadius: '60px' }}
+              className="relative overflow-hidden px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 lg:px-10 lg:py-4 xl:px-12 xl:py-5 w-full flex-1"
+              style={{ borderRadius: 'clamp(30px, 8vw, 60px)' }}
               animate={{
                 background: `linear-gradient(to right, ${colorGradients[currentColorIndex].from}, ${colorGradients[currentColorIndex].to})`
               }}
@@ -155,12 +155,23 @@ const Hero = () => {
                   <div
                     key={index}
                     ref={el => elementRefs.current[index] = el}
-                    className="flex items-center mr-4 lg:mr-5 flex-shrink-0"
+                    className="flex items-center mr-2 sm:mr-3 md:mr-4 lg:mr-5 flex-shrink-0"
                   >
-                    <span className="text-white text-[8rem] leading-none w-32 lg:w-40 text-center flex-shrink-0">
+                    <span 
+                      className="text-white leading-none text-center flex-shrink-0"
+                      style={{
+                        fontSize: 'clamp(2rem, 8vw, 8rem)',
+                        width: 'clamp(4rem, 12vw, 10rem)'
+                      }}
+                    >
                       {designation.symbol}
                     </span>
-                    <span className="text-white text-[10rem] leading-none ml-4 lg:ml-5 xl:ml-5">
+                    <span 
+                      className="text-white leading-none ml-2 sm:ml-3 md:ml-4 lg:ml-5"
+                      style={{
+                        fontSize: 'clamp(2.5rem, 10vw, 10rem)'
+                      }}
+                    >
                       {designation.text}
                     </span>
                   </div>
@@ -170,14 +181,14 @@ const Hero = () => {
           </div>
 
           {/* Second Row: Name + Subtext */}
-          <div className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-12">
-            <h2 className="text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold leading-none">
+          <div className="flex flex-col md:flex-row md:items-end gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-12">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[10rem] font-bold leading-none">
               Jeevankumar
             </h2>
             
-            {/* Supporting Text - Left Aligned */}
-            <div className="lg:mb-4">
-              <p className="text-sm md:text-base lg:text-lg text-primary/70 leading-relaxed max-w-xs lg:max-w-sm text-left">
+            {/* Supporting Text - Center on Mobile, Left on Desktop */}
+            <div className="md:mb-2 lg:mb-3 xl:mb-4 flex justify-center md:justify-start">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary/70 leading-relaxed max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg text-center md:text-left">
                 I craft user-centered, interactive designs and continually pushing creative boundaries to deliver impactful solutions
               </p>
             </div>
