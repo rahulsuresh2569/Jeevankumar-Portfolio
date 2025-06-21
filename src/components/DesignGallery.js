@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Import design gallery images
 import iPhone1 from '../assets/images/design-gallery/iPhone 14 Plus_1.png';
@@ -12,6 +14,8 @@ import watch1 from '../assets/images/design-gallery/Watch_1.png';
 import watch2 from '../assets/images/design-gallery/Watch_2.png';
 
 const DesignGallery = () => {
+  const sectionRef = useRef(null);
+  const imageRefs = useRef([]);
 
   // Gallery data with responsive positioning for all screen sizes
   const galleryItems = [
@@ -89,11 +93,76 @@ const DesignGallery = () => {
     }
   ];
 
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
+    const section = sectionRef.current;
+    const images = imageRefs.current;
+
+    if (section && images.length > 0) {
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        images.forEach((image, index) => {
+          if (image) {
+            const item = galleryItems[index];
+            const zIndex = item.zIndex;
+            
+            gsap.set(image, { 
+              willChange: 'transform',
+              force3D: true
+            });
+
+            const parallaxDistance = calculateParallaxDistance(zIndex);
+
+            gsap.to(image, {
+              y: parallaxDistance,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.2,
+                invalidateOnRefresh: true,
+                refreshPriority: -1,
+              },
+            });
+          }
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        images.forEach((image) => {
+          if (image) {
+            gsap.set(image, { clearProps: 'transform' });
+          }
+        });
+      });
+
+      return () => {
+        mm.revert();
+      };
+    }
+  }, []);
+
+  const calculateParallaxDistance = (zIndex) => {
+    switch (zIndex) {
+      case 9: return -500; // Surface Pro - fastest
+      case 8: return -420; // iPhone2 - very fast
+      case 7: return -350; // Watch2 - fast
+      case 6: return -280; // iPhone1 - medium-fast
+      case 5: return -220; // iPhone3 - medium
+      case 4: return -170; // Watch1 & Tablet - medium-slow
+      case 3: return -120; // Laptop - slow
+      case 1: return -80;  // iPad1 - slowest
+      default: return -150;
+    }
+  };
 
   return (
     <section 
       id="design-gallery" 
+      ref={sectionRef}
       className="relative bg-secondary overflow-hidden min-h-[64vh] sm:min-h-[78vh] md:min-h-[92vh] lg:min-h-[122vh] xl:min-h-[157vh]"
     >
       {/* Gallery Container - No padding, starts immediately */}
@@ -105,6 +174,7 @@ const DesignGallery = () => {
             style={{ zIndex: item.zIndex || (10 - index) }}
           >
             <img
+              ref={el => imageRefs.current[index] = el}
               src={item.src}
               alt={item.alt}
               className="w-auto h-auto object-cover"

@@ -17,17 +17,45 @@ import './App.css'; // Keep App.css for any global App-specific styles if needed
 function App() {
 
   useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const lenis = new Lenis({
       lerp: 0.07,
-    })
+      smoothWheel: true,
+      smoothTouch: false,
+    });
 
-    lenis.on('scroll', ScrollTrigger.update)
+    lenis.on('scroll', (e) => {
+      ScrollTrigger.update();
+    });
 
-    gsap.ticker.add((time)=>{
-      lenis.raf(time * 1000)
-    })
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
     
-    gsap.ticker.lagSmoothing(0)
+    gsap.ticker.lagSmoothing(0);
+
+    ScrollTrigger.config({
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      ignoreMobileResize: true,
+    });
+
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      lenis.destroy();
+      ScrollTrigger.killAll();
+      gsap.ticker.remove(lenis.raf);
+    };
   }, [])
 
   return (
