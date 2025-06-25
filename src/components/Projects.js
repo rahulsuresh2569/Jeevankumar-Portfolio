@@ -17,61 +17,61 @@ const Projects = () => {
     {
       id: 1,
       tag: "Real Time Project",
-      title: "Inventory Management Software",
+      title: "Field Management Software",
       category: "B2B SaaS",
       type: "Product Design",
-      industry: "Manufacturing Industry",
+      industry: "Utilities Industry",
       platform: "Web & Mobile Application",
-      description: "Streamlined inventory tracking and management system designed for manufacturing businesses to optimize their supply chain operations.",
-      image: inventoryImg,
-      ctaText: "Detail View"
-    },
-    {
-      id: 2,
-      tag: "Enterprise Solution", 
-      title: "Field Management Software",
-      category: "Enterprise",
-      type: "UI/UX Design",
-      industry: "Field Operations",
-      platform: "Mobile & Desktop Application",
       description: "Comprehensive field management platform enabling real-time coordination and data collection for field service teams.",
       image: fieldManagementImg,
       ctaText: "Detail View"
     },
     {
+      id: 2,
+      tag: "Real Time Project", 
+      title: "Inventory Management Software",
+      category: "B2B SaaS",
+      type: "Web & Mobile Application",
+      industry: "Product Design",
+      platform: "Manufacturing Industry",
+      description: "Streamlined inventory tracking and management system designed for manufacturing businesses to optimize their supply chain operations.",
+      image: inventoryImg,
+      ctaText: "Detail View"
+    },
+    {
       id: 3,
-      tag: "IoT Integration",
+      tag: "Real Time Project",
       title: "Active RFID Employee Tracking System",
-      category: "IoT Solution",
-      type: "System Design",
-      industry: "Corporate Management",
-      platform: "Web Dashboard & Mobile",
+      category: "B2B SaaS",
+      type: "Web & Mobile Application",
+      industry: "Product Design",
+      platform: "Manufacturing Industry",
       description: "Advanced RFID-based employee tracking system providing real-time location data and workplace analytics.",
       image: rfidTrackingImg,
       ctaText: "Detail View"
     },
     {
       id: 4,
-      tag: "Social Impact",
-      title: "AIDIT Donation App",
-      category: "Mobile App",
+      tag: "Real Time Project",
+      title: "Tyns",
+      category: "B2C",
       type: "Product Design",
-      industry: "Non-Profit & Social",
+      industry: "Donation app",
       platform: "Mobile Application",
-      description: "User-friendly donation platform connecting donors with verified charitable organizations for transparent giving.",
-      image: aiditImg,
+      description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
+      image: tynsImg,
       ctaText: "Detail View"
     },
     {
       id: 5,
-      tag: "E-Commerce Platform",
-      title: "Tyns Shopping Experience",
-      category: "E-Commerce",
-      type: "UI/UX Design",
-      industry: "Retail & Fashion",
-      platform: "Web & Mobile Application",
-      description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
-      image: tynsImg,
+      tag: "Mock Project",
+      title: "AIDIT (Donation app)",
+      category: "B2B & C2C",
+      type: "Product Design",
+      industry: "Donation app",
+      platform: "Mobile Application",
+      description: "User-friendly donation platform connecting donors with verified charitable organizations for transparent giving.",
+      image: aiditImg,
       ctaText: "Detail View"
     }
   ];
@@ -226,7 +226,7 @@ const Projects = () => {
             >
               
               {/* Left Side - Project Content */}
-              <div className="projects-left bg-primary rounded-3xl p-8 sm:p-10 lg:p-12 flex flex-col justify-between h-full max-h-[75vh]">
+              <div className="projects-left bg-primary rounded-3xl p-10 flex flex-col justify-between h-full max-h-[75vh]">
                 <div className="projects-left-top flex-1 flex flex-col justify-center relative">
                   
                   {/* All project content items (absolutely positioned) */}
@@ -239,55 +239,58 @@ const Projects = () => {
                         transition: 'opacity 0.5s ease-in-out'
                       }}
                     >
-                      {/* Project Tag */}
-                      <div className="mb-6">
-                        <span className="inline-block text-sm font-medium px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 border border-blue-400/30">
+                      {/* Project Tag - Section Label */}
+                      <div className="absolute -top-2.5 left-0">
+                        <span className="inline-block text-sm font-normal text-cyan-400">
                           {project.tag}
                         </span>
                       </div>
 
-                      {/* Project Title - Reduced size to match image */}
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-secondary leading-tight mb-8">
+                      {/* Project Title - 28px-32px, Bold, 2 lines */}
+                      <h3 className="text-2xl font-bold text-secondary leading-tight mb-12">
                         {project.title}
                       </h3>
 
-                      {/* Project Metadata - Text Pills Design */}
-                      <div className="space-y-4 mb-8">
-                        {/* Category and Type - Combined pill */}
-                        <div className="flex items-center gap-3">
-                          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary text-sm font-medium rounded-full border border-secondary/20">
+                      {/* Project Metadata - First 2 tags with dot, others on separate lines */}
+                      <div className="space-y-4 mb-12">
+                        {/* First line: First 2 tags with dot between them */}
+                        <div className="flex items-center gap-2">
+                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
                             {project.category}
                           </span>
-                          <span className="w-1 h-1 bg-secondary/60 rounded-full"></span>
-                          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary text-sm font-medium rounded-full border border-secondary/20">
-                            {project.type}
-                          </span>
-                        </div>
-                        
-                        {/* Industry - Text pill */}
-                        <div>
-                          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary text-sm font-medium rounded-full border border-secondary/20">
+                          <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
                             {project.industry}
                           </span>
                         </div>
                         
-                        {/* Platform - Text pill */}
+                        {/* Second line: Third tag */}
                         <div>
-                          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary text-sm font-medium rounded-full border border-secondary/20">
+                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
                             {project.platform}
                           </span>
                         </div>
+                        
+                        {/* Third line: Fourth tag */}
+                        <div>
+                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                            {project.type}
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Divider Line */}
+                      <div className="w-full h-px bg-gray-700 mb-10"></div>
                     </div>
                   ))}
                 </div>
 
-                {/* Bottom CTA Button */}
-                <div className="projects-left-bottom mt-8">
-                  <button className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 hover:scale-105 w-full justify-center">
+                {/* Bottom CTA Button - Left aligned */}
+                <div className="projects-left-bottom flex justify-start">
+                  <button className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 hover:scale-105">
                     <span>Detail View</span>
                     <svg 
-                      className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
