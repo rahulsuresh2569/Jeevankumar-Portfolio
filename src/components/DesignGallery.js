@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -17,8 +17,8 @@ const DesignGallery = () => {
   const sectionRef = useRef(null);
   const imageRefs = useRef([]);
 
-  // Gallery data with responsive positioning for all screen sizes
-  const galleryItems = [
+  // Gallery data with responsive positioning for all screen sizes - memoized
+  const galleryItems = useMemo(() => [
     {
       id: 1,
       src: iPad1, // Top left - AI explore tablet (background)
@@ -91,7 +91,7 @@ const DesignGallery = () => {
       spacing: 'top-[14rem] sm:top-[17rem] md:top-[24rem] lg:top-[32rem] xl:top-[46rem]',
       zIndex: 9
     }
-  ];
+  ], []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -143,7 +143,7 @@ const DesignGallery = () => {
         mm.revert();
       };
     }
-  }, []);
+  }, [galleryItems]);
 
   const calculateParallaxDistance = (zIndex) => {
     switch (zIndex) {
