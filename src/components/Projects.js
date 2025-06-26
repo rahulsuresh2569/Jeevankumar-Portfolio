@@ -12,6 +12,18 @@ import tynsImg from '../assets/images/projects/Tyns.jpg';
 const Projects = () => {
   const showcaseSectionRef = useRef(null);
   const stickyWrapperRef = useRef(null);
+  const [activeProjectIndex, setActiveProjectIndex] = React.useState(0);
+  const mouseFollowerRef = useRef(null);
+  const projectsRightRef = useRef(null);
+
+  // Button gradient colors for each project
+  const buttonGradients = [
+    { from: '#E8B513', to: '#FFEBAC', textColor: 'black' }, // Project 1: Yellow
+    { from: '#7161EF', to: '#9E92FF', textColor: 'white' }, // Project 2: Purple
+    { from: '#FFFFFF', to: '#D8D8D8', textColor: 'black' }, // Project 3: White/Gray
+    { from: '#25BD18', to: '#80E777', textColor: 'black' }, // Project 4: Green
+    { from: '#3D8361', to: '#6CC298', textColor: 'white' }  // Project 5: Teal
+  ];
 
   const projectsData = [
     {
@@ -139,6 +151,8 @@ const Projects = () => {
         const images = document.querySelectorAll('.project-image-item');
         
         // Update active project
+        setActiveProjectIndex(currentIndex);
+        
         sections.forEach((section, index) => {
           if (index === currentIndex) {
             section.classList.add('is-active');
@@ -170,6 +184,68 @@ const Projects = () => {
     // Initial call
     handleScroll();
 
+    // Mouse follower animation for right section
+    if (projectsRightRef.current && mouseFollowerRef.current) {
+      const follower = mouseFollowerRef.current;
+      const mouseBox = projectsRightRef.current;
+      
+      // Set initial state
+      gsap.set(follower, {
+        xPercent: -50,
+        yPercent: -50,
+        scale: 0,
+        opacity: 1
+      });
+
+      // Create quick animations for smooth following
+      const xTo = gsap.quickTo(follower, "x", { duration: 0.3, ease: "power2" });
+      const yTo = gsap.quickTo(follower, "y", { duration: 0.3, ease: "power2" });
+      
+      // Scale animation for enter/leave
+      const scaleTween = gsap.to(follower, {
+        scale: 1,
+        ease: "power1.inOut",
+        paused: true
+      });
+
+      // Event handlers
+      const handleMouseEnter = () => {
+        scaleTween.play();
+        mouseBox.style.cursor = 'none';
+      };
+
+      const handleMouseLeave = () => {
+        scaleTween.reverse();
+        mouseBox.style.cursor = 'default';
+      };
+
+      const handleMouseMove = (e) => {
+        const rect = mouseBox.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        xTo(x);
+        yTo(y);
+      };
+
+      // Add event listeners
+      mouseBox.addEventListener("mouseenter", handleMouseEnter);
+      mouseBox.addEventListener("mouseleave", handleMouseLeave);
+      mouseBox.addEventListener("mousemove", handleMouseMove);
+
+      // Cleanup function
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        mouseBox.removeEventListener("mouseenter", handleMouseEnter);
+        mouseBox.removeEventListener("mouseleave", handleMouseLeave);
+        mouseBox.removeEventListener("mousemove", handleMouseMove);
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.trigger === showcaseSectionRef.current) {
+            trigger.kill();
+          }
+        });
+      };
+    }
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       ScrollTrigger.getAll().forEach(trigger => {
@@ -183,7 +259,7 @@ const Projects = () => {
   return (
     <>
       {/* Static Header Section - Normal scroll, not sticky */}
-      <section className="projects-header-section bg-secondary text-primary pt-20 px-4 sm:px-6 md:px-8 lg:px-10">
+      <section className="projects-header-section bg-secondary text-primary pt-20 pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
             Selected Projects
@@ -220,74 +296,84 @@ const Projects = () => {
               style={{ 
                 gridTemplateColumns: '0.4fr 1fr',
                 gap: '2rem',
-                height: 'calc(100vh - 80px)', // Subtract navbar height
-                paddingTop: '80px' // Account for navbar
+                height: '100vh', // Full viewport height
+                paddingTop: '80px', // Account for navbar
+                paddingBottom: '40px' // Bottom padding for better spacing
               }}
             >
               
               {/* Left Side - Project Content */}
-              <div className="projects-left bg-primary rounded-3xl p-10 flex flex-col justify-between h-full max-h-[75vh]">
-                <div className="projects-left-top flex-1 flex flex-col justify-center relative">
+              <div className="projects-left bg-primary rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh]">
+                <div className="projects-left-top flex-1 flex flex-col text-left relative">
                   
-                  {/* All project content items (absolutely positioned) */}
-                  {projectsData.map((project, index) => (
-                    <div
-                      key={project.id}
-                      className="project-content-item absolute inset-0 flex flex-col justify-center text-left"
-                      style={{
-                        opacity: 0,
-                        transition: 'opacity 0.5s ease-in-out'
-                      }}
-                    >
-                      {/* Project Tag - Section Label */}
-                      <div className="absolute -top-2.5 left-0">
-                        <span className="inline-block text-sm font-normal text-cyan-400">
-                          {project.tag}
-                        </span>
+                  {/* Fixed Section Label */}
+                  <div className="mb-4">
+                    <span className="inline-block text-sm font-normal text-cyan-400">
+                      {projectsData[activeProjectIndex]?.tag}
+                    </span>
+                  </div>
+
+                  {/* Fixed Project Title */}
+                  <h3 className="text-2xl font-bold text-secondary leading-tight mb-12">
+                    {projectsData[activeProjectIndex]?.title}
+                  </h3>
+
+                  {/* Dynamic Pills Container - positioned relative to fixed title */}
+                  <div className="relative">
+                    {projectsData.map((project, index) => (
+                      <div
+                        key={project.id}
+                        className="project-content-item absolute inset-0"
+                        style={{
+                          opacity: 0,
+                          transition: 'opacity 0.5s ease-in-out'
+                        }}
+                      >
+                        {/* Project Metadata - First 2 tags with dot, others on separate lines */}
+                        <div className="space-y-4 mb-12">
+                          {/* First line: First 2 tags with dot between them */}
+                          <div className="flex items-center gap-2">
+                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                              {project.category}
+                            </span>
+                            <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                              {project.industry}
+                            </span>
+                          </div>
+                          
+                          {/* Second line: Third tag */}
+                          <div>
+                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                              {project.platform}
+                            </span>
+                          </div>
+                          
+                          {/* Third line: Fourth tag */}
+                          <div>
+                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                              {project.type}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Divider Line */}
+                        <div className="w-full h-px bg-gray-700 mb-10"></div>
                       </div>
-
-                      {/* Project Title - 28px-32px, Bold, 2 lines */}
-                      <h3 className="text-2xl font-bold text-secondary leading-tight mb-12">
-                        {project.title}
-                      </h3>
-
-                      {/* Project Metadata - First 2 tags with dot, others on separate lines */}
-                      <div className="space-y-4 mb-12">
-                        {/* First line: First 2 tags with dot between them */}
-                        <div className="flex items-center gap-2">
-                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
-                            {project.category}
-                          </span>
-                          <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
-                            {project.industry}
-                          </span>
-                        </div>
-                        
-                        {/* Second line: Third tag */}
-                        <div>
-                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
-                            {project.platform}
-                          </span>
-                        </div>
-                        
-                        {/* Third line: Fourth tag */}
-                        <div>
-                          <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
-                            {project.type}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Divider Line */}
-                      <div className="w-full h-px bg-gray-700 mb-10"></div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
 
                 {/* Bottom CTA Button - Left aligned */}
                 <div className="projects-left-bottom flex justify-start">
-                  <button className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 hover:scale-105">
+                  <button 
+                    className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    style={{
+                      background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
+                      color: buttonGradients[activeProjectIndex]?.textColor,
+                      boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
+                    }}
+                  >
                     <span>Detail View</span>
                     <svg 
                       className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
@@ -302,14 +388,41 @@ const Projects = () => {
               </div>
 
               {/* Right Side - Project Images */}
-              <div className="projects-right w-full h-full rounded-3xl relative overflow-hidden max-h-[75vh]">
+              <div 
+                ref={projectsRightRef}
+                className="projects-right w-full h-full rounded-3xl relative overflow-hidden max-h-[85vh] cursor-pointer"
+              >
+                {/* Mouse Follower - Circle with Arrow */}
+                <div 
+                  ref={mouseFollowerRef}
+                  className="mouse-follower absolute pointer-events-none z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  style={{
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <svg 
+                    className="w-6 h-6 text-black" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </svg>
+                </div>
+
                 {projectsData.map((project, index) => (
                   <div
                     key={`image-${project.id}`}
                     className="project-image-item absolute inset-0"
                     style={{
                       opacity: 0,
-                      transition: 'opacity 0.5s ease-in-out'
+                      transform: 'translateY(100%)',
+                      transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
                     }}
                   >
                     <img
@@ -334,23 +447,44 @@ const Projects = () => {
         
         .project-image-item.is-active {
           opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+
+        .mouse-follower {
+          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.9);
+        }
+
+        .projects-right:hover {
+          cursor: none !important;
         }
 
         @media (max-width: 1024px) {
           .projects-component {
             grid-template-columns: 1fr !important;
             gap: 1rem !important;
-            height: calc(100vh - 60px) !important;
+            height: 100vh !important;
             padding-top: 60px !important;
+            padding-bottom: 20px !important;
           }
           
           .projects-left {
-            max-height: 45vh !important;
+            max-height: 50vh !important;
             margin-bottom: 1rem;
           }
           
           .projects-right {
-            max-height: 35vh !important;
+            max-height: 40vh !important;
+          }
+
+          /* Disable mouse follower on mobile */
+          .mouse-follower {
+            display: none !important;
+          }
+          
+          .projects-right {
+            cursor: pointer !important;
           }
         }
       `}</style>

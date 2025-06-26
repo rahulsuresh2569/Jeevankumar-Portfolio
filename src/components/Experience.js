@@ -8,7 +8,9 @@ const Experience = () => {
   const timelineRef = useRef(null);
   const suitcaseRef = useRef(null);
   const leftSectionRef = useRef(null);
+  const skillsRef = useRef(null);
   const isInView = useInView(timelineRef, { once: true, threshold: 0.3 });
+  const skillsInView = useInView(skillsRef, { once: true, threshold: 0.2 });
 
   const experienceData = {
     company: 'Risolutor Technologies Pvt Ltd',
@@ -75,6 +77,65 @@ const Experience = () => {
       });
     }
   }, []);
+
+  // Enhanced SkillTag component with intense shine animation on the card content
+  const SkillTag = ({ children, index, delay = 0, hasIcon = false }) => {
+    return (
+      <div
+        className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
+        style={{
+          background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
+          backgroundSize: '200% 200%'
+        }}
+      >
+        <div className="relative overflow-hidden rounded-full">
+          {/* Intense shine effect overlay on the skill card content */}
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none z-20"
+            style={{
+              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.8) 45%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.8) 55%, rgba(255, 255, 255, 0.4) 65%, transparent 80%)',
+              transform: 'translateX(-150%) skewX(-15deg)',
+            }}
+            animate={skillsInView ? {
+              transform: ['translateX(-150%) skewX(-15deg)', 'translateX(150%) skewX(-15deg)']
+            } : {}}
+            transition={{
+              duration: 1.8,
+              delay: delay + (index * 0.15) + 0.3,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Secondary shimmer effect for extra intensity */}
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(110deg, transparent 30%, rgba(240, 248, 255, 0.6) 45%, rgba(255, 255, 255, 0.9) 50%, rgba(240, 248, 255, 0.6) 55%, transparent 70%)',
+              transform: 'translateX(-120%) skewX(-10deg)',
+            }}
+            animate={skillsInView ? {
+              transform: ['translateX(-120%) skewX(-10deg)', 'translateX(120%) skewX(-10deg)']
+            } : {}}
+            transition={{
+              duration: 1.5,
+              delay: delay + (index * 0.15) + 0.5,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <span 
+            className={`block ${hasIcon ? 'px-3 py-3' : 'px-4 py-3'} text-sm font-medium text-gray-700 rounded-full ${hasIcon ? 'flex items-center gap-2' : ''} relative z-5`}
+            style={{
+              background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
+              boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
+            }}
+          >
+            {children}
+          </span>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section id="experience" className="min-h-screen bg-secondary text-primary py-20 px-10">
@@ -214,31 +275,16 @@ const Experience = () => {
         </div>
         
         {/* Bottom Grid Section - Skills */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div ref={skillsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* Left Column - Strategic Product Design Skills (Tall Card) */}
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
             <h3 className="text-xl lg:text-2xl font-bold text-primary mb-6 text-left">Strategic Product Design Skills</h3>
             <div className="flex flex-wrap gap-3">
               {strategicSkills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
-                  style={{
-                    background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
-                    backgroundSize: '200% 200%'
-                  }}
-                >
-                  <span 
-                    className="block px-4 py-3 text-sm font-medium text-gray-700 rounded-full"
-                    style={{
-                      background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
-                      boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
-                    }}
-                  >
-                    {skill}
-                  </span>
-                </div>
+                <SkillTag key={index} index={index} delay={0}>
+                  {skill}
+                </SkillTag>
               ))}
             </div>
           </div>
@@ -251,25 +297,10 @@ const Experience = () => {
               <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Tool Proficiency</h3>
               <div className="flex flex-wrap gap-3">
                 {toolProficiency.map((tool, index) => (
-                  <div
-                    key={index}
-                    className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
-                    style={{
-                      background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
-                      backgroundSize: '200% 200%'
-                    }}
-                  >
-                    <span 
-                      className="block px-3 py-3 text-sm font-medium text-gray-700 rounded-full flex items-center gap-2"
-                      style={{
-                        background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
-                        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
-                      }}
-                    >
-                      <span>{tool.icon}</span>
-                      {tool.name}
-                    </span>
-                  </div>
+                  <SkillTag key={index} index={index} delay={1.0} hasIcon>
+                    <span>{tool.icon}</span>
+                    {tool.name}
+                  </SkillTag>
                 ))}
               </div>
             </div>
@@ -279,24 +310,9 @@ const Experience = () => {
               <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Graphic Designing Skills</h3>
               <div className="flex flex-wrap gap-3">
                 {graphicSkills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
-                    style={{
-                      background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
-                      backgroundSize: '200% 200%'
-                    }}
-                  >
-                    <span 
-                      className="block px-3 py-3 text-sm font-medium text-gray-700 rounded-full"
-                      style={{
-                        background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
-                        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
-                      }}
-                    >
-                      {skill}
-                    </span>
-                  </div>
+                  <SkillTag key={index} index={index} delay={1.6}>
+                    {skill}
+                  </SkillTag>
                 ))}
               </div>
             </div>
@@ -304,28 +320,13 @@ const Experience = () => {
             {/* Frontend Technology Card */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
               <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Frontend Technology</h3>
-              <div className="flex flex-wrap gap-3">
-                {frontendSkills.map((skill, index) => (
-                                    <div
-                    key={index}
-                    className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
-                    style={{
-                      background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
-                      backgroundSize: '200% 200%'
-                    }}
-                  >
-                    <span 
-                      className="block px-3 py-3 text-sm font-medium text-gray-700 rounded-full"
-                      style={{
-                        background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
-                        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
-                      }}
-                    >
+                              <div className="flex flex-wrap gap-3">
+                  {frontendSkills.map((skill, index) => (
+                    <SkillTag key={index} index={index} delay={2.2}>
                       {skill}
-                    </span>
-                  </div>
-        ))}
-              </div>
+                    </SkillTag>
+                  ))}
+                </div>
             </div>
             
           </div>
