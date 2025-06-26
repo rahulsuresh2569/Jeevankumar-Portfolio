@@ -91,6 +91,12 @@ const Projects = () => {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Capture ref values at the beginning of the effect
+    const showcaseElement = showcaseSectionRef.current;
+    const stickyWrapperElement = stickyWrapperRef.current;
+    const projectsRightElement = projectsRightRef.current;
+    const mouseFollowerElement = mouseFollowerRef.current;
+
     // Initialize - hide all projects except first
     const initializeProjects = () => {
       const sections = document.querySelectorAll('.project-content-item');
@@ -118,12 +124,12 @@ const Projects = () => {
     };
 
     // Create sticky behavior ONLY for the showcase section
-    if (showcaseSectionRef.current && stickyWrapperRef.current) {
+    if (showcaseElement && stickyWrapperElement) {
       ScrollTrigger.create({
-        trigger: showcaseSectionRef.current,
+        trigger: showcaseElement,
         start: "top top",
         end: "bottom bottom",
-        pin: stickyWrapperRef.current,
+        pin: stickyWrapperElement,
         pinSpacing: false,
         invalidateOnRefresh: true,
       });
@@ -131,9 +137,9 @@ const Projects = () => {
 
     // Handle scroll-based project switching
     const handleScroll = () => {
-      if (!showcaseSectionRef.current) return;
+      if (!showcaseElement) return;
       
-      const showcaseSection = showcaseSectionRef.current;
+      const showcaseSection = showcaseElement;
       const rect = showcaseSection.getBoundingClientRect();
       const sectionHeight = showcaseSection.offsetHeight;
       const viewportHeight = window.innerHeight;
@@ -185,9 +191,9 @@ const Projects = () => {
     handleScroll();
 
     // Mouse follower animation for right section
-    if (projectsRightRef.current && mouseFollowerRef.current) {
-      const follower = mouseFollowerRef.current;
-      const mouseBox = projectsRightRef.current;
+    if (projectsRightElement && mouseFollowerElement) {
+      const follower = mouseFollowerElement;
+      const mouseBox = projectsRightElement;
       
       // Set initial state
       gsap.set(follower, {
@@ -239,7 +245,7 @@ const Projects = () => {
         mouseBox.removeEventListener("mouseleave", handleMouseLeave);
         mouseBox.removeEventListener("mousemove", handleMouseMove);
         ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === showcaseSectionRef.current) {
+          if (trigger.trigger === showcaseElement) {
             trigger.kill();
           }
         });
@@ -249,7 +255,7 @@ const Projects = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === showcaseSectionRef.current) {
+        if (trigger.trigger === showcaseElement) {
           trigger.kill();
         }
       });
