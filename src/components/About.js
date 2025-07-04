@@ -70,25 +70,25 @@ const About = () => {
       borderRadius: '1.5rem',
       position: 'relative',
     },
-    // Base 3D positioning for elements
+    // Base 3D positioning for elements - reduced elevation
     shapeBase: {
-      transform: 'translate3d(0, 0, 20px)',
+      transform: 'translate3d(0, 0, 10px)',
       transition: 'transform 150ms ease-out',
     },
     toolBase: {
-      transform: 'translate3d(0, 0, 30px)',
+      transform: 'translate3d(0, 0, 15px)',
       transition: 'transform 150ms ease-out',
     },
     helloWorldBase: {
-      transform: 'translate3d(0, 0, 25px)',
+      transform: 'translate3d(0, 0, 12px)',
       transition: 'transform 150ms ease-out',
     },
     tooltipBase: {
-      transform: 'translate3d(0, 0, 40px)',
+      transform: 'translate3d(0, 0, 20px)',
       transition: 'transform 150ms ease-out',
     },
     toolbarBase: {
-      transform: 'translate3d(-50%, 0, 35px)',
+      transform: 'translate3d(-50%, 0, 18px)',
       transition: 'transform 150ms ease-out',
     },
   };
@@ -117,32 +117,32 @@ const About = () => {
     const tooltip = container.querySelector('.tooltip-3d');
     const toolbar = container.querySelector('.toolbar-3d');
 
-    // Calculate rotation intensity - INCREASED
-    const rotationIntensity = Math.log(distance + 1) * 3;
-    const scaleValue = 1.15;
+    // Calculate rotation intensity - REDUCED
+    const rotationIntensity = Math.log(distance + 1) * 1.5;
+    const scaleValue = 1.05;
 
-    // Apply dynamic transforms to card container - INCREASED SENSITIVITY
+    // Apply dynamic transforms to card container - REDUCED SENSITIVITY
     if (card) {
       card.style.transform = `
         scale3d(${scaleValue}, ${scaleValue}, ${scaleValue})
         rotate3d(
-          ${center.y / 80},
-          ${-center.x / 80},
+          ${center.y / 150},
+          ${-center.x / 150},
           0,
           ${rotationIntensity}deg
         )
       `;
     }
 
-    // Apply individual transforms to elements with MUCH HIGHER elevation and sensitivity
+    // Apply individual transforms to elements with REDUCED elevation and sensitivity
     if (shape) {
       shape.style.transform = `
-        translate3d(0, 0, 120px)
+        translate3d(0, 0, 60px)
         rotate3d(
-          ${center.y / 100},
-          ${-center.x / 100},
+          ${center.y / 200},
+          ${-center.x / 200},
           0,
-          ${rotationIntensity * 1.2}deg
+          ${rotationIntensity * 0.8}deg
         )
         rotate(-2deg)
       `;
@@ -150,48 +150,48 @@ const About = () => {
 
     if (tool) {
       tool.style.transform = `
-        translate3d(0, 0, 140px)
+        translate3d(0, 0, 70px)
         rotate3d(
-          ${center.y / 90},
-          ${-center.x / 90},
+          ${center.y / 180},
+          ${-center.x / 180},
           0,
-          ${rotationIntensity * 1.4}deg
+          ${rotationIntensity * 0.9}deg
         )
       `;
     }
 
     if (helloWorld) {
       helloWorld.style.transform = `
-        translate3d(0, 0, 130px)
+        translate3d(0, 0, 65px)
         rotate3d(
-          ${center.y / 95},
-          ${-center.x / 95},
+          ${center.y / 190},
+          ${-center.x / 190},
           0,
-          ${rotationIntensity * 1.3}deg
+          ${rotationIntensity * 0.85}deg
         )
       `;
     }
 
     if (tooltip) {
       tooltip.style.transform = `
-        translate3d(0, 0, 160px)
+        translate3d(0, 0, 80px)
         rotate3d(
-          ${center.y / 70},
-          ${-center.x / 70},
+          ${center.y / 140},
+          ${-center.x / 140},
           0,
-          ${rotationIntensity * 1.6}deg
+          ${rotationIntensity * 1.0}deg
         )
       `;
     }
 
     if (toolbar) {
       toolbar.style.transform = `
-        translate3d(-50%, 0, 150px)
+        translate3d(-50%, 0, 75px)
         rotate3d(
-          ${center.y / 85},
-          ${-center.x / 85},
+          ${center.y / 170},
+          ${-center.x / 170},
           0,
-          ${rotationIntensity * 1.5}deg
+          ${rotationIntensity * 0.95}deg
         )
         rotate(-1deg)
       `;
@@ -220,24 +220,24 @@ const About = () => {
       card.style.transform = '';
     }
     if (shape) {
-      shape.style.transform = 'translate3d(0, 0, 20px) rotate(-2deg)';
+      shape.style.transform = 'translate3d(0, 0, 10px) rotate(-2deg)';
     }
     if (tool) {
-      tool.style.transform = 'translate3d(0, 0, 30px)';
+      tool.style.transform = 'translate3d(0, 0, 15px)';
     }
     if (helloWorld) {
-      helloWorld.style.transform = 'translate3d(0, 0, 25px)';
+      helloWorld.style.transform = 'translate3d(0, 0, 12px)';
     }
     if (tooltip) {
-      tooltip.style.transform = 'translate3d(0, 0, 40px)';
+      tooltip.style.transform = 'translate3d(0, 0, 20px)';
     }
     if (toolbar) {
-      toolbar.style.transform = 'translate3d(-50%, 0, 35px) rotate(-1deg)';
+      toolbar.style.transform = 'translate3d(-50%, 0, 18px) rotate(-1deg)';
     }
   };
 
   // Info Pills Component with same style as Experience section
-  const InfoPill = ({ children, index, delay = 0, icon }) => {
+  const InfoPill = ({ children, index, delay = 0, icon, looped = false }) => {
     return (
       <div
         className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md w-fit"
@@ -247,22 +247,31 @@ const About = () => {
         }}
       >
         <div className="relative overflow-hidden rounded-full">
-          {/* Shine effect overlay */}
-          <motion.div
-            className="absolute inset-0 rounded-full pointer-events-none z-20"
-            style={{
-              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.8) 45%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.8) 55%, rgba(255, 255, 255, 0.4) 65%, transparent 80%)',
-              transform: 'translateX(-150%) skewX(-15deg)',
-            }}
-            animate={{
-              transform: ['translateX(-150%) skewX(-15deg)', 'translateX(150%) skewX(-15deg)']
-            }}
-            transition={{
-              duration: 1.8,
-              delay: delay + (index * 0.15) + 0.3,
-              ease: "easeInOut"
-            }}
-          />
+          {/* Shine effect overlay - only for looped pills */}
+          {looped && (
+            <motion.div
+              className="absolute inset-0 rounded-full pointer-events-none z-20"
+              style={{
+                background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 55%, rgba(255, 255, 255, 0.08) 65%, transparent 80%)',
+                transform: 'translateX(-150%) skewX(-15deg)',
+              }}
+              animate={{
+                transform: [
+                  'translateX(-150%) skewX(-15deg)', 
+                  'translateX(150%) skewX(-15deg)', 
+                  'translateX(150%) skewX(-15deg)', 
+                  'translateX(-150%) skewX(-15deg)'
+                ]
+              }}
+              transition={{
+                duration: 3.6,
+                delay: delay + (index * 0.15) + 0.3,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatDelay: 2
+              }}
+            />
+          )}
           
           <span 
             className="block px-6 py-3 text-base font-medium text-secondary rounded-full flex items-center gap-2 relative z-5 whitespace-nowrap"
@@ -316,7 +325,10 @@ const About = () => {
             >
               {/* First row - 2 pills */}
               <div className="flex gap-3 mb-5">
-                <InfoPill index={0} delay={0} icon="⭐">Effortless Achiever</InfoPill>
+                <InfoPill index={0} delay={0} icon="⭐" looped={true}>
+                  Effortless Achiever
+                  <span className="ml-1">→</span>
+                </InfoPill>
                 <InfoPill index={1} delay={0.2} icon="🌐">English, Tamil</InfoPill>
               </div>
               {/* Second row - 1 pill */}
@@ -340,11 +352,11 @@ const About = () => {
                   <img
                     src={myPictureImg}
                     alt="Jeevan Kumar"
-                    className="absolute w-[100%] h-[1000px] object-contain rounded-2xl"
+                    className="absolute w-[100%] h-[80%] object-contain rounded-2xl"
                     style={{ 
                       zIndex: 2,
                       left: '50%',
-                      top: '50%',
+                      top: '40%',
                       transform: 'translate(-50%, -50%)',
                     }}
                     loading="lazy"
@@ -362,7 +374,7 @@ const About = () => {
                         style={{ 
                           zIndex: 12,
                           left: '2%',
-                          top: '35%',
+                          top: '32%',
                           ...card3DStyles.shapeBase,
                           transform: `${card3DStyles.shapeBase.transform} rotate(-2deg)`,
                         }}
@@ -377,7 +389,7 @@ const About = () => {
                         style={{ 
                           zIndex: 13,
                           left: '12%',
-                          top: '8%',
+                          top: '6%',
                           ...card3DStyles.toolBase,
                         }}
                         loading="lazy"
@@ -391,7 +403,7 @@ const About = () => {
                         style={{ 
                           zIndex: 13,
                           right: '-2%',
-                          top: '15%',
+                          top: '12%',
                           ...card3DStyles.helloWorldBase,
                         }}
                         loading="lazy"
@@ -405,7 +417,7 @@ const About = () => {
                         style={{ 
                           zIndex: 15,
                           right: '12%',
-                          top: '40%',
+                          top: '38%',
                           ...card3DStyles.tooltipBase,
                         }}
                         loading="lazy"
@@ -418,8 +430,8 @@ const About = () => {
                         className="toolbar-3d absolute w-[80%] h-auto object-contain"
                         style={{ 
                           zIndex: 15,
-                          left: '50%',
-                          bottom: '18%',
+                          left: '54%',
+                          bottom: '24%',
                           ...card3DStyles.toolbarBase,
                         }}
                         loading="lazy"
