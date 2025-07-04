@@ -265,12 +265,12 @@ const Projects = () => {
   return (
     <>
       {/* Static Header Section - Normal scroll, not sticky */}
-      <section className="projects-header-section bg-secondary text-primary pt-20 pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
+              <section className="projects-header-section bg-primary text-secondary pt-20 pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
             Selected Projects
           </h2>
-          <p className="text-lg sm:text-xl text-primary/70 leading-relaxed max-w-2xl mx-auto">
+                      <p className="text-lg sm:text-xl text-secondary/70 leading-relaxed max-w-2xl mx-auto">
             Showcasing innovative solutions across various industries and platforms through immersive design experiences
           </p>
         </div>
@@ -280,7 +280,7 @@ const Projects = () => {
       <section 
         ref={showcaseSectionRef}
         id="projects"
-        className="section-projects relative bg-secondary"
+                  className="section-projects relative bg-primary"
         style={{ 
           height: `${projectsData.length * 100}vh` // Height for scroll-based animation
         }}
@@ -288,7 +288,7 @@ const Projects = () => {
         {/* Sticky wrapper - ONLY the showcase content */}
         <div 
           ref={stickyWrapperRef}
-          className="sticky bg-secondary"
+                      className="sticky bg-primary"
           style={{ 
             height: '100vh',
             top: '0px' // Account for navbar height
@@ -309,18 +309,18 @@ const Projects = () => {
             >
               
               {/* Left Side - Project Content */}
-              <div className="projects-left bg-primary rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh]">
+              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh] shadow-lg">
                 <div className="projects-left-top flex-1 flex flex-col text-left relative">
                   
                   {/* Fixed Section Label */}
                   <div className="mb-4">
-                    <span className="inline-block text-sm font-normal text-cyan-400">
+                    <span className="inline-block text-sm font-normal text-blue-600">
                       {projectsData[activeProjectIndex]?.tag}
                     </span>
                   </div>
 
                   {/* Fixed Project Title */}
-                  <h3 className="text-2xl font-bold text-secondary leading-tight mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-12">
                     {projectsData[activeProjectIndex]?.title}
                   </h3>
 
@@ -339,32 +339,32 @@ const Projects = () => {
                         <div className="space-y-4 mb-12">
                           {/* First line: First 2 tags with dot between them */}
                           <div className="flex items-center gap-2">
-                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
                               {project.category}
                             </span>
                             <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
                               {project.industry}
                             </span>
                           </div>
                           
                           {/* Second line: Third tag */}
                           <div>
-                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
                               {project.platform}
                             </span>
                           </div>
                           
                           {/* Third line: Fourth tag */}
                           <div>
-                            <span className="inline-block px-4 py-2 bg-gray-800 text-white text-xs font-medium rounded-full">
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
                               {project.type}
                             </span>
                           </div>
                         </div>
 
                         {/* Divider Line */}
-                        <div className="w-full h-px bg-gray-700 mb-10"></div>
+                        <div className="w-full h-px bg-gray-200 mb-10"></div>
                       </div>
                     ))}
                   </div>
@@ -401,13 +401,13 @@ const Projects = () => {
                 {/* Mouse Follower - Circle with Arrow */}
                 <div 
                   ref={mouseFollowerRef}
-                  className="mouse-follower absolute pointer-events-none z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  className="mouse-follower absolute pointer-events-none z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl border-2 border-gray-200"
                   style={{
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
                   <svg 
-                    className="w-6 h-6 text-black" 
+                    className="w-6 h-6 text-gray-800" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -457,9 +457,9 @@ const Projects = () => {
         }
 
         .mouse-follower {
-          backdrop-filter: blur(10px);
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(20px);
+          background: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         .projects-right:hover {

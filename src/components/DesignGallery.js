@@ -163,38 +163,51 @@ const DesignGallery = () => {
     <section 
       id="design-gallery" 
       ref={sectionRef}
-      className="relative bg-secondary overflow-hidden min-h-[64vh] sm:min-h-[78vh] md:min-h-[92vh] lg:min-h-[122vh] xl:min-h-[157vh]"
+      className="relative bg-primary overflow-hidden pb-16 sm:pb-20 md:pb-24 lg:pb-32 xl:pb-40"
+      style={{
+        minHeight: 'clamp(100vh, 25vw + 110vh, 210vh)'
+      }}
     >
-      {/* Gallery Container - No padding, starts immediately */}
-      <div className="relative w-full">
-        {galleryItems.map((item, index) => (
-          <div
-            key={item.id}
-            className={`absolute ${item.position} ${item.spacing}`}
-            style={{ zIndex: item.zIndex || (10 - index) }}
-          >
-            <img
-              ref={el => imageRefs.current[index] = el}
-              src={item.src}
-              alt={item.alt}
-              className="w-auto h-auto object-cover"
-              style={{
-                maxWidth: item.src.includes('Watch') ? 
-                  'clamp(50px, 13vw, 230px)' : 
-                item.src.includes('iPhone') ? 
-                  'clamp(100px, 15vw, 280px)' :
-                item.src.includes('iPad') ? 
-                  'clamp(200px, 30vw, 470px)' :
-                item.src.includes('Tablet') ? 
-                  'clamp(280px, 50vw, 820px)' :
-                item.src.includes('Laptop') ? 
-                  'clamp(400px, 72vw, 1300px)' :
-                  'clamp(250px, 35vw, 760px)'
-              }}
-              loading="lazy"
-            />
-          </div>
-        ))}
+      {/* Tilted Gallery Container */}
+      <div 
+        className="relative w-full h-full"
+        style={{
+          transform: 'rotate(-2deg) translateY(-8%)',
+          transformOrigin: 'center center',
+          scale: '1.1', // Slightly scale up to ensure no empty corners
+        }}
+      >
+        {/* Gallery Items Container */}
+        <div className="relative w-full h-full">
+          {galleryItems.map((item, index) => (
+            <div
+              key={item.id}
+              className={`absolute ${item.position} ${item.spacing}`}
+              style={{ zIndex: item.zIndex || (10 - index) }}
+            >
+              <img
+                ref={el => imageRefs.current[index] = el}
+                src={item.src}
+                alt={item.alt}
+                className="w-auto h-auto object-cover"
+                style={{
+                  maxWidth: item.src.includes('Watch') ? 
+                    'clamp(50px, 13vw, 230px)' : 
+                  item.src.includes('iPhone') ? 
+                    'clamp(100px, 15vw, 280px)' :
+                  item.src.includes('iPad') ? 
+                    'clamp(200px, 30vw, 470px)' :
+                  item.src.includes('Tablet') ? 
+                    'clamp(280px, 50vw, 820px)' :
+                  item.src.includes('Laptop') ? 
+                    'clamp(400px, 72vw, 1300px)' :
+                    'clamp(250px, 35vw, 760px)'
+                }}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

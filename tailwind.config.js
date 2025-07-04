@@ -7,9 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#010414',
-        'secondary': '#f5f5f7',
-        'tertiary': '#ffffff',
+        'primary': '#111111',      // Dark background
+        'secondary': '#ffffff',    // Light text
+        'tertiary': '#1f1f1f',    // Slightly lighter dark for cards
+        'accent': '#f5f5f7',      // Light gray for subtle text
       },
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif'],

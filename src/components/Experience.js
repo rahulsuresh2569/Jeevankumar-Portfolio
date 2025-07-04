@@ -124,11 +124,11 @@ const Experience = () => {
           />
           
           <span 
-            className={`block ${hasIcon ? 'px-3 py-3' : 'px-4 py-3'} text-sm font-medium text-gray-700 rounded-full ${hasIcon ? 'flex items-center gap-2' : ''} relative z-5`}
-            style={{
-              background: 'linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%)',
-              boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.1)'
-            }}
+            className={`block ${hasIcon ? 'px-3 py-3' : 'px-4 py-3'} text-sm font-medium text-secondary rounded-full ${hasIcon ? 'flex items-center gap-2' : ''} relative z-5`}
+                          style={{
+                background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.3)'
+              }}
           >
             {children}
           </span>
@@ -138,14 +138,14 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="min-h-screen bg-secondary text-primary py-20 px-10">
+    <section id="experience" className="min-h-screen bg-primary text-secondary py-20 px-10">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <h2 className="text-4xl font-bold text-center mb-16">Experience & Skills</h2>
         
         {/* Top Section - Experience Block */}
-        <div className="bg-white rounded-2xl p-8 mb-12 shadow-sm border border-gray-100">
+        <div className="bg-tertiary rounded-2xl p-8 mb-12 shadow-sm border border-gray-600">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             
             {/* Left Side - Company Info */}
@@ -266,7 +266,7 @@ const Experience = () => {
             {/* Right Side - Experience Description */}
             <div className="space-y-4 text-left">
               {experienceData.descriptions.map((desc, index) => (
-                <p key={index} className="text-primary/80 leading-relaxed text-left">
+                <p key={index} className="text-secondary/80 leading-relaxed text-left">
                   {desc}
                 </p>
               ))}
@@ -278,8 +278,8 @@ const Experience = () => {
         <div ref={skillsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* Left Column - Strategic Product Design Skills (Tall Card) */}
-          <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-            <h3 className="text-xl lg:text-2xl font-bold text-primary mb-6 text-left">Strategic Product Design Skills</h3>
+          <div className="bg-tertiary rounded-2xl p-8 shadow-sm border border-gray-600">
+            <h3 className="text-xl lg:text-2xl font-bold text-secondary mb-6 text-left">Strategic Product Design Skills</h3>
             <div className="flex flex-wrap gap-3">
               {strategicSkills.map((skill, index) => (
                 <SkillTag key={index} index={index} delay={0}>
@@ -293,8 +293,8 @@ const Experience = () => {
           <div className="space-y-8">
             
             {/* Tool Proficiency Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Tool Proficiency</h3>
+            <div className="bg-tertiary rounded-2xl p-6 shadow-sm border border-gray-600">
+              <h3 className="text-lg lg:text-xl font-bold text-secondary mb-4 text-left">Tool Proficiency</h3>
               <div className="flex flex-wrap gap-3">
                 {toolProficiency.map((tool, index) => (
                   <SkillTag key={index} index={index} delay={1.0} hasIcon>
@@ -306,8 +306,8 @@ const Experience = () => {
             </div>
             
             {/* Graphic Designing Skills Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Graphic Designing Skills</h3>
+            <div className="bg-tertiary rounded-2xl p-6 shadow-sm border border-gray-600">
+              <h3 className="text-lg lg:text-xl font-bold text-secondary mb-4 text-left">Graphic Designing Skills</h3>
               <div className="flex flex-wrap gap-3">
                 {graphicSkills.map((skill, index) => (
                   <SkillTag key={index} index={index} delay={1.6}>
@@ -318,8 +318,8 @@ const Experience = () => {
             </div>
             
             {/* Frontend Technology Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h3 className="text-lg lg:text-xl font-bold text-primary mb-4 text-left">Frontend Technology</h3>
+            <div className="bg-tertiary rounded-2xl p-6 shadow-sm border border-gray-600">
+              <h3 className="text-lg lg:text-xl font-bold text-secondary mb-4 text-left">Frontend Technology</h3>
                               <div className="flex flex-wrap gap-3">
                   {frontendSkills.map((skill, index) => (
                     <SkillTag key={index} index={index} delay={2.2}>

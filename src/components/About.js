@@ -4,13 +4,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Import individual element images
-import backgroundImg from '../assets/images/about-me/background.png';
+
 import myPictureImg from '../assets/images/about-me/my-picture.svg';
 import cursorTooltipImg from '../assets/images/about-me/cursor-tooltip.svg';
 import helloWorldTextImg from '../assets/images/about-me/hello-world-text.svg';
 import shapeImg from '../assets/images/about-me/shape.svg';
 import toolImg from '../assets/images/about-me/tool.svg';
 import toolbarImg from '../assets/images/about-me/toolbar.svg';
+import pencilImg from '../assets/images/about-me/pencil.svg';
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -235,11 +236,54 @@ const About = () => {
     }
   };
 
+  // Info Pills Component with same style as Experience section
+  const InfoPill = ({ children, index, delay = 0, icon }) => {
+    return (
+      <div
+        className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md w-fit"
+        style={{
+          background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
+          backgroundSize: '200% 200%'
+        }}
+      >
+        <div className="relative overflow-hidden rounded-full">
+          {/* Shine effect overlay */}
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none z-20"
+            style={{
+              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.8) 45%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.8) 55%, rgba(255, 255, 255, 0.4) 65%, transparent 80%)',
+              transform: 'translateX(-150%) skewX(-15deg)',
+            }}
+            animate={{
+              transform: ['translateX(-150%) skewX(-15deg)', 'translateX(150%) skewX(-15deg)']
+            }}
+            transition={{
+              duration: 1.8,
+              delay: delay + (index * 0.15) + 0.3,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <span 
+            className="block px-6 py-3 text-base font-medium text-secondary rounded-full flex items-center gap-2 relative z-5 whitespace-nowrap"
+            style={{
+              background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
+              boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.3)'
+            }}
+          >
+            <span>{icon}</span>
+            {children}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section 
       id="about" 
       ref={sectionRef}
-      className="min-h-screen bg-secondary text-primary pb-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12"
+      className="min-h-screen bg-primary text-secondary pb-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12"
     >
       <div className="max-w-7xl mx-auto">
         
@@ -261,40 +305,46 @@ const About = () => {
           
           {/* Image Section with Layered Elements */}
           <div className="relative order-2 lg:order-1 lg:col-span-4">
+            
+            {/* Info Pills Section - Positioned above image */}
+            <motion.div 
+              className="mb-8 lg:mb-12 w-fit"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true, threshold: 0.3 }}
+            >
+              {/* First row - 2 pills */}
+              <div className="flex gap-3 mb-5">
+                <InfoPill index={0} delay={0} icon="⭐">Effortless Achiever</InfoPill>
+                <InfoPill index={1} delay={0.2} icon="🌐">English, Tamil</InfoPill>
+              </div>
+              {/* Second row - 1 pill */}
+              <div className="flex">
+                <InfoPill index={2} delay={0.4} icon="📍">Chennai, Tamil Nadu, India</InfoPill>
+              </div>
+            </motion.div>
             <div 
-              className="p-4 md:p-6 lg:p-6"
+              className="p-0 md:p-0 lg:p-0"
               style={card3DStyles.parent}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               ref={containerRef}
             >
               <div className="h-full rounded-xl bg-transparent relative overflow-visible">
-                <div className="relative w-full aspect-[3/4] min-h-[500px] lg:min-h-[600px]">
+                <div className="relative w-full aspect-[3/4] min-h-[400px] lg:min-h-[480px]">
                   
-                  {/* Background Layer - Completely Static */}
-                  <img
-                    src={backgroundImg}
-                    alt="Background shapes"
-                    className="absolute w-full h-full object-cover rounded-2xl"
-                    style={{ 
-                      zIndex: 1,
-                      left: '0%',
-                      top: '-6%',
-                      width: '100%',
-                      height: '90%'
-                    }}
-                    loading="lazy"
-                  />
 
-                  {/* Main Picture - Completely Static */}
+
+                  {/* Combined Picture and Background */}
                   <img
                     src={myPictureImg}
                     alt="Jeevan Kumar"
-                    className="absolute w-[85%] h-auto object-contain"
+                    className="absolute w-[100%] h-[1000px] object-contain rounded-2xl"
                     style={{ 
                       zIndex: 2,
                       left: '50%',
-                      top: '45%',
+                      top: '50%',
                       transform: 'translate(-50%, -50%)',
                     }}
                     loading="lazy"
@@ -395,60 +445,47 @@ const About = () => {
               viewport={{ once: true, threshold: 0.3 }}
             >
               <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-left">
-                I'm Jeevankumar
+                Hi there, I'm<br />Jeevankumar
               </h3>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-primary/60 font-medium text-left">
-                Product Designer
-              </p>
+              <div className="relative">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-secondary font-medium text-left mt-6" >
+                  Product Designer
+                </p>
+                {/* Pencil underline */}
+                <img 
+                  src={pencilImg} 
+                  alt="pencil line" 
+                  className="w-full h-auto -mt-5"
+                  style={{
+                    display: 'block',
+                    opacity: 0.8
+                  }}
+                />
+              </div>
             </motion.div>
 
             {/* Main Description */}
             <motion.div 
-              className="space-y-4 sm:space-y-5 md:space-y-6"
+              className="space-y-8 sm:space-y-10 md:space-y-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               viewport={{ once: true, threshold: 0.3 }}
             >
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed text-primary/80 text-left">
-                With <strong className="text-primary font-semibold">1.7 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-primary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
+              <p className="text-base sm:text-lg md:text-xl text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+                With <strong className="text-secondary font-semibold">1.7 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-secondary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
               </p>
 
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed text-primary/80 text-left">
-                Beyond digital interfaces, I've also explored the creative side of visual communication through <strong className="text-primary font-semibold">graphic design projects</strong>, including posters, banners, and logos. This variety has helped me build a well-rounded design perspective.
+              <p className="text-base sm:text-lg md:text-xl text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+                Beyond digital interfaces, I've also explored the creative side of visual communication through <strong className="text-secondary font-semibold">graphic design projects</strong>, including posters, banners, and logos. This variety has helped me build a well-rounded design perspective.
               </p>
 
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed text-primary/80 text-left">
-                My core strength lies in <strong className="text-primary font-semibold">product design</strong>, where I enjoy identifying real user problems, solving complex challenges, and delivering intuitive, impactful solutions. I'm eager to push my creative boundaries further and delivering impactful and innovative design solutions who balances functionality, aesthetics, and user needs.
+              <p className="text-base sm:text-lg md:text-xl text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+                My core strength lies in <strong className="text-secondary font-semibold">product design</strong>, where I enjoy identifying real user problems, solving complex challenges, and delivering intuitive, impactful solutions. I'm eager to push my creative boundaries further and delivering impactful and innovative design solutions who balances functionality, aesthetics, and user needs.
               </p>
             </motion.div>
 
-            {/* Skills Highlight */}
-            <motion.div 
-              className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 lg:pt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
-              viewport={{ once: true, threshold: 0.3 }}
-            >
-              {['Product Design', 'UI/UX Design', 'Visual Design', 'Figma', 'Prototyping', 'User Research'].map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  className="bg-white/80 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-3 rounded-xl text-center text-sm sm:text-base font-medium text-primary shadow-sm border border-gray-100"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ 
-                    duration: 0.4, 
-                    ease: "backOut", 
-                    delay: 0.9 + (index * 0.1) 
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </motion.div>
+
           </div>
         </div>
       </div>

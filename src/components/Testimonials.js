@@ -76,7 +76,7 @@ const Testimonials = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-secondary text-primary py-20 px-10 flex flex-col justify-center items-center overflow-hidden">
+    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-10 flex flex-col justify-center items-center overflow-hidden">
       <img 
         src={quoteImg} 
         alt="quote"
@@ -105,7 +105,7 @@ const Testimonials = () => {
                     </p>
                     <footer className="mt-6">
                         <p className="font-bold text-lg">{currentTestimonial.name}</p>
-                        <p className="text-primary/80">{currentTestimonial.designation}</p>
+                        <p className="text-secondary/80">{currentTestimonial.designation}</p>
                     </footer>
                 </motion.div>
             </AnimatePresence>

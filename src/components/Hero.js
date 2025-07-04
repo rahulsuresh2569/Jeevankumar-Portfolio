@@ -118,7 +118,7 @@ const Hero = () => {
   }, [calculateElementWidth, calculateCurrentWordIndex, designations.length]);
 
   return (
-    <section id="hero" className="h-[75vh] sm:h-[70vh] md:h-[68vh] lg:h-[65vh] xl:h-[73vh] flex items-center justify-center bg-secondary text-primary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-20 sm:pt-16 md:pt-12 lg:pt-8">
+    <section id="hero" className="h-[75vh] sm:h-[70vh] md:h-[68vh] lg:h-[65vh] xl:h-[73vh] flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-20 sm:pt-16 md:pt-12 lg:pt-8">
       <div className="max-w-[98%] sm:max-w-[95%] md:max-w-[92%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-[85%] mx-auto w-full">
         
         {/* Main Content Container */}
@@ -188,7 +188,7 @@ const Hero = () => {
             
             {/* Supporting Text - Center on Mobile, Left on Desktop */}
             <div className="md:mb-2 lg:mb-3 xl:mb-4 flex justify-center md:justify-start">
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary/70 leading-relaxed max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg text-center md:text-left">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-secondary/70 leading-relaxed max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg text-center md:text-left">
                 I craft user-centered, interactive designs and continually pushing creative boundaries to deliver impactful solutions
               </p>
             </div>

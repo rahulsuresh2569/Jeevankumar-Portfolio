@@ -8,7 +8,6 @@ import DesignGallery from './components/DesignGallery';
 import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
-import Education from './components/Education';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -66,7 +65,6 @@ function App() {
       <About />
       <Experience />
       <Projects />
-      <Education />
       <Testimonials />
       <Contact />
       <Footer />
