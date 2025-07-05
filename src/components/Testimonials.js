@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-
 import quoteImg from '../assets/images/quote.svg';
 import roshinImg from '../assets/images/roshin.jpeg';
 import ashikaImg from '../assets/images/ashika.jpeg';
@@ -62,6 +61,10 @@ const Testimonials = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
   
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+  };
+  
   const handleAvatarClick = (index) => {
     setCurrentIndex(index);
   }
@@ -73,71 +76,168 @@ const Testimonials = () => {
     return () => clearInterval(timer);
   }, [currentIndex]);
 
-  const currentTestimonial = testimonials[currentIndex];
+  // Function to get card position and styling
+  const getCardStyle = (index) => {
+    const position = index - currentIndex;
+    const absPosition = Math.abs(position);
+    
+    if (absPosition === 0) {
+      // Active card - center
+      return {
+        transform: 'translateX(0%) scale(1)',
+        opacity: 1,
+        zIndex: 10,
+        filter: 'blur(0px)'
+      };
+    } else if (absPosition === 1) {
+      // Adjacent cards
+      return {
+        transform: `translateX(${position > 0 ? '85%' : '-85%'}) scale(0.85)`,
+        opacity: 0.4,
+        zIndex: 5,
+        filter: 'blur(1px)'
+      };
+    } else {
+      // Far cards - hidden
+      return {
+        transform: `translateX(${position > 0 ? '200%' : '-200%'}) scale(0.7)`,
+        opacity: 0.1,
+        zIndex: 1,
+        filter: 'blur(2px)'
+      };
+    }
+  };
 
   return (
-    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-10 flex flex-col justify-center items-center overflow-hidden">
+    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-6 sm:px-10 flex flex-col justify-center items-center overflow-hidden">
       <img 
         src={quoteImg} 
         alt="quote"
         ref={quoteIconRef}
-        className="absolute top-40 left-16 w-48 h-48"
+        className="absolute top-40 left-16 w-48 h-48 opacity-20"
         style={{ transform: 'rotate(330deg)' }}
       />
-      <div className="w-full max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold">
+      
+      <div className="w-full max-w-7xl mx-auto text-center">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-16">
           Testimonials
         </h2>
         
-        <div className="w-full h-[36rem] flex flex-col">
-          <div className="flex-grow flex items-center justify-center px-4">
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={currentTestimonial.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="max-w-4xl mx-auto flex flex-col items-center"
-                >
-                    <p className="md:text-xl">
-                        "{currentTestimonial.quote}"
-                    </p>
-                    <footer className="mt-6">
-                        <p className="font-bold text-lg">{currentTestimonial.name}</p>
-                        <p className="text-secondary/80">{currentTestimonial.designation}</p>
-                    </footer>
-                </motion.div>
-            </AnimatePresence>
+        <div className="w-full flex flex-col items-center">
+          {/* Cards Gallery Container */}
+          <div className="relative w-full max-w-6xl mb-16 h-96 flex items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {testimonials.map((testimonial, index) => {
+                const cardStyle = getCardStyle(index);
+                return (
+                  <motion.div
+                    key={testimonial.id}
+                    className="absolute w-96 h-80 cursor-pointer"
+                    style={cardStyle}
+                    animate={cardStyle}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: [0.25, 0.46, 0.45, 0.94] 
+                    }}
+                    onClick={() => handleAvatarClick(index)}
+                  >
+                                        {/* Testimonial Card */}
+                     <div 
+                       className="rounded-2xl p-6 h-full flex flex-col"
+                       style={{
+                         background: 'rgba(31, 31, 31, 0.3)',
+                         backdropFilter: 'blur(20px)',
+                         WebkitBackdropFilter: 'blur(20px)',
+                         border: '1px solid rgba(255, 255, 255, 0.1)',
+                         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                       }}
+                     >
+                      
+                      {/* Header - Profile Info */}
+                      <div className="flex items-center mb-4 flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 mr-3">
+                          <img
+                            src={testimonial.avatar}
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="flex-1 text-left min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-lg font-bold text-secondary truncate">
+                              {testimonial.name}
+                            </h3>
+                            <div className="w-4 h-4 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-xs font-bold">in</span>
+                            </div>
+                          </div>
+                          <p className="text-secondary/70 text-sm font-medium truncate">
+                            {testimonial.designation}
+                          </p>
+                        </div>
+                      </div>
+                      
+                                             {/* Testimonial Content */}
+                       <div className="text-left flex-1 overflow-hidden">
+                         <p 
+                           className="text-secondary/90 text-sm leading-relaxed"
+                           style={{
+                             display: '-webkit-box',
+                             WebkitLineClamp: 12,
+                             WebkitBoxOrient: 'vertical',
+                             overflow: 'hidden',
+                             textOverflow: 'ellipsis'
+                           }}
+                         >
+                           {testimonial.quote}
+                         </p>
+                       </div>
+                      
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="flex-shrink-0 pb-8">
-            <div className="flex items-end justify-center space-x-2 sm:space-x-4">
-              {testimonials.map((testimonial, index) => (
-                <motion.div 
-                  key={testimonial.id}
-                  onClick={() => handleAvatarClick(index)}
-                  className="cursor-pointer flex flex-col items-center"
-                  animate={index === currentIndex ? "active" : "inactive"}
+          
+
+          {/* Avatar Navigation */}
+          <div className="flex items-center justify-center space-x-3 sm:space-x-4">
+            {testimonials.map((testimonial, index) => (
+              <motion.button
+                key={testimonial.id}
+                onClick={() => handleAvatarClick(index)}
+                className="relative rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all duration-300"
+                animate={index === currentIndex ? "active" : "inactive"}
+                variants={{
+                    active: { scale: 1.0, opacity: 1 },
+                    inactive: { scale: 0.85, opacity: 0.6 }
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                whileHover={{ scale: 0.95 }}
+              >
+                <motion.img
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="rounded-full object-cover"
                   variants={{
-                      active: { scale: 1.0, y: 0 },
-                      inactive: { scale: 0.85, y: 10 }
+                      active: { width: 60, height: 60 },
+                      inactive: { width: 48, height: 48 }
                   }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                >
-                  <motion.img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="rounded-full object-cover"
-                    variants={{
-                        active: { width: 80, height: 80, opacity: 1 },
-                        inactive: { width: 64, height: 64, opacity: 0.6 }
-                    }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                />
+                
+                {/* Active indicator ring */}
+                {index === currentIndex && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="absolute inset-0 rounded-full border-2 border-secondary/30 -m-1"
                   />
-                </motion.div>
-              ))}
-            </div>
+                )}
+              </motion.button>
+            ))}
           </div>
         </div>
       </div>

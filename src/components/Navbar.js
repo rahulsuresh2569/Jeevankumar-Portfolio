@@ -9,8 +9,14 @@ const Navbar = () => {
   const [isCompact, setIsCompact] = useState(false);
   const navRef = useRef(null);
   const containerRef = useRef(null);
-  const resumeButtonRef = useRef(null);
-  const navLinksRef = useRef(null);
+  const resumeButtonCompactRef = useRef(null);
+  const resumeButtonNormalRef = useRef(null);
+  const logoCompactRef = useRef(null);
+  const logoNormalRef = useRef(null);
+  const navLinksCompactRef = useRef([]);
+  const navLinksNormalRef = useRef(null);
+  const contactCompactRef = useRef(null);
+  const contactNormalRef = useRef(null);
   
   const navItems = [
     { href: '#about', label: 'About Me' },
@@ -33,10 +39,8 @@ const Navbar = () => {
 
     const navbar = navRef.current;
     const container = containerRef.current;
-    const resumeButton = resumeButtonRef.current;
-    const navLinks = navLinksRef.current;
 
-    if (navbar && container) {
+          if (navbar && container) {
       // Initial state - Set navbar to full width without glassmorphism
       gsap.set(navbar, {
         width: "100%",
@@ -46,6 +50,7 @@ const Navbar = () => {
         position: "fixed",
         top: "0px",
         margin: "0",
+        padding: "0 0.5rem",
         borderRadius: "0rem",
         border: "none",
         borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
@@ -54,6 +59,10 @@ const Navbar = () => {
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)"
       });
+
+
+
+
 
       // Create ScrollTrigger for navbar shrinking on scroll (similar to reference but reversed)
       ScrollTrigger.create({
@@ -65,45 +74,107 @@ const Navbar = () => {
           
           // Animate to compact/shrunk state with glassmorphism effect
           gsap.to(navbar, {
-            width: "70%",
-            left: "15%",
-            right: "15%",
+            width: "55%",
+            left: "22.5%",
+            right: "22.5%",
             transform: "none",
             background: "rgba(16, 18, 27, 0.4)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(113, 119, 144, 0.25)",
-            padding: "0.5rem 1rem",
+            border: "1px solid rgba(113, 119, 144, 0.1)",
+            padding: "0.25rem 0",
             marginTop: "1rem",
-            borderRadius: "2rem",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-            duration: 0.4,
-            ease: "power2.out"
+            borderRadius: "1rem",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+            duration: 0.6,
+            ease: "power3.out"
           });
 
           gsap.to(container, {
-            maxWidth: "900px",
-            padding: "0 2rem",
-            duration: 0.4,
-            ease: "power2.out"
+            maxWidth: "750px",
+            padding: "0 0.75rem",
+            duration: 0.6,
+            ease: "power3.out"
           });
 
-          // Animate navigation links spacing
-          if (navLinks) {
-            gsap.to(navLinks, {
-              gap: "1.5rem",
-              duration: 0.4,
-              ease: "power2.out"
+          // Get fresh references for current elements
+          const logoNormal = logoNormalRef.current;
+          const navLinksNormal = navLinksNormalRef.current;
+          const contactNormal = contactNormalRef.current;
+          const resumeButtonNormal = resumeButtonNormalRef.current;
+
+          // Animate normal elements out with null checks
+          if (logoNormal) {
+            gsap.to(logoNormal, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.3,
+              ease: "power3.out"
+            });
+          }
+          
+          if (navLinksNormal) {
+            gsap.to(navLinksNormal, {
+              opacity: 0,
+              y: -20,
+              duration: 0.3,
+              ease: "power3.out"
+            });
+          }
+          
+          if (contactNormal) {
+            gsap.to(contactNormal, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.3,
+              ease: "power3.out"
+            });
+          }
+          
+          if (resumeButtonNormal) {
+            gsap.to(resumeButtonNormal, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.3,
+              ease: "power3.out"
             });
           }
 
-          // Animate Resume button in
-          if (resumeButton) {
-            gsap.fromTo(resumeButton, 
-              { opacity: 0, scale: 0.8, x: 20 },
-              { opacity: 1, scale: 1, x: 0, duration: 0.3, delay: 0.2 }
-            );
-          }
+          // Wait for state update and then animate compact elements in
+          setTimeout(() => {
+            const logoCompact = logoCompactRef.current;
+            const navLinksCompact = navLinksCompactRef.current;
+            const contactCompact = contactCompactRef.current;
+            const resumeButtonCompact = resumeButtonCompactRef.current;
+
+            if (logoCompact) {
+              gsap.fromTo(logoCompact, 
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
+              );
+            }
+            
+            if (navLinksCompact && navLinksCompact.length > 0) {
+              gsap.fromTo(navLinksCompact, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" }
+              );
+            }
+            
+            if (contactCompact) {
+              gsap.fromTo(contactCompact, 
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" }
+              );
+            }
+            
+            if (resumeButtonCompact) {
+              gsap.fromTo(resumeButtonCompact, 
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" }
+              );
+            }
+          }, 250);
         },
         onLeaveBack: () => {
           setIsCompact(false);
@@ -119,39 +190,108 @@ const Navbar = () => {
             WebkitBackdropFilter: "blur(12px)",
             border: "none",
             borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            padding: "0 1rem",
+            padding: "0 0.5rem",
             marginTop: "0rem",
             borderRadius: "0rem",
             boxShadow: "none",
-            duration: 0.4,
-            ease: "power2.out"
+            duration: 0.6,
+            ease: "power3.out"
           });
 
           gsap.to(container, {
-            maxWidth: "1280px",
-            padding: "0 1rem 0 2rem",
-            duration: 0.4,
-            ease: "power2.out"
+            maxWidth: "1152px",
+            padding: "0 1.5rem",
+            duration: 0.6,
+            ease: "power3.out"
           });
 
-          // Animate navigation links spacing back
-          if (navLinks) {
-            gsap.to(navLinks, {
-              gap: "3rem",
-              duration: 0.4,
-              ease: "power2.out"
+          // Get fresh references for current compact elements
+          const logoCompact = logoCompactRef.current;
+          const navLinksCompact = navLinksCompactRef.current;
+          const contactCompact = contactCompactRef.current;
+          const resumeButtonCompact = resumeButtonCompactRef.current;
+
+          // Animate compact elements out with null checks
+          if (resumeButtonCompact) {
+            gsap.to(resumeButtonCompact, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.2,
+              ease: "power3.out"
+            });
+          }
+          
+          if (contactCompact) {
+            gsap.to(contactCompact, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.2,
+              ease: "power3.out"
+            });
+          }
+          
+          if (navLinksCompact && navLinksCompact.length > 0) {
+            gsap.to(navLinksCompact, {
+              opacity: 0,
+              y: 20,
+              duration: 0.2,
+              stagger: 0.03,
+              ease: "power3.out"
+            });
+          }
+          
+          if (logoCompact) {
+            gsap.to(logoCompact, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 0.2,
+              ease: "power3.out"
             });
           }
 
-          // Animate Resume button out
-          if (resumeButton) {
-            gsap.to(resumeButton, {
-              opacity: 0,
-              scale: 0.8,
-              x: 20,
-              duration: 0.2
-            });
-          }
+          // Wait for state update and then smoothly transition normal elements in
+          setTimeout(() => {
+            const logoNormal = logoNormalRef.current;
+            const navLinksNormal = navLinksNormalRef.current;
+            const contactNormal = contactNormalRef.current;
+            const resumeButtonNormal = resumeButtonNormalRef.current;
+
+            if (logoNormal) {
+              gsap.to(logoNormal, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            }
+            
+            if (navLinksNormal) {
+              gsap.to(navLinksNormal, {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            }
+            
+            if (contactNormal) {
+              gsap.to(contactNormal, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            }
+            
+            if (resumeButtonNormal) {
+              gsap.to(resumeButtonNormal, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            }
+          }, 250);
         }
       });
     }
@@ -164,7 +304,7 @@ const Navbar = () => {
   return (
     <nav 
       ref={navRef}
-      className="bg-primary/95 backdrop-blur-md text-secondary fixed top-0 z-50 border-b border-secondary/10 transition-all duration-300"
+      className="bg-primary/95 backdrop-blur-md text-secondary fixed top-0 z-50 border-b border-secondary/10"
       style={{ 
         willChange: 'background, padding, margin-top, border-radius, border, border-bottom, box-shadow, width, left, right, backdrop-filter, -webkit-backdrop-filter',
         width: '100%',
@@ -172,95 +312,170 @@ const Navbar = () => {
         right: '0'
       }}
     >
-      <div 
-        ref={containerRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300"
-        style={{ willChange: 'max-width, padding' }}
-      >
-        <div className={`flex items-center justify-between transition-all duration-300 ${
-          isCompact ? 'h-14' : 'h-16 lg:h-20'
+              <div 
+          ref={containerRef}
+          className="max-w-6xl mx-auto"
+          style={{ willChange: 'max-width, padding', padding: '0 1.5rem' }}
+        >
+                <div className={`relative flex items-center ${
+          isCompact ? 'h-12 justify-evenly' : 'h-14'
         }`}>
           
-          {/* Logo */}
-          <motion.div 
-            className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <a href="#hero" className="flex items-center">
-              <img 
-                src={logoSvg} 
-                alt="Jeevan Kumar Logo" 
-                className={`transition-all duration-300 ${
-                  isCompact ? 'h-8 w-8' : 'h-8 w-8 lg:h-10 lg:w-10'
-                }`}
-              />
-            </a>
-          </motion.div>
+          {/* Compact mode - All 8 components evenly distributed */}
+          {isCompact && (
+            <>
+              {/* Logo */}
+              <motion.div 
+                ref={logoCompactRef}
+                className="flex-shrink-0 opacity-0"
+                style={{ transform: 'scale(0.8)' }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="#hero" className="flex items-center">
+                  <img 
+                    src={logoSvg} 
+                    alt="Jeevan Kumar Logo" 
+                    className="h-8 w-8"
+                  />
+                </a>
+              </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div 
-              ref={navLinksRef}
-              className="flex items-center"
-              style={{ gap: '3rem' }}
-            >
+              {/* Navigation Links - each as separate element */}
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.href}
+                  ref={el => navLinksCompactRef.current[index] = el}
                   href={item.href}
-                  className="text-sm lg:text-base font-medium text-secondary/80 hover:text-secondary transition-colors duration-300 relative group"
+                  className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm opacity-0"
+                  style={{ transform: 'translateY(20px)' }}
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-[600ms] group-hover:w-full"></span>
                 </motion.a>
               ))}
-            </div>
-          </div>
+              
+              {/* Contact Me Button */}
+              <motion.a
+                ref={contactCompactRef}
+                href="#contact"
+                className="px-5 py-2 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full opacity-0"
+                style={{ transform: 'scale(0.8)' }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                Contact Me
+              </motion.a>
+              
+              {/* Resume Button */}
+              <div ref={resumeButtonCompactRef} className="opacity-0" style={{ transform: 'scale(0.8)' }}>
+                <motion.a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Resume
+                </motion.a>
+              </div>
+            </>
+          )}
+          
+          {/* Non-compact mode - Original layout */}
+          {!isCompact && (
+            <>
+                             {/* Logo */}
+               <div className="flex items-center">
+                 <motion.div 
+                   ref={logoNormalRef}
+                   className="flex-shrink-0"
+                   whileHover={{ scale: 1.05 }}
+                   transition={{ duration: 0.2 }}
+                 >
+                   <a href="#hero" className="flex items-center">
+                     <img 
+                       src={logoSvg} 
+                       alt="Jeevan Kumar Logo" 
+                       className="h-8 w-8 lg:h-10 lg:w-10"
+                     />
+                   </a>
+                 </motion.div>
+               </div>
 
-          {/* Right Side Buttons */}
-          <div className="flex items-center space-x-3">
-            {/* Contact Me Button */}
-            <motion.a
-              href="#contact"
-              className={`rounded-full font-medium transition-all duration-300 ${
-                isCompact 
-                  ? 'px-4 py-2 text-sm lg:text-base bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-sm' 
-                  : 'px-4 py-2 lg:px-6 lg:py-2.5 text-sm lg:text-base bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 hover:border-secondary/40 backdrop-blur-sm'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              Contact Me
-            </motion.a>
+               {/* Desktop Navigation - Centered */}
+               <div className="hidden md:flex items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                 <div 
+                   ref={navLinksNormalRef}
+                   className="flex items-center"
+                   style={{ gap: '2rem' }}
+                 >
+                   {navItems.map((item, index) => (
+                     <motion.a
+                       key={item.href}
+                       href={item.href}
+                       className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm"
+                       whileHover={{ y: -2 }}
+                       transition={{ duration: 0.2 }}
+                     >
+                       {item.label}
+                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-[600ms] group-hover:w-full"></span>
+                     </motion.a>
+                   ))}
+                 </div>
+               </div>
 
-            {/* Resume Button - Only visible in compact state */}
-            <div 
-              ref={resumeButtonRef}
-              className={`transition-all duration-300 ${isCompact ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-            >
-                             <motion.a
-                 href="/resume.pdf"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="bg-gradient-to-r from-yellow-400/90 to-yellow-500/90 hover:from-yellow-500/90 hover:to-yellow-600/90 text-black px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm border border-yellow-300/20"
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.95 }}
-                 transition={{ duration: 0.2 }}
-               >
-                 Resume
-               </motion.a>
-            </div>
-          </div>
+               {/* Buttons for non-compact mode */}
+               <div className="flex items-center ml-auto">
+                 <div 
+                   className="flex items-center"
+                   style={{ gap: '0.5rem' }}
+                 >
+                   {/* Contact Me Button */}
+                   <motion.a
+                     ref={contactNormalRef}
+                     href="#contact"
+                     className="px-6 py-2.5 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full"
+                     whileHover={{ scale: 1.05 }}
+                     whileTap={{ scale: 0.95 }}
+                     transition={{ duration: 0.2 }}
+                   >
+                     Contact Me
+                   </motion.a>
+
+                   {/* Resume Button - Hidden in non-compact state */}
+                   <div 
+                     ref={resumeButtonNormalRef}
+                     className="opacity-0 pointer-events-none"
+                     style={{ transform: 'scale(0.8)' }}
+                   >
+                     <motion.a
+                       href="/resume.pdf"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
+                       whileHover={{ scale: 1.05 }}
+                       whileTap={{ scale: 0.95 }}
+                       transition={{ duration: 0.2 }}
+                     >
+                       Resume
+                     </motion.a>
+                   </div>
+                 </div>
+               </div>
+            </>
+          )}
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden ml-3">
             <motion.button
               onClick={toggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-secondary/80 hover:bg-secondary/10 transition-colors duration-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-secondary/80 hover:bg-secondary/10 transition-colors duration-[600ms]"
               whileTap={{ scale: 0.95 }}
             >
               <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -282,7 +497,7 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.6 }}
             >
               <div className="px-2 pt-2 pb-3 space-y-1 border-t border-secondary/10 mt-2">
                 {navItems.map((item, index) => (
@@ -290,7 +505,7 @@ const Navbar = () => {
                     key={item.href}
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-300"
+                    className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms]"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -304,7 +519,7 @@ const Navbar = () => {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block mx-3 mt-4 bg-gradient-to-r from-yellow-400/90 to-yellow-500/90 hover:from-yellow-500/90 hover:to-yellow-600/90 text-black px-4 py-2 rounded-full text-center font-medium transition-all duration-300 backdrop-blur-sm border border-yellow-300/20"
+                  className="block mx-3 mt-4 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/20 hover:border-secondary/40 px-4 py-2 rounded-full text-center font-medium transition-all duration-[600ms] backdrop-blur-sm"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}

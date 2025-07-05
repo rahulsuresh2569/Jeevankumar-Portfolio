@@ -1,5 +1,4 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import workSuitcaseImg from '../assets/images/work_suitcase.png';
@@ -8,11 +7,17 @@ import backgroundImg from '../assets/images/experience/background.png';
 const Experience = () => {
   const sectionRef = useRef(null);
   const backgroundRef = useRef(null);
+  const overlayRef = useRef(null);
   const headingRef = useRef(null);
   const contentRef = useRef(null);
+  const timelineStructureRef = useRef(null);
+  const startDotRef = useRef(null);
+  const endDotRef = useRef(null);
+  const dottedLineRef = useRef(null);
+  const startDateRef = useRef(null);
+  const endDateRef = useRef(null);
   const descriptionsRef = useRef(null);
-  const timelineRef = useRef(null);
-  const isInView = useInView(timelineRef, { once: true, threshold: 0.3 });
+  const descriptionRefs = useRef([]);
 
   const experienceData = {
     company: 'Risolutor Technologies Pvt Ltd',
@@ -30,11 +35,19 @@ const Experience = () => {
 
     const section = sectionRef.current;
     const background = backgroundRef.current;
+    const overlay = overlayRef.current;
     const heading = headingRef.current;
     const content = contentRef.current;
+    const timelineStructure = timelineStructureRef.current;
+    const startDot = startDotRef.current;
+    const endDot = endDotRef.current;
+    const dottedLine = dottedLineRef.current;
+    const startDate = startDateRef.current;
+    const endDate = endDateRef.current;
     const descriptions = descriptionsRef.current;
+    const individualDescriptions = descriptionRefs.current;
 
-    if (section && background && heading && content && descriptions) {
+    if (section && background && overlay && heading && content && timelineStructure && startDot && endDot && dottedLine && startDate && endDate && descriptions && individualDescriptions.length > 0) {
       // Background zoom animation - Independent and tied to overall page scroll
       gsap.fromTo(background,
         {
@@ -52,12 +65,33 @@ const Experience = () => {
         }
       );
 
+      // Dark overlay animation - Tied to sticky section scroll progress
+      gsap.fromTo(overlay,
+        {
+          backgroundColor: "rgba(0, 0, 0, 0.4)", // Start at light overlay (40% black)
+        },
+        {
+          backgroundColor: "#111111", // End at primary color (matching design system)
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=1000vh", // Match the master timeline duration
+            scrub: 1,
+            onUpdate: (self) => {
+              // Debug: Log overlay color progress
+              console.log("Overlay color progress:", self.progress);
+            }
+          }
+        }
+      );
+
       // Create a master timeline for all content reveals
       const masterTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=500vh", // Much longer sticky duration for slow reveals
+          end: "+=1000vh", // Further extended for slower description reveals
           pin: true,
           pinSpacing: true,
           scrub: 1,
@@ -68,7 +102,7 @@ const Experience = () => {
         }
       });
 
-      // Phase 1: Heading fade-in (0% to 30% of scroll) - Very slow reveal
+      // Phase 1: Heading fade-in (0% to 25% of scroll) - Slower
       masterTimeline.fromTo(heading,
         {
           opacity: 0,
@@ -78,11 +112,11 @@ const Experience = () => {
           opacity: 1,
           y: 0,
           ease: "power2.out",
-          duration: 3, // Much longer duration for slow reveal
-        }, 0 // Start at beginning
+          duration: 4.0, // Increased duration
+        }, 0
       );
 
-      // Phase 2: Company info and timeline fade-in (30% to 60% of scroll) - Slow reveal
+      // Phase 2: Company info fade-in (25% to 45% of scroll) - Slower
       masterTimeline.fromTo(content,
         {
           opacity: 0,
@@ -92,11 +126,67 @@ const Experience = () => {
           opacity: 1,
           y: 0,
           ease: "power2.out",
-          duration: 3, // Much longer duration for slow reveal
-        }, 3 // Start after heading animation with smooth transition
+          duration: 3.2, // Increased duration
+        }, 4.0
       );
 
-      // Phase 3: Description blocks fade-in (60% to 90% of scroll) - Slow reveal
+      // Phase 3: Timeline structure fade-in (45% to 55% of scroll) - Slower
+      masterTimeline.fromTo(timelineStructure,
+        {
+          opacity: 0,
+          y: 20
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          duration: 1.6, // Increased duration
+        }, 7.2
+      );
+
+      // Phase 4: Timeline dots appear (55% to 60% of scroll) - Slower
+      masterTimeline.fromTo([startDot, endDot],
+        {
+          scale: 0,
+          opacity: 0
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "back.out(1.7)",
+          duration: 0.8, // Increased duration
+          stagger: 0.4 // Increased stagger
+        }, 8.8
+      );
+
+      // Phase 5: Date labels appear (60% to 65% of scroll) - Slower
+      masterTimeline.fromTo([startDate, endDate],
+        {
+          y: 10,
+          opacity: 0
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: "power2.out",
+          duration: 0.8, // Increased duration
+          stagger: 0.3 // Increased stagger
+        }, 10.0
+      );
+
+      // Phase 6: Dotted line animation (65% to 75% of scroll) - Much slower
+      masterTimeline.fromTo(dottedLine,
+        {
+          width: "0%"
+        },
+        {
+          width: "100%",
+          ease: "power2.out",
+          duration: 1.6, // Increased duration for slower line draw
+        }, 11.1
+      );
+
+      // Phase 7: Description container fade-in (75% to 77% of scroll)
       masterTimeline.fromTo(descriptions,
         {
           opacity: 0,
@@ -106,12 +196,54 @@ const Experience = () => {
           opacity: 1,
           y: 0,
           ease: "power2.out",
-          duration: 3, // Much longer duration for slow reveal
-        }, 6 // Start after content animation with smooth transition
+          duration: 0.4,
+        }, 12.7
+      );
+
+      // Phase 8: First description paragraph (75% to 80% of scroll) - Much slower
+      masterTimeline.fromTo(individualDescriptions[0],
+        {
+          opacity: 0,
+          y: 20
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          duration: 1.6, // Doubled duration for slower reveal
+        }, 13.1
+      );
+
+      // Phase 9: Second description paragraph (80% to 85% of scroll) - Much slower
+      masterTimeline.fromTo(individualDescriptions[1],
+        {
+          opacity: 0,
+          y: 20
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          duration: 1.6, // Doubled duration for slower reveal
+        }, 15.1
+      );
+
+      // Phase 10: Third description paragraph (85% to 90% of scroll) - Much slower
+      masterTimeline.fromTo(individualDescriptions[2],
+        {
+          opacity: 0,
+          y: 20
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          duration: 1.6, // Doubled duration for slower reveal
+        }, 17.1
       );
 
       // Add a longer pause at the end to ensure all content is fully visible
-      masterTimeline.to({}, { duration: 2 }, 9); // Extra time to view all content
+      masterTimeline.to({}, { duration: 2.0 }, 18.7);
     }
 
     return () => {
@@ -138,7 +270,7 @@ const Experience = () => {
       />
 
       {/* Dark Overlay for Better Text Contrast */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div ref={overlayRef} className="absolute inset-0" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }} />
 
       {/* Content Window */}
       <div className="relative z-20 h-full flex items-center justify-center px-10 overflow-y-auto">
@@ -169,21 +301,16 @@ const Experience = () => {
               </div>
               
               {/* Animated Timeline */}
-              <div ref={timelineRef} className="w-full max-w-2xl">
+              <div ref={timelineStructureRef} className="w-full max-w-2xl opacity-0">
                 
                 {/* Timeline Container */}
                 <div className="relative flex items-center w-full">
                   
                   {/* Start Dot */}
-                  <motion.div 
+                  <div 
+                    ref={startDotRef}
                     className="w-4 h-4 bg-white rounded-full z-10 relative flex-shrink-0"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 0.2,
-                      ease: "easeOut"
-                    }}
+                    style={{ transform: 'scale(0)', opacity: 0 }}
                   />
                   
                   {/* Connecting Line Container */}
@@ -197,64 +324,42 @@ const Experience = () => {
                       }}
                     />
                     {/* Animated Dotted Line */}
-                    <motion.div 
+                    <div 
+                      ref={dottedLineRef}
                       className="absolute h-0.5"
                       style={{ 
                         borderTop: '2px dotted #ffffff',
                         top: '-1px',
-                        left: 0
-                      }}
-                      initial={{ width: "0%" }}
-                      animate={isInView ? { width: "100%" } : { width: "0%" }}
-                      transition={{ 
-                        duration: 1.5, 
-                        delay: 0.8,
-                        ease: "easeInOut"
+                        left: 0,
+                        width: '0%'
                       }}
                     />
                   </div>
                   
                   {/* End Dot */}
-                  <motion.div 
+                  <div 
+                    ref={endDotRef}
                     className="w-4 h-4 bg-white rounded-full z-10 relative flex-shrink-0"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 2.0,
-                      ease: "easeOut"
-                    }}
+                    style={{ transform: 'scale(0)', opacity: 0 }}
                   />
                 </div>
                 
                 {/* Date Labels */}
                 <div className="relative w-full mt-3">
-                  <motion.span
+                  <span
+                    ref={startDateRef}
                     className="absolute left-0 transform -translate-x-1/2 text-sm text-white/70"
-                    style={{ left: '8px' }}
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 0.5,
-                      ease: "easeOut"
-                    }}
+                    style={{ left: '8px', transform: 'translateY(10px)', opacity: 0 }}
                   >
                     {experienceData.period.split(' - ')[0]}
-                  </motion.span>
-                  <motion.span
+                  </span>
+                  <span
+                    ref={endDateRef}
                     className="absolute right-0 transform translate-x-1/2 text-sm text-white/70"
-                    style={{ right: '8px' }}
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 2.3,
-                      ease: "easeOut"
-                    }}
+                    style={{ right: '8px', transform: 'translateY(10px)', opacity: 0 }}
                   >
                     {experienceData.period.split(' - ')[1]}
-                  </motion.span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -265,7 +370,9 @@ const Experience = () => {
             {experienceData.descriptions.map((desc, index) => (
               <div
                 key={index}
-                className="text-center"
+                ref={el => descriptionRefs.current[index] = el}
+                className="text-center opacity-0"
+                style={{ transform: 'translateY(20px)' }}
               >
                 <p className="text-lg text-white/80 leading-relaxed">
                   {desc}
