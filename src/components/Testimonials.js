@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 import roshinImg from '../assets/images/roshin.jpeg';
@@ -35,9 +35,9 @@ const Testimonials = () => {
   const timerRef = useRef(null);
   const numTestimonials = testimonials.length;
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setRotationCounter(c => c + 1);
-  };
+  }, []);
   
   const handleAvatarClick = (index) => {
     const currentWrappedIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
@@ -53,23 +53,23 @@ const Testimonials = () => {
     setRotationCounter(c => c + diff);
   };
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
     }
     timerRef.current = setInterval(() => {
       handleNext();
     }, 6000);
-  };
+  }, [handleNext]);
 
-  const stopTimer = () => {
+  const stopTimer = useCallback(() => {
     clearInterval(timerRef.current);
-  };
+  }, []);
 
   useEffect(() => {
     startTimer();
     return () => stopTimer();
-  }, []);
+  }, [startTimer, stopTimer]);
 
   const getCardStyle = (index) => {
     const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
