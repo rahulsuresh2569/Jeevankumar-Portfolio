@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { SiFigma, SiAdobexd, SiAdobephotoshop, SiAdobeillustrator } from 'react-icons/si';
+import { FaRegHandPaper } from 'react-icons/fa';
 
 const Skills = () => {
   const skillsRef = useRef(null);
@@ -19,12 +21,12 @@ const Skills = () => {
   ];
 
   const toolProficiency = [
-    { name: 'Figma', icon: '🎨' },
-    { name: 'Adobe XD', icon: '🎨' },
-    { name: 'Figjam', icon: '🔧' },
-    { name: 'Prottapp', icon: '⚡' },
-    { name: 'Photoshop', icon: '🖼️' },
-    { name: 'Illustrator', icon: '✨' }
+    { name: 'Figma', icon: <SiFigma className="text-purple-500" /> },
+    { name: 'Adobe XD', icon: <SiAdobexd className="text-pink-500" /> },
+    { name: 'Figjam', icon: <SiFigma className="text-green-500" /> },
+    { name: 'Prottapp', icon: <FaRegHandPaper className="text-blue-500" /> },
+    { name: 'Photoshop', icon: <SiAdobephotoshop className="text-blue-600" /> },
+    { name: 'Illustrator', icon: <SiAdobeillustrator className="text-orange-500" /> }
   ];
 
   const graphicSkills = [
@@ -35,13 +37,20 @@ const Skills = () => {
     'Banner Designs'
   ];
 
+  const softSkills = [
+    'Communication',
+    'Team Worker',
+    'Empathetic',
+    'Discipline'
+  ];
+
   const frontendSkills = [
     'HTML5',
     'CSS (Basic)'
   ];
 
   // Enhanced SkillTag component with intense shine animation on the card content
-  const SkillTag = ({ children, index, delay = 0, hasIcon = false }) => {
+  const SkillTag = ({ children, index, delay = 0, hasIcon = false, icon = null }) => {
     return (
       <div
         className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md mb-3"
@@ -92,6 +101,7 @@ const Skills = () => {
               boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.3)'
             }}
           >
+            {hasIcon && icon && <span className="text-lg">{icon}</span>}
             {children}
           </span>
         </div>
@@ -107,10 +117,13 @@ const Skills = () => {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-16">Skills</h2>
         
         {/* Skills Grid Section */}
-        <div ref={skillsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div ref={skillsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-stretch">
           
-          {/* Left Column - Strategic Product Design Skills (Tall Card) */}
-          <div className="bg-tertiary rounded-2xl p-8 shadow-sm border border-gray-600">
+          {/* Left Column - Two Stacked Cards */}
+          <div className="flex flex-col gap-8 h-full">
+            
+            {/* Strategic Product Design Skills Card */}
+            <div className="bg-tertiary rounded-2xl p-8 shadow-sm border border-gray-600 flex-1">
             <h3 className="text-xl lg:text-2xl font-bold text-secondary mb-6 text-left">Strategic Product Design Skills</h3>
             <div className="flex flex-wrap gap-3">
               {strategicSkills.map((skill, index) => (
@@ -119,18 +132,31 @@ const Skills = () => {
                 </SkillTag>
               ))}
             </div>
+            </div>
+
+            {/* Soft Skills Card */}
+            <div className="bg-tertiary rounded-2xl p-8 shadow-sm border border-gray-600 flex-1">
+              <h3 className="text-xl lg:text-2xl font-bold text-secondary mb-6 text-left">Soft Skill</h3>
+              <div className="flex flex-wrap gap-3">
+                {softSkills.map((skill, index) => (
+                  <SkillTag key={index} index={index} delay={0.8}>
+                    {skill}
+                  </SkillTag>
+                ))}
+              </div>
+            </div>
+            
           </div>
           
           {/* Right Column - Three Stacked Cards */}
-          <div className="space-y-8">
+          <div className="flex flex-col gap-8 h-full">
             
             {/* Tool Proficiency Card */}
             <div className="bg-tertiary rounded-2xl p-6 shadow-sm border border-gray-600">
               <h3 className="text-lg lg:text-xl font-bold text-secondary mb-4 text-left">Tool Proficiency</h3>
               <div className="flex flex-wrap gap-3">
                 {toolProficiency.map((tool, index) => (
-                  <SkillTag key={index} index={index} delay={1.0} hasIcon>
-                    <span>{tool.icon}</span>
+                  <SkillTag key={index} index={index} delay={1.0} hasIcon icon={tool.icon}>
                     {tool.name}
                   </SkillTag>
                 ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Hero = () => {
   const designations = [
@@ -21,6 +21,7 @@ const Hero = () => {
 
   const [translateX, setTranslateX] = useState(0);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [swipeKey, setSwipeKey] = useState(0);
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const animationRef = useRef(null);
@@ -117,6 +118,16 @@ const Hero = () => {
     };
   }, [calculateElementWidth, calculateCurrentWordIndex, designations.length]);
 
+  useEffect(() => {
+    const swipeInterval = setInterval(() => {
+      setSwipeKey(prev => prev + 1);
+    }, 3000); // Swipe every 3 seconds
+
+    return () => {
+      clearInterval(swipeInterval);
+    };
+  }, []);
+
   return (
     <section id="hero" className="h-screen flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-24 sm:pt-24 md:pt-20 lg:pt-20">
       <div className="max-w-[98%] sm:max-w-[95%] md:max-w-[92%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-[85%] mx-auto w-full">
@@ -192,6 +203,56 @@ const Hero = () => {
                 I craft user-centered, interactive designs and continually pushing creative boundaries to deliver impactful solutions
               </p>
             </div>
+          </div>
+
+          {/* Third Row: Resume Button - Centered */}
+          <div className="flex justify-center pt-4 sm:pt-6 md:pt-8 lg:pt-10">
+            <motion.button
+              className="group relative inline-flex justify-center items-center rounded-xl sm:rounded-2xl font-bold text-white text-base sm:text-lg md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
+              }}
+              whileHover={{
+                boxShadow: '0 15px 40px rgba(139, 92, 246, 0.4)',
+                y: -2
+              }}
+              whileTap={{
+                scale: 0.98
+              }}
+            >
+              {/* Ghost content for sizing */}
+              <div className="flex items-center gap-2 opacity-0 px-5 py-3 sm:px-7 sm:py-3 md:px-8 md:py-4">
+                <span>Resume</span>
+                <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:w-6" />
+              </div>
+
+              <AnimatePresence>
+                <motion.div
+                  key={swipeKey}
+                  className="absolute inset-0 flex items-center justify-center gap-2"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "0%" }}
+                  exit={{ x: "100%" }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span>Resume</span>
+                  <motion.svg 
+                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:w-6 transition-transform duration-300 group-hover:translate-x-1" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2.5} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </motion.svg>
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
       </div>
