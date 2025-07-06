@@ -104,7 +104,7 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <h2 className="text-4xl font-bold text-center mb-16">Skills</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-16">Skills</h2>
         
         {/* Skills Grid Section */}
         <div ref={skillsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -267,7 +267,7 @@ const Projects = () => {
       {/* Static Header Section - Normal scroll, not sticky */}
               <section className="projects-header-section bg-primary text-secondary pt-20 pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
             Selected Projects
           </h2>
                       <p className="text-lg sm:text-xl text-secondary/70 leading-relaxed max-w-2xl mx-auto">

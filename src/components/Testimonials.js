@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
-import quoteImg from '../assets/images/quote.svg';
+
 import roshinImg from '../assets/images/roshin.jpeg';
 import ashikaImg from '../assets/images/ashika.jpeg';
 import anshanImg from '../assets/images/anshan.jpeg';
@@ -34,28 +32,9 @@ const testimonials = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const quoteIconRef = useRef(null);
   const sectionRef = useRef(null);
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
 
-    const quoteIcon = quoteIconRef.current;
-    const section = sectionRef.current;
-
-    if (quoteIcon && section) {
-      gsap.to(quoteIcon, {
-        y: -250,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
-      });
-    }
-  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -110,16 +89,9 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-6 sm:px-10 flex flex-col justify-center items-center overflow-hidden">
-      <img 
-        src={quoteImg} 
-        alt="quote"
-        ref={quoteIconRef}
-        className="absolute top-40 left-16 w-48 h-48 opacity-20"
-        style={{ transform: 'rotate(330deg)' }}
-      />
       
       <div className="w-full max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-16">
           Testimonials
         </h2>
         
