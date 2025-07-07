@@ -139,7 +139,7 @@ const Contact = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="min-h-screen bg-primary text-secondary py-20 px-10 flex flex-col items-center justify-center relative overflow-hidden"
+      className="min-h-screen bg-primary text-secondary px-10 flex flex-col items-center justify-center relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
         
