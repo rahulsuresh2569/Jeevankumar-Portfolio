@@ -129,7 +129,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="h-screen flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-20 sm:pt-24">
+    <section id="hero" className="h-screen flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-24 sm:pt-24 md:pt-20 lg:pt-20">
       <div className="max-w-[98%] sm:max-w-[95%] md:max-w-[92%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-[85%] mx-auto w-full">
         
         {/* Main Content Container */}
@@ -137,7 +137,7 @@ const Hero = () => {
           
           {/* First Row: "I'm" + Animation Container */}
           <div className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
-            <h1 className="text-[2.25rem] leading-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[10rem] font-bold leading-none flex-shrink-0">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[7.5rem] font-bold leading-none flex-shrink-0">
               I'm
             </h1>
             
@@ -171,8 +171,8 @@ const Hero = () => {
                     <span 
                       className="text-white leading-none text-center flex-shrink-0"
                       style={{
-                        fontSize: 'clamp(1.75rem, 8vw, 8rem)',
-                        width: 'clamp(3.5rem, 12vw, 10rem)'
+                        fontSize: 'clamp(2rem, 4vw + 1rem, 6rem)',
+                        width: 'clamp(3rem, 6vw + 1rem, 8rem)'
                       }}
                     >
                       {designation.symbol}
@@ -180,7 +180,7 @@ const Hero = () => {
                     <span 
                       className="text-white leading-none ml-2 sm:ml-3 md:ml-4 lg:ml-5"
                       style={{
-                        fontSize: 'clamp(2.25rem, 10vw, 10rem)'
+                        fontSize: 'clamp(2.5rem, 5vw + 1rem, 7.5rem)'
                       }}
                     >
                       {designation.text}
@@ -193,7 +193,7 @@ const Hero = () => {
 
           {/* Second Row: Name + Subtext */}
           <div className="flex flex-col md:flex-row md:items-end gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-12">
-            <h2 className="text-[2.25rem] leading-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[10rem] font-bold leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[7.5rem] font-bold leading-none">
               Jeevankumar
             </h2>
             
