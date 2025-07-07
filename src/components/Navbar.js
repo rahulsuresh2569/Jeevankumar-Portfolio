@@ -40,36 +40,64 @@ const Navbar = () => {
     const navbar = navRef.current;
     const container = containerRef.current;
 
-          if (navbar && container) {
-      // Initial state - Set navbar to full width without glassmorphism
+    let compactAnimationTimeout;
+    let normalAnimationTimeout;
+
+    if (navbar && container) {
+      // Set initial "static" state (absolute positioned over hero) and hide it
       gsap.set(navbar, {
+        position: 'absolute',
+        top: '2rem',
         width: "100%",
         left: "0",
         right: "0",
-        transform: "none",
-        position: "fixed",
-        top: "0px",
-        margin: "0",
-        padding: "0 0.5rem",
-        borderRadius: "0rem",
-        border: "none",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-        boxShadow: "none",
-        background: "rgba(17, 17, 17, 0.95)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)"
+        background: 'transparent',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
+        border: 'none',
+        boxShadow: 'none',
+        padding: '0 0.5rem',
+        opacity: 0,
       });
 
+      // ScrollTrigger to handle transition from static to sticky
+      ScrollTrigger.create({
+        trigger: navbar,
+        start: 'top top',
+        onEnter: () => {
+          gsap.set(navbar, {
+            position: 'fixed',
+            top: '0px',
+            margin: "0",
+            borderRadius: "0rem",
+            padding: "0 0.5rem",
+            border: "none",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: "none",
+            background: "rgba(17, 17, 17, 0.95)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set(navbar, {
+            position: 'absolute',
+            top: '2rem',
+            background: 'transparent',
+            backdropFilter: 'none',
+            WebkitBackdropFilter: 'none',
+            border: 'none',
+          });
+        }
+      });
 
-
-
-
-      // Create ScrollTrigger for navbar shrinking on scroll (similar to reference but reversed)
+      // ScrollTrigger for navbar shrinking on scroll
       ScrollTrigger.create({
         trigger: "#hero",
         start: "bottom top",
         end: "bottom top",
         onEnter: () => {
+          clearTimeout(normalAnimationTimeout);
           setIsCompact(true);
           
           // Animate to compact/shrunk state with glassmorphism effect
@@ -141,7 +169,7 @@ const Navbar = () => {
           }
 
           // Wait for state update and then animate compact elements in
-          setTimeout(() => {
+          compactAnimationTimeout = setTimeout(() => {
             const logoCompact = logoCompactRef.current;
             const navLinksCompact = navLinksCompactRef.current;
             const contactCompact = contactCompactRef.current;
@@ -177,6 +205,7 @@ const Navbar = () => {
           }, 250);
         },
         onLeaveBack: () => {
+          clearTimeout(compactAnimationTimeout);
           setIsCompact(false);
           
           // Animate back to full width state (remove glassmorphism)
@@ -205,56 +234,11 @@ const Navbar = () => {
             ease: "power3.out"
           });
 
-          // Get fresh references for current compact elements
-          const logoCompact = logoCompactRef.current;
-          const navLinksCompact = navLinksCompactRef.current;
-          const contactCompact = contactCompactRef.current;
-          const resumeButtonCompact = resumeButtonCompactRef.current;
-
-          // Animate compact elements out with null checks
-          if (resumeButtonCompact) {
-            gsap.to(resumeButtonCompact, {
-              opacity: 0,
-              scale: 0.8,
-              duration: 0.2,
-              ease: "power3.out"
-            });
-          }
-          
-          if (contactCompact) {
-            gsap.to(contactCompact, {
-              opacity: 0,
-              scale: 0.8,
-              duration: 0.2,
-              ease: "power3.out"
-            });
-          }
-          
-          if (navLinksCompact && navLinksCompact.length > 0) {
-            gsap.to(navLinksCompact, {
-              opacity: 0,
-              y: 20,
-              duration: 0.2,
-              stagger: 0.03,
-              ease: "power3.out"
-            });
-          }
-          
-          if (logoCompact) {
-            gsap.to(logoCompact, {
-              opacity: 0,
-              scale: 0.8,
-              duration: 0.2,
-              ease: "power3.out"
-            });
-          }
-
           // Wait for state update and then smoothly transition normal elements in
-          setTimeout(() => {
+          normalAnimationTimeout = setTimeout(() => {
             const logoNormal = logoNormalRef.current;
             const navLinksNormal = navLinksNormalRef.current;
             const contactNormal = contactNormalRef.current;
-            const resumeButtonNormal = resumeButtonNormalRef.current;
 
             if (logoNormal) {
               gsap.to(logoNormal, {
@@ -282,21 +266,17 @@ const Navbar = () => {
                 ease: "power3.out"
               });
             }
-            
-            if (resumeButtonNormal) {
-              gsap.to(resumeButtonNormal, {
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.3,
-                ease: "power3.out"
-              });
-            }
           }, 250);
         }
       });
+
+      // Fade the navbar in after a brief moment to avoid FOUC
+      gsap.to(navbar, { opacity: 1, duration: 0.3, delay: 0.1 });
     }
 
     return () => {
+      clearTimeout(compactAnimationTimeout);
+      clearTimeout(normalAnimationTimeout);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);

@@ -101,14 +101,14 @@ const Testimonials = () => {
           onMouseLeave={startTimer}
         >
           {/* Carousel Container */}
-          <div className="relative w-full h-96 flex items-center justify-center mb-12">
+          <div className="relative w-full h-[27rem] flex items-center justify-center mb-2">
             {testimonials.map((testimonial, index) => {
                 const cardStyle = getCardStyle(index);
 
                 return (
                   <motion.div
                     key={testimonial.id}
-                    className="absolute w-96 h-96"
+                    className="absolute w-4/12 max-w-3xl h-[27rem]"
                     initial={false}
                     animate={cardStyle}
                     transition={{
@@ -117,11 +117,15 @@ const Testimonials = () => {
                     }}
                   >
                     <div 
-                       className="rounded-xl h-full flex flex-col bg-tertiary shadow-lg relative overflow-hidden border border-gray-700/50"
-                     >
+                      className="rounded-xl h-full relative p-px"
+                      style={{
+                        background: 'radial-gradient(180% 180% at 50% 25%, rgba(255, 255, 255, 0.5), transparent 40%)'
+                      }}
+                    >
+                      <div className="rounded-[11px] h-full w-full bg-primary flex flex-col overflow-hidden">
                         {/* Top blue line */}
-                        <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-500"></div>
-
+                        <div className="w-full h-1.5 bg-blue-500 flex-shrink-0"></div>
+                        
                         <div className="p-5 flex-1 flex flex-col">
                             {/* Header */}
                             <div className="flex items-center mb-3">
@@ -157,6 +161,7 @@ const Testimonials = () => {
                                 </p>
                             </div>
                         </div>
+                      </div>
                     </div>
                   </motion.div>
                 );

@@ -64,7 +64,7 @@ const Skills = () => {
           <motion.div
             className="absolute inset-0 rounded-full pointer-events-none z-20"
             style={{
-              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.8) 45%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.8) 55%, rgba(255, 255, 255, 0.4) 65%, transparent 80%)',
+              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.1) 35%, rgba(255, 255, 255, 0.2) 45%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0.1) 65%, transparent 80%)',
               transform: 'translateX(-150%) skewX(-15deg)',
             }}
             animate={skillsInView ? {
@@ -73,23 +73,6 @@ const Skills = () => {
             transition={{
               duration: 1.8,
               delay: delay + (index * 0.15) + 0.3,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Secondary shimmer effect for extra intensity */}
-          <motion.div
-            className="absolute inset-0 rounded-full pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(110deg, transparent 30%, rgba(240, 248, 255, 0.6) 45%, rgba(255, 255, 255, 0.9) 50%, rgba(240, 248, 255, 0.6) 55%, transparent 70%)',
-              transform: 'translateX(-120%) skewX(-10deg)',
-            }}
-            animate={skillsInView ? {
-              transform: ['translateX(-120%) skewX(-10deg)', 'translateX(120%) skewX(-10deg)']
-            } : {}}
-            transition={{
-              duration: 1.5,
-              delay: delay + (index * 0.15) + 0.5,
               ease: "easeInOut"
             }}
           />

@@ -146,7 +146,7 @@ const Contact = () => {
         {/* Main Heading with Gochi Hand font */}
         <h1 
           ref={headingRef}
-          className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-normal leading-tight"
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal leading-tight"
           style={{
             fontFamily: "'Gochi Hand', cursive",
             color: '#ffffff'

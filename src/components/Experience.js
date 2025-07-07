@@ -76,7 +76,7 @@ const Experience = () => {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=1000vh", // Match the master timeline duration
+            end: "+=2000vh", // Match the master timeline duration
             scrub: 1,
             onUpdate: (self) => {
               // Debug: Log overlay color progress
@@ -91,7 +91,7 @@ const Experience = () => {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=1000vh", // Further extended for slower description reveals
+          end: "+=2000vh", // Further extended for slower description reveals
           pin: true,
           pinSpacing: true,
           scrub: 1,
@@ -144,106 +144,73 @@ const Experience = () => {
         }, 7.2
       );
 
-      // Phase 4: Timeline dots appear (55% to 60% of scroll) - Slower
-      masterTimeline.fromTo([startDot, endDot],
-        {
-          scale: 0,
-          opacity: 0
-        },
-        {
-          scale: 1,
-          opacity: 1,
-          ease: "back.out(1.7)",
-          duration: 0.8, // Increased duration
-          stagger: 0.4 // Increased stagger
-        }, 8.8
+      // --- NEW ANIMATION SEQUENCE ---
+
+      // Phase 4: Start dot appears (55% to 58% of scroll)
+      masterTimeline.fromTo(startDot,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, ease: "back.out(1.7)", duration: 0.8 },
+        8.8
       );
 
-      // Phase 5: Date labels appear (60% to 65% of scroll) - Slower
-      masterTimeline.fromTo([startDate, endDate],
-        {
-          y: 10,
-          opacity: 0
-        },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "power2.out",
-          duration: 0.8, // Increased duration
-          stagger: 0.3 // Increased stagger
-        }, 10.0
+      // Phase 5: Start date appears (58% to 61% of scroll)
+      masterTimeline.fromTo(startDate,
+        { y: 10, opacity: 0 },
+        { y: 0, opacity: 1, ease: "power2.out", duration: 0.8 },
+        9.6
       );
 
-      // Phase 6: Dotted line animation (65% to 75% of scroll) - Much slower
+      // Phase 6: Dotted line animation (61% to 68% of scroll)
       masterTimeline.fromTo(dottedLine,
-        {
-          width: "0%"
-        },
-        {
-          width: "100%",
-          ease: "power2.out",
-          duration: 1.6, // Increased duration for slower line draw
-        }, 11.1
+        { width: "0%" },
+        { width: "100%", ease: "power2.out", duration: 1.6 },
+        10.4
       );
 
-      // Phase 7: Description container fade-in (75% to 77% of scroll)
+      // Phase 7: End dot appears after line is complete (68% to 71% of scroll)
+      masterTimeline.fromTo(endDot,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, ease: "back.out(1.7)", duration: 0.8 },
+        12.0
+      );
+
+      // Phase 8: End date appears (71% to 74% of scroll)
+      masterTimeline.fromTo(endDate,
+        { y: 10, opacity: 0 },
+        { y: 0, opacity: 1, ease: "power2.out", duration: 0.8 },
+        12.8
+      );
+
+      // Phase 9: Description container fade-in (74% to 76% of scroll)
       masterTimeline.fromTo(descriptions,
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: 0.4,
-        }, 12.7
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.4 },
+        13.6
       );
 
-      // Phase 8: First description paragraph (75% to 80% of scroll) - Much slower
+      // Phase 10: First description paragraph (76% to 81% of scroll)
       masterTimeline.fromTo(individualDescriptions[0],
-        {
-          opacity: 0,
-          y: 20
-        },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: 1.6, // Doubled duration for slower reveal
-        }, 13.1
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 1.6 },
+        14.0
       );
 
-      // Phase 9: Second description paragraph (80% to 85% of scroll) - Much slower
+      // Phase 11: Second description paragraph (81% to 86% of scroll)
       masterTimeline.fromTo(individualDescriptions[1],
-        {
-          opacity: 0,
-          y: 20
-        },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: 1.6, // Doubled duration for slower reveal
-        }, 15.1
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 1.6 },
+        15.6
       );
 
-      // Phase 10: Third description paragraph (85% to 90% of scroll) - Much slower
+      // Phase 12: Third description paragraph (86% to 91% of scroll)
       masterTimeline.fromTo(individualDescriptions[2],
-        {
-          opacity: 0,
-          y: 20
-        },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: 1.6, // Doubled duration for slower reveal
-        }, 17.1
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 1.6 },
+        17.2
       );
 
-      // Add a longer pause at the end to ensure all content is fully visible
-      masterTimeline.to({}, { duration: 2.0 }, 18.7);
+      // Add a longer pause at the end
+      masterTimeline.to({}, { duration: 2.0 }, 18.8);
     }
 
     return () => {
@@ -273,8 +240,8 @@ const Experience = () => {
       <div ref={overlayRef} className="absolute inset-0" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }} />
 
       {/* Content Window */}
-      <div className="relative z-20 h-full flex items-center justify-center px-10 overflow-y-auto">
-        <div className="text-center text-white max-w-6xl mx-auto py-20">
+      <div className="relative z-20 h-full flex items-center justify-center px-10">
+        <div className="text-center text-white max-w-6xl mx-auto py-12">
           
           {/* Main Heading - Initially Hidden */}
           <div ref={headingRef} className="opacity-0 mb-12">
@@ -293,7 +260,7 @@ const Experience = () => {
                 <img 
                   src={workSuitcaseImg} 
                   alt="Work briefcase"
-                  className="w-12 h-12 filter brightness-0 invert"
+                  className="w-12 h-12"
                 />
                 <h3 className="text-2xl lg:text-3xl font-bold">
                   {experienceData.company}
@@ -315,14 +282,6 @@ const Experience = () => {
                   
                   {/* Connecting Line Container */}
                   <div className="flex-1 h-0.5 relative overflow-hidden mx-0">
-                    {/* Background Dotted Line */}
-                    <div 
-                      className="absolute top-0 left-0 w-full h-0.5"
-                      style={{ 
-                        borderTop: '2px dotted #9ca3af',
-                        top: '-1px'
-                      }}
-                    />
                     {/* Animated Dotted Line */}
                     <div 
                       ref={dottedLineRef}
