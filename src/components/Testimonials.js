@@ -31,6 +31,8 @@ const testimonials = [
 
 const Testimonials = () => {
   const [rotationCounter, setRotationCounter] = useState(0);
+  const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const wasHoveringActiveRef = useRef(false);
   const sectionRef = useRef(null);
   const timerRef = useRef(null);
   const numTestimonials = testimonials.length;
@@ -59,7 +61,7 @@ const Testimonials = () => {
     }
     timerRef.current = setInterval(() => {
       handleNext();
-    }, 6000);
+    }, 3000);
   }, [handleNext]);
 
   const stopTimer = useCallback(() => {
@@ -70,6 +72,19 @@ const Testimonials = () => {
     startTimer();
     return () => stopTimer();
   }, [startTimer, stopTimer]);
+
+  useEffect(() => {
+    const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
+    const isHoveringActive = hoveredCardIndex === currentIndex;
+
+    if (isHoveringActive && !wasHoveringActiveRef.current) {
+      stopTimer();
+    } else if (!isHoveringActive && wasHoveringActiveRef.current) {
+      startTimer();
+    }
+    
+    wasHoveringActiveRef.current = isHoveringActive;
+  }, [hoveredCardIndex, rotationCounter, stopTimer, startTimer, numTestimonials]);
 
   const getCardStyle = (index) => {
     const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
@@ -97,13 +112,13 @@ const Testimonials = () => {
         
         <div 
           className="w-full flex flex-col items-center"
-          onMouseEnter={stopTimer}
-          onMouseLeave={startTimer}
         >
           {/* Carousel Container */}
           <div className="relative w-full h-[27rem] flex items-center justify-center mb-2">
             {testimonials.map((testimonial, index) => {
                 const cardStyle = getCardStyle(index);
+                const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
+                const isActive = index === currentIndex;
 
                 return (
                   <motion.div
@@ -115,6 +130,8 @@ const Testimonials = () => {
                         duration: 0.8,
                         ease: [0.25, 0.46, 0.45, 0.94],
                     }}
+                    onMouseEnter={() => setHoveredCardIndex(index)}
+                    onMouseLeave={() => setHoveredCardIndex(null)}
                   >
                     <div 
                       className="rounded-xl h-full relative p-px"
@@ -124,7 +141,12 @@ const Testimonials = () => {
                     >
                       <div className="rounded-[11px] h-full w-full bg-primary flex flex-col overflow-hidden">
                         {/* Top blue line */}
-                        <div className="w-full h-1.5 bg-blue-500 flex-shrink-0"></div>
+                        <motion.div 
+                          className="w-full h-1.5 bg-blue-500 flex-shrink-0"
+                          initial={false}
+                          animate={{ opacity: isActive ? 1 : 0 }}
+                          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        />
                         
                         <div className="p-5 flex-1 flex flex-col">
                             {/* Header */}
@@ -156,7 +178,7 @@ const Testimonials = () => {
 
                             {/* Quote */}
                             <div className="text-left flex-1 overflow-auto mt-3">
-                                <p className="text-xs text-secondary/80 leading-relaxed">
+                                <p className={`text-xs leading-relaxed transition-colors duration-700 ${isActive ? 'text-secondary' : 'text-secondary/80'}`}>
                                     {testimonial.quote}
                                 </p>
                             </div>

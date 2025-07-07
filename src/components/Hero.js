@@ -144,8 +144,7 @@ const Hero = () => {
             {/* Continuous Scrolling Container with Framer Motion Color Transitions */}
             <motion.div 
               ref={containerRef}
-              className="relative overflow-hidden px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 lg:px-10 lg:py-4 xl:px-12 xl:py-5 w-full flex-1"
-              style={{ borderRadius: 'clamp(30px, 8vw, 60px)' }}
+              className="relative overflow-hidden px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 lg:px-10 lg:py-4 xl:px-12 xl:py-5 w-full flex-1 rounded-[35px]"
               animate={{
                 background: `linear-gradient(to right, ${colorGradients[currentColorIndex].from}, ${colorGradients[currentColorIndex].to})`
               }}

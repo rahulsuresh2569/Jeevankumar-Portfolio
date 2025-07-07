@@ -1,5 +1,5 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useLayoutEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,11 +12,17 @@ import shapeImg from '../assets/images/about-me/shape.svg';
 import toolImg from '../assets/images/about-me/tool.svg';
 import toolbarImg from '../assets/images/about-me/toolbar.svg';
 import pencilImg from '../assets/images/about-me/pencil.svg';
+import certificateImg from '../assets/images/about-me/certificate.png';
+import risolutorLogo from '../assets/images/about-me/risoluter_logo.svg';
 
 const About = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const containerRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -237,10 +243,12 @@ const About = () => {
   };
 
   // Info Pills Component with same style as Experience section
-  const InfoPill = ({ children, index, delay = 0, icon, looped = false }) => {
+  const InfoPill = ({ children, index, delay = 0, icon, looped = false, onClick }) => {
+    const isClickable = !!onClick;
     return (
       <div
-        className="rounded-full p-[1px] transition-all duration-200 hover:shadow-md w-fit"
+        onClick={onClick}
+        className={`rounded-full p-[1px] transition-all duration-200 hover:shadow-md w-fit ${isClickable ? 'cursor-pointer hover:scale-105' : ''}`}
         style={{
           background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
           backgroundSize: '200% 200%'
@@ -317,7 +325,7 @@ const About = () => {
             
             {/* Info Pills Section - Positioned above image */}
             <motion.div 
-              className="mb-6 lg:mb-10 w-fit"
+              className="mb-6 lg:mb-10 w-fit relative z-20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -325,7 +333,7 @@ const About = () => {
             >
               {/* First row - 2 pills */}
               <div className="flex gap-2 mb-4">
-                <InfoPill index={0} delay={0} icon="⭐" looped={true}>
+                <InfoPill index={0} delay={0} icon="⭐" looped={true} onClick={openModal}>
                   Effortless Achiever
                   <span className="ml-1">→</span>
                 </InfoPill>
@@ -501,6 +509,67 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-[#111111] rounded-2xl w-full max-w-6xl h-auto max-h-[90vh] flex overflow-hidden shadow-2xl"
+            >
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-20"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Left Side: Certificate Image */}
+              <div className="w-full lg:w-3/4 p-4 lg:p-8 flex items-center justify-center">
+                <img 
+                  src={certificateImg} 
+                  alt="Effortless Achiever Certificate" 
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+
+              {/* Right Side: Details Panel */}
+              <div className="hidden lg:flex w-1/4 bg-black/20 flex-col justify-center p-10 space-y-10 border-l border-white/10">
+                <div>
+                  <h3 className="text-3xl font-bold text-white mb-2">Effortless Achiever</h3>
+                </div>
+
+                <div>
+                  <p className="text-sm text-white/50 mb-3">Issued By</p>
+                  <img 
+                    src={risolutorLogo} 
+                    alt="Risolutor Technologies Logo" 
+                    className="w-40 h-auto"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm text-white/50 mb-2">Period</p>
+                  <p className="text-lg font-medium text-white">2023 - 2024</p>
+                </div>
+              </div>
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
