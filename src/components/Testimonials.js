@@ -32,6 +32,7 @@ const testimonials = [
 const Testimonials = () => {
   const [rotationCounter, setRotationCounter] = useState(0);
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const wasHoveringActiveRef = useRef(false);
   const sectionRef = useRef(null);
   const timerRef = useRef(null);
@@ -54,6 +55,13 @@ const Testimonials = () => {
     }
     setRotationCounter(c => c + diff);
   };
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const startTimer = useCallback(() => {
     if (timerRef.current) {
@@ -93,17 +101,28 @@ const Testimonials = () => {
     if (offset > numTestimonials / 2) offset -= numTestimonials;
     if (offset < -numTestimonials / 2) offset += numTestimonials;
 
+    if (isMobile) {
+      const isActive = offset === 0;
+      return {
+        transform: `translateX(${offset * 100}%) scale(${isActive ? 1 : 0.8})`,
+        opacity: isActive ? 1 : 0,
+        zIndex: isActive ? numTestimonials : numTestimonials - Math.abs(offset),
+        pointerEvents: isActive ? 'auto' : 'none',
+      };
+    }
+
     const isVisible = Math.abs(offset) <= 1;
 
     return {
         transform: `translateX(${offset * 95}%) scale(${1 - Math.abs(offset) * 0.2})`,
         opacity: isVisible ? 1 - Math.abs(offset) * 0.5 : 0,
         zIndex: numTestimonials - Math.abs(offset),
+        pointerEvents: isVisible ? 'auto' : 'none',
     };
   };
 
   return (
-    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-6 sm:px-10 flex flex-col justify-center items-center overflow-hidden">
+    <section id="testimonials" ref={sectionRef} className="relative min-h-screen bg-primary text-secondary py-20 px-4 sm:px-6 md:px-10 flex flex-col justify-center items-center overflow-hidden">
       
       <div className="w-full max-w-7xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-16">
@@ -114,7 +133,7 @@ const Testimonials = () => {
           className="w-full flex flex-col items-center"
         >
           {/* Carousel Container */}
-          <div className="relative w-full h-[27rem] flex items-center justify-center mb-2">
+          <div className="relative w-full h-[36rem] md:h-[27rem] flex items-center justify-center mb-2">
             {testimonials.map((testimonial, index) => {
                 const cardStyle = getCardStyle(index);
                 const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
@@ -123,7 +142,7 @@ const Testimonials = () => {
                 return (
                   <motion.div
                     key={testimonial.id}
-                    className="absolute w-4/12 max-w-3xl h-[27rem]"
+                    className="absolute w-11/12 md:w-8/12 lg:w-4/12 max-w-md h-full"
                     initial={false}
                     animate={cardStyle}
                     transition={{
@@ -177,8 +196,8 @@ const Testimonials = () => {
                             <hr className="border-gray-700/80" />
 
                             {/* Quote */}
-                            <div className="text-left flex-1 overflow-auto mt-3">
-                                <p className={`text-xs leading-relaxed transition-colors duration-700 ${isActive ? 'text-secondary' : 'text-secondary/80'}`}>
+                            <div className="text-left flex-1 overflow-auto mt-3 pr-2">
+                                <p className={`text-sm leading-relaxed transition-colors duration-700 ${isActive ? 'text-secondary' : 'text-secondary/80'}`}>
                                     {testimonial.quote}
                                 </p>
                             </div>
@@ -191,7 +210,7 @@ const Testimonials = () => {
           </div>
 
           {/* Avatar Navigation */}
-          <div className="flex items-center justify-center space-x-3 sm:space-x-4">
+          <div className="flex items-center justify-center space-x-3 sm:space-x-4 mt-4">
             {testimonials.map((testimonial, index) => {
               const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
               return (
@@ -212,8 +231,8 @@ const Testimonials = () => {
                     alt={testimonial.name}
                     className="rounded-full object-cover"
                     variants={{
-                        active: { width: 60, height: 60 },
-                        inactive: { width: 48, height: 48 }
+                        active: { width: isMobile ? 52 : 60, height: isMobile ? 52 : 60 },
+                        inactive: { width: isMobile ? 40 : 48, height: isMobile ? 40 : 48 }
                     }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                   />

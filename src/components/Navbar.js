@@ -24,6 +24,7 @@ const Navbar = () => {
     { href: '#experience', label: 'Experience' },
     { href: '#skills', label: 'Skills' },
     { href: '#testimonials', label: 'Testimonials' },
+    { href: '#contact', label: 'Contact Me' },
   ];
 
   const toggleMobileMenu = () => {
@@ -40,66 +41,66 @@ const Navbar = () => {
 
     mm.add("(min-width: 768px)", () => {
       // --- DESKTOP ANIMATION LOGIC ---
-      const navbar = navRef.current;
-      const container = containerRef.current;
+    const navbar = navRef.current;
+    const container = containerRef.current;
 
-      let compactAnimationTimeout;
-      let normalAnimationTimeout;
+    let compactAnimationTimeout;
+    let normalAnimationTimeout;
 
-      if (navbar && container) {
-        gsap.set(navbar, {
-          position: 'absolute',
-          top: '2rem',
-          width: "100%",
-          left: "0",
-          right: "0",
-          background: 'transparent',
-          backdropFilter: 'none',
-          WebkitBackdropFilter: 'none',
-          border: 'none',
-          boxShadow: 'none',
-          padding: '0 0.5rem',
-          opacity: 0,
-        });
+    if (navbar && container) {
+      gsap.set(navbar, {
+        position: 'absolute',
+        top: '2rem',
+        width: "100%",
+        left: "0",
+        right: "0",
+        background: 'transparent',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
+        border: 'none',
+        boxShadow: 'none',
+        padding: '0 0.5rem',
+        opacity: 0,
+      });
 
-        ScrollTrigger.create({
-          trigger: navbar,
-          start: 'top top',
-          onEnter: () => {
-            gsap.set(navbar, {
-              position: 'fixed',
-              top: '0px',
-              margin: "0",
-              borderRadius: "0rem",
-              padding: "0 0.5rem",
-              border: "none",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-              boxShadow: "none",
-              background: "rgba(17, 17, 17, 0.95)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-            });
-          },
-          onLeaveBack: () => {
-            gsap.set(navbar, {
-              position: 'absolute',
-              top: '2rem',
-              background: 'transparent',
-              backdropFilter: 'none',
-              WebkitBackdropFilter: 'none',
-              border: 'none',
-            });
-          }
-        });
+      ScrollTrigger.create({
+        trigger: navbar,
+        start: 'top top',
+        onEnter: () => {
+          gsap.set(navbar, {
+            position: 'fixed',
+            top: '0px',
+            margin: "0",
+            borderRadius: "0rem",
+            padding: "0 0.5rem",
+            border: "none",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: "none",
+            background: "rgba(17, 17, 17, 0.95)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set(navbar, {
+            position: 'absolute',
+            top: '2rem',
+            background: 'transparent',
+            backdropFilter: 'none',
+            WebkitBackdropFilter: 'none',
+            border: 'none',
+          });
+        }
+      });
 
-        ScrollTrigger.create({
-          trigger: "#hero",
-          start: "bottom top",
-          end: "bottom top",
-          onEnter: () => {
-            clearTimeout(normalAnimationTimeout);
-            setIsCompact(true);
-            
+      ScrollTrigger.create({
+        trigger: "#hero",
+        start: "bottom top",
+        end: "bottom top",
+        onEnter: () => {
+          clearTimeout(normalAnimationTimeout);
+          setIsCompact(true);
+          
             let targetWidth, targetLeft;
             const screenWidth = window.innerWidth;
             if (screenWidth >= 1280) { // xl+
@@ -113,100 +114,100 @@ const Navbar = () => {
               targetLeft = "7.5%";
             }
 
-            gsap.to(navbar, {
+          gsap.to(navbar, {
               width: targetWidth,
               left: targetLeft,
               right: targetLeft,
-              transform: "none",
-              background: "rgba(16, 18, 27, 0.4)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(113, 119, 144, 0.1)",
-              padding: "0.25rem 0",
-              marginTop: "1rem",
-              borderRadius: "1rem",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-              duration: 0.6,
-              ease: "power3.out"
-            });
+            transform: "none",
+            background: "rgba(16, 18, 27, 0.4)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(113, 119, 144, 0.1)",
+            padding: "0.25rem 0",
+            marginTop: "1rem",
+            borderRadius: "1rem",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+            duration: 0.6,
+            ease: "power3.out"
+          });
 
-            gsap.to(container, {
-              maxWidth: "750px",
-              padding: "0 0.75rem",
-              duration: 0.6,
-              ease: "power3.out"
-            });
+          gsap.to(container, {
+            maxWidth: "750px",
+            padding: "0 0.75rem",
+            duration: 0.6,
+            ease: "power3.out"
+          });
 
-            const logoNormal = logoNormalRef.current;
-            const navLinksNormal = navLinksNormalRef.current;
-            const contactNormal = contactNormalRef.current;
-            const resumeButtonNormal = resumeButtonNormalRef.current;
+          const logoNormal = logoNormalRef.current;
+          const navLinksNormal = navLinksNormalRef.current;
+          const contactNormal = contactNormalRef.current;
+          const resumeButtonNormal = resumeButtonNormalRef.current;
 
             if (logoNormal) gsap.to(logoNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
             if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 0, y: -20, duration: 0.3, ease: "power3.out" });
             if (contactNormal) gsap.to(contactNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
             if (resumeButtonNormal) gsap.to(resumeButtonNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
 
-            compactAnimationTimeout = setTimeout(() => {
-              const logoCompact = logoCompactRef.current;
-              const navLinksCompact = navLinksCompactRef.current;
-              const contactCompact = contactCompactRef.current;
-              const resumeButtonCompact = resumeButtonCompactRef.current;
+          compactAnimationTimeout = setTimeout(() => {
+            const logoCompact = logoCompactRef.current;
+            const navLinksCompact = navLinksCompactRef.current;
+            const contactCompact = contactCompactRef.current;
+            const resumeButtonCompact = resumeButtonCompactRef.current;
 
               if (logoCompact) gsap.fromTo(logoCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
               if (navLinksCompact && navLinksCompact.length > 0) gsap.fromTo(navLinksCompact, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" });
               if (contactCompact) gsap.fromTo(contactCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" });
               if (resumeButtonCompact) gsap.fromTo(resumeButtonCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" });
-            }, 250);
-          },
-          onLeaveBack: () => {
-            clearTimeout(compactAnimationTimeout);
-            setIsCompact(false);
-            
-            gsap.to(navbar, {
-              width: "100%",
-              left: "0",
-              right: "0",
-              transform: "none",
-              background: "rgba(17, 17, 17, 0.95)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              border: "none",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-              padding: "0 0.5rem",
-              marginTop: "0rem",
-              borderRadius: "0rem",
-              boxShadow: "none",
-              duration: 0.6,
-              ease: "power3.out"
-            });
+          }, 250);
+        },
+        onLeaveBack: () => {
+          clearTimeout(compactAnimationTimeout);
+          setIsCompact(false);
+          
+          gsap.to(navbar, {
+            width: "100%",
+            left: "0",
+            right: "0",
+            transform: "none",
+            background: "rgba(17, 17, 17, 0.95)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            border: "none",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+            padding: "0 0.5rem",
+            marginTop: "0rem",
+            borderRadius: "0rem",
+            boxShadow: "none",
+            duration: 0.6,
+            ease: "power3.out"
+          });
 
-            gsap.to(container, {
-              maxWidth: "1152px",
-              padding: "0 1.5rem",
-              duration: 0.6,
-              ease: "power3.out"
-            });
+          gsap.to(container, {
+            maxWidth: "1152px",
+            padding: "0 1.5rem",
+            duration: 0.6,
+            ease: "power3.out"
+          });
 
-            normalAnimationTimeout = setTimeout(() => {
-              const logoNormal = logoNormalRef.current;
-              const navLinksNormal = navLinksNormalRef.current;
-              const contactNormal = contactNormalRef.current;
+          normalAnimationTimeout = setTimeout(() => {
+            const logoNormal = logoNormalRef.current;
+            const navLinksNormal = navLinksNormalRef.current;
+            const contactNormal = contactNormalRef.current;
 
               if (logoNormal) gsap.to(logoNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
               if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" });
               if (contactNormal) gsap.to(contactNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
-            }, 250);
-          }
-        });
+          }, 250);
+        }
+      });
 
-        gsap.to(navbar, { opacity: 1, duration: 0.3, delay: 0.1 });
-      }
+      gsap.to(navbar, { opacity: 1, duration: 0.3, delay: 0.1 });
+    }
 
-      return () => {
-        clearTimeout(compactAnimationTimeout);
-        clearTimeout(normalAnimationTimeout);
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    return () => {
+      clearTimeout(compactAnimationTimeout);
+      clearTimeout(normalAnimationTimeout);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       };
     });
 
@@ -223,11 +224,11 @@ const Navbar = () => {
         willChange: 'background, padding, margin-top, border-radius, border, border-bottom, box-shadow, width, left, right, backdrop-filter, -webkit-backdrop-filter',
       }}
     >
-      <div 
-        ref={containerRef}
+              <div 
+          ref={containerRef}
         className="max-w-6xl mx-auto px-4"
         style={{ willChange: 'max-width, padding' }}
-      >
+        >
         {/* --- DESKTOP --- */}
         <div className={`hidden md:flex items-center ${
           isCompact ? 'h-12 justify-evenly' : 'h-14'
@@ -293,75 +294,75 @@ const Navbar = () => {
           
           {!isCompact && (
             <>
-              <div className="flex items-center">
-                <motion.div 
-                  ref={logoNormalRef}
-                  className="flex-shrink-0"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a href="#hero" className="flex items-center">
+               <div className="flex items-center">
+                 <motion.div 
+                   ref={logoNormalRef}
+                   className="flex-shrink-0"
+                   whileHover={{ scale: 1.05 }}
+                   transition={{ duration: 0.2 }}
+                 >
+                   <a href="#hero" className="flex items-center">
                     <img src={logoSvg} alt="Jeevan Kumar Logo" className="h-8 w-8 lg:h-10 lg:w-10" />
-                  </a>
-                </motion.div>
-              </div>
+                   </a>
+                 </motion.div>
+               </div>
 
-              <div className="hidden md:flex items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div 
-                  ref={navLinksNormalRef}
-                  className="flex items-center"
-                  style={{ gap: '2rem' }}
-                >
+               <div className="hidden md:flex items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                 <div 
+                   ref={navLinksNormalRef}
+                   className="flex items-center"
+                   style={{ gap: '2rem' }}
+                 >
                   {navItems.map((item) => (
-                    <motion.a
-                      key={item.href}
-                      href={item.href}
-                      className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm"
-                      whileHover={{ y: -2 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {item.label}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-[600ms] group-hover:w-full"></span>
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
+                     <motion.a
+                       key={item.href}
+                       href={item.href}
+                       className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm"
+                       whileHover={{ y: -2 }}
+                       transition={{ duration: 0.2 }}
+                     >
+                       {item.label}
+                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-[600ms] group-hover:w-full"></span>
+                     </motion.a>
+                   ))}
+                 </div>
+               </div>
 
-              <div className="flex items-center ml-auto">
-                <div 
-                  className="flex items-center"
-                  style={{ gap: '0.5rem' }}
-                >
-                  <motion.a
-                    ref={contactNormalRef}
-                    href="#contact"
-                    className="px-6 py-2.5 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Contact Me
-                  </motion.a>
+               <div className="flex items-center ml-auto">
+                 <div 
+                   className="flex items-center"
+                   style={{ gap: '0.5rem' }}
+                 >
+                   <motion.a
+                     ref={contactNormalRef}
+                     href="#contact"
+                     className="px-6 py-2.5 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full"
+                     whileHover={{ scale: 1.05 }}
+                     whileTap={{ scale: 0.95 }}
+                     transition={{ duration: 0.2 }}
+                   >
+                     Contact Me
+                   </motion.a>
 
-                  <div 
-                    ref={resumeButtonNormalRef}
-                    className="opacity-0 pointer-events-none"
-                    style={{ transform: 'scale(0.8)' }}
-                  >
-                    <motion.a
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      Resume
-                    </motion.a>
-                  </div>
-                </div>
-              </div>
+                   <div 
+                     ref={resumeButtonNormalRef}
+                     className="opacity-0 pointer-events-none"
+                     style={{ transform: 'scale(0.8)' }}
+                   >
+                     <motion.a
+                       href="/resume.pdf"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
+                       whileHover={{ scale: 1.05 }}
+                       whileTap={{ scale: 0.95 }}
+                       transition={{ duration: 0.2 }}
+                     >
+                       Resume
+                     </motion.a>
+                   </div>
+                 </div>
+               </div>
             </>
           )}
         </div>
@@ -371,20 +372,20 @@ const Navbar = () => {
            <a href="#hero" className="flex-shrink-0">
              <img src={logoSvg} alt="Jeevan Kumar Logo" className="h-8 w-8" />
            </a>
-           <motion.button
-             onClick={toggleMobileMenu}
-             className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-secondary/80 hover:bg-secondary/10 transition-colors duration-[600ms]"
-             whileTap={{ scale: 0.95 }}
-           >
+            <motion.button
+              onClick={toggleMobileMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-secondary/80 hover:bg-secondary/10 transition-colors duration-[600ms]"
+              whileTap={{ scale: 0.95 }}
+            >
              <span className="sr-only">Open main menu</span>
-             <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-               {isMobileMenuOpen ? (
-                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-               ) : (
-                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-               )}
-             </svg>
-           </motion.button>
+              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </motion.button>
         </div>
 
         <AnimatePresence>
@@ -410,26 +411,16 @@ const Navbar = () => {
                     {item.label}
                   </motion.a>
                 ))}
-
-                <motion.a
-                  href="#contact"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center mt-4 px-3 py-2 text-base font-medium text-secondary/80 bg-secondary/5 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms]"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.05 }}
-                >
-                  Contact Me
-                </motion.a>
                 
                 <motion.a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-4 py-2 rounded-full font-medium transition-all duration-[600ms] mt-3"
+                  onClick={closeMobileMenu}
+                  className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms]"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: (navItems.length + 1) * 0.05 }}
+                  transition={{ delay: navItems.length * 0.05 }}
                 >
                   Resume
                 </motion.a>

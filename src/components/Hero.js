@@ -129,14 +129,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="h-screen flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-24 sm:pt-24 md:pt-20 lg:pt-20">
+    <section id="hero" className="min-h-[52vh] sm:min-h-[70vh] md:h-screen flex items-center justify-center bg-primary text-secondary px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-14 sm:pt-16 md:pt-18 lg:pt-20">
       <div className="max-w-[98%] sm:max-w-[95%] md:max-w-[92%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-[85%] mx-auto w-full">
         
         {/* Main Content Container */}
-        <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8">
+        <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 xl:space-y-7">
           
           {/* First Row: "I'm" + Animation Container */}
-          <div className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
+          <div className="flex flex-col md:flex-row md:items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[7.5rem] font-bold leading-none flex-shrink-0">
               I'm
             </h1>
@@ -191,7 +191,7 @@ const Hero = () => {
           </div>
 
           {/* Second Row: Name + Subtext */}
-          <div className="flex flex-col md:flex-row md:items-end gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-12">
+          <div className="flex flex-col md:flex-row md:items-end gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] 2xl:text-[7.5rem] font-bold leading-none">
               Jeevankumar
             </h2>
@@ -205,9 +205,9 @@ const Hero = () => {
           </div>
 
           {/* Third Row: Resume Button - Centered */}
-          <div className="flex justify-center pt-4 sm:pt-6 md:pt-8 lg:pt-10">
+          <div className="flex justify-center pt-2 sm:pt-3 md:pt-4 lg:pt-6 xl:pt-8">
             <motion.button
-              className="group relative inline-flex justify-center items-center rounded-xl sm:rounded-2xl font-bold text-white text-base sm:text-lg md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"
+              className="group relative inline-flex justify-center items-center rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-white text-sm sm:text-base md:text-lg lg:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
                 boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
@@ -221,9 +221,9 @@ const Hero = () => {
               }}
             >
               {/* Ghost content for sizing */}
-              <div className="flex items-center gap-2 opacity-0 px-5 py-3 sm:px-7 sm:py-3 md:px-8 md:py-4">
+              <div className="flex items-center gap-1.5 sm:gap-2 opacity-0 px-4 py-2 sm:px-5 sm:py-3 md:px-7 md:py-3 lg:px-8 lg:py-4">
                 <span>Resume</span>
-                <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:w-6" />
+                <div className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
               </div>
 
               <AnimatePresence>
@@ -237,7 +237,7 @@ const Hero = () => {
                 >
                   <span>Resume</span>
                   <motion.svg 
-                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:w-6 transition-transform duration-300 group-hover:translate-x-1" 
+                    className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-transform duration-300 group-hover:translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"

@@ -102,6 +102,7 @@ const DesignGallery = () => {
     if (section && images.length > 0) {
       const mm = gsap.matchMedia();
 
+      // Desktop parallax (enhanced)
       mm.add("(min-width: 768px)", () => {
         images.forEach((image, index) => {
           if (image) {
@@ -113,7 +114,7 @@ const DesignGallery = () => {
               force3D: true
             });
 
-            const parallaxDistance = calculateParallaxDistance(zIndex);
+            const parallaxDistance = calculateParallaxDistance(zIndex, false);
 
             gsap.to(image, {
               y: parallaxDistance,
@@ -131,10 +132,41 @@ const DesignGallery = () => {
         });
       });
 
+      // Mobile parallax (optimized for performance and battery life)
       mm.add("(max-width: 767px)", () => {
-        images.forEach((image) => {
+        images.forEach((image, index) => {
           if (image) {
-            gsap.set(image, { clearProps: 'transform' });
+            const item = galleryItems[index];
+            const zIndex = item.zIndex;
+            
+            // Enhanced mobile performance settings
+            gsap.set(image, { 
+              willChange: 'transform',
+              force3D: true,
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden',
+              // Additional mobile optimizations
+              perspective: '1000px',
+              WebkitTransform: 'translateZ(0)', // Force hardware acceleration
+              transform: 'translateZ(0)'
+            });
+
+            const parallaxDistance = calculateParallaxDistance(zIndex, true);
+
+            gsap.to(image, {
+              y: parallaxDistance,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 2.5, // Slower scrub for smoother mobile experience
+                invalidateOnRefresh: true,
+                refreshPriority: -1,
+                fastScrollEnd: true, // Better performance on fast scrolls
+                anticipatePin: 1, // Improve performance with pinned elements
+              },
+            });
           }
         });
       });
@@ -145,7 +177,23 @@ const DesignGallery = () => {
     }
   }, [galleryItems]);
 
-  const calculateParallaxDistance = (zIndex) => {
+  const calculateParallaxDistance = (zIndex, isMobile = false) => {
+    // Mobile parallax distances (reduced for better performance and subtlety)
+    if (isMobile) {
+      switch (zIndex) {
+        case 9: return -120; // Surface Pro - fastest (reduced from -500)
+        case 8: return -100; // iPhone2 - very fast (reduced from -420)
+        case 7: return -85;  // Watch2 - fast (reduced from -350)
+        case 6: return -70;  // iPhone1 - medium-fast (reduced from -280)
+        case 5: return -55;  // iPhone3 - medium (reduced from -220)
+        case 4: return -45;  // Watch1 & Tablet - medium-slow (reduced from -170)
+        case 3: return -35;  // Laptop - slow (reduced from -120)
+        case 1: return -25;  // iPad1 - slowest (reduced from -80)
+        default: return -40;
+      }
+    }
+    
+    // Desktop parallax distances (original values)
     switch (zIndex) {
       case 9: return -500; // Surface Pro - fastest
       case 8: return -420; // iPhone2 - very fast
@@ -160,21 +208,23 @@ const DesignGallery = () => {
   };
 
   return (
-    <section 
-      id="design-gallery" 
-      ref={sectionRef}
-      className="relative bg-primary overflow-hidden pb-16 sm:pb-20 md:pb-24 lg:pb-32 xl:pb-40"
-      style={{
-        minHeight: 'clamp(100vh, 25vw + 110vh, 210vh)'
-      }}
-    >
+    <>
+      <section 
+        id="design-gallery" 
+        ref={sectionRef}
+        className="relative bg-primary overflow-hidden py-6 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-[50vh] sm:min-h-[85vh] md:min-h-[110vh] lg:min-h-[130vh] xl:min-h-[160vh]"
+        style={{
+          // Mobile-specific optimizations
+          WebkitOverflowScrolling: 'touch',
+          backfaceVisibility: 'hidden',
+          perspective: '1000px'
+        }}
+      >
       {/* Tilted Gallery Container */}
       <div 
-        className="relative w-full h-full"
+        className="relative w-full h-full gallery-container"
         style={{
-          transform: 'rotate(-2deg) translateY(-8%)',
           transformOrigin: 'center center',
-          scale: '1.1', // Slightly scale up to ensure no empty corners
         }}
       >
         {/* Gallery Items Container */}
@@ -210,6 +260,20 @@ const DesignGallery = () => {
         </div>
       </div>
     </section>
+    
+    {/* Mobile-specific styling */}
+    <style jsx>{`
+      .gallery-container {
+        transform: rotate(-1.5deg) translateY(-4%) scale(1.05);
+      }
+      
+      @media (min-width: 768px) {
+        .gallery-container {
+          transform: rotate(-2deg) translateY(-8%) scale(1.1);
+        }
+      }
+    `}</style>
+    </>
   );
 };
 
