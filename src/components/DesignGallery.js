@@ -244,14 +244,14 @@ const DesignGallery = () => {
                   maxWidth: item.src.includes('Watch') ? 
                     'clamp(50px, 13vw, 230px)' : 
                   item.src.includes('iPhone') ? 
-                    'clamp(100px, 15vw, 280px)' :
+                    'clamp(80px, 15vw, 280px)' :
                   item.src.includes('iPad') ? 
-                    'clamp(200px, 30vw, 470px)' :
+                    'clamp(100px, 30vw, 470px)' :
                   item.src.includes('Tablet') ? 
-                    'clamp(280px, 50vw, 820px)' :
+                    'clamp(200px, 50vw, 820px)' :
                   item.src.includes('Laptop') ? 
-                    'clamp(400px, 72vw, 1300px)' :
-                    'clamp(250px, 35vw, 760px)'
+                    'clamp(300px, 72vw, 1300px)' :
+                    'clamp(220px, 35vw, 760px)'
                 }}
                 loading="lazy"
               />

@@ -314,7 +314,7 @@ const About = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="min-h-screen bg-primary text-secondary py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 overflow-hidden"
+      className="min-h-screen bg-primary text-secondary pt-12 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         
@@ -339,7 +339,7 @@ const About = () => {
             
             {/* Info Pills Section - Positioned above image */}
             <motion.div 
-              className="mb-4 sm:mb-6 lg:mb-8 w-full relative z-20"
+              className="mt-5 mb-5 sm:mb-6 lg:mb-8 w-full relative z-20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -366,7 +366,7 @@ const About = () => {
               ref={containerRef}
             >
               <div className="h-full rounded-xl bg-transparent relative overflow-visible">
-                <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] min-h-[280px] sm:min-h-[320px] lg:min-h-[380px]">
+                <div className="mt-10 relative w-full aspect-[4/5] sm:aspect-[3/4] min-h-[220px] sm:min-h-[320px] lg:min-h-[380px]">
                   
 
 
@@ -468,28 +468,29 @@ const About = () => {
           </div>
 
           {/* Text Content Section */}
-          <div ref={textRef} className="order-1 lg:order-2 lg:col-span-4 space-y-4 sm:space-y-5 lg:space-y-6 lg:pl-4">
+          <div ref={textRef} className="order-1 lg:order-2 lg:col-span-4 space-y-5 sm:space-y-5 lg:space-y-6 lg:pl-4 px-1">
             
             {/* Introduction */}
             <motion.div 
-              className="space-y-1.5 sm:space-y-2 lg:space-y-3"
+              className="space-y-2 sm:space-y-2 lg:space-y-3"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
               viewport={{ once: true, threshold: 0.3 }}
             >
-              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-left">
-                Hi there, I'm<br />Jeevankumar
+              <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-left whitespace-normal sm:whitespace-pre-line text-center sm:text-left">
+                <span className="block sm:hidden">Hi there, I'm Jeevankumar</span>
+                <span className="hidden sm:inline">Hi there, I'm<br />Jeevankumar</span>
               </h3>
-              <div className="relative">
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-secondary font-medium text-left mt-3 sm:mt-4" >
+              <div className="relative mt-2 sm:mt-3">
+                <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary font-medium text-center sm:text-left mt-2 sm:mt-4" >
                   Product Designer
                 </p>
                 {/* Pencil underline */}
                 <img 
                   src={pencilImg} 
                   alt="pencil line" 
-                  className="w-full h-auto -mt-4 sm:-mt-5 md:-mt-6"
+                  className="w-3/4 sm:w-full h-auto -mt-3 sm:-mt-5 md:-mt-6 mx-auto sm:mx-0"
                   style={{
                     display: 'block',
                     opacity: 0.8
@@ -500,21 +501,21 @@ const About = () => {
 
             {/* Main Description */}
             <motion.div 
-              className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6"
+              className="space-y-4 sm:space-y-4 md:space-y-5 lg:space-y-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               viewport={{ once: true, threshold: 0.3 }}
             >
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
                 With <strong className="text-secondary font-semibold">1.7 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-secondary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
               </p>
 
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
                 Beyond digital interfaces, I've also explored the creative side of visual communication through <strong className="text-secondary font-semibold">graphic design projects</strong>, including posters, banners, and logos. This variety has helped me build a well-rounded design perspective.
               </p>
 
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left" style={{ lineHeight: '1.6' }}>
+              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
                 My core strength lies in <strong className="text-secondary font-semibold">product design</strong>, where I enjoy identifying real user problems, solving complex challenges, and delivering intuitive, impactful solutions. I'm eager to push my creative boundaries further and delivering impactful and innovative design solutions who balances functionality, aesthetics, and user needs.
               </p>
             </motion.div>
@@ -600,28 +601,6 @@ const About = () => {
           .toolbar-3d {
             left: 22% !important;
           }
-          
-          /* Reduce animation complexity on mobile */
-          .card-3d {
-            will-change: auto !important;
-          }
-        }
-        
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-          .card-3d,
-          .shape-3d,
-          .tool-3d,
-          .hello-world-3d,
-          .tooltip-3d,
-          .toolbar-3d {
-            transform: none !important;
-            transition: none !important;
-          }
-        }
-        
-        /* Info Pills Mobile Optimization */
-        @media (max-width: 639px) {
           .info-pill-text {
             white-space: normal !important;
             max-width: 200px;
@@ -629,13 +608,18 @@ const About = () => {
             text-align: center;
             justify-content: center;
           }
-          
-          /* Ensure pills wrap nicely */
           .flex-wrap {
             align-items: flex-start;
           }
+          .about-mobile-spacing {
+            margin-bottom: 1.2rem !important;
+          }
         }
-        
+        @media (max-width: 639px) {
+          .about-mobile-spacing {
+            margin-bottom: 1.2rem !important;
+          }
+        }
         @media (min-width: 640px) {
           .info-pill-text {
             white-space: nowrap !important;
