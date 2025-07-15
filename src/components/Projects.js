@@ -298,105 +298,17 @@ const Projects = () => {
             
             {/* Projects Content Grid - Centered accounting for navbar */}
             <div 
-              className="projects-component grid items-center px-4 sm:px-6 md:px-8 lg:px-10"
+              className="projects-component grid items-center px-4 sm:px-6 md:px-8 lg:px-10 lg:grid-cols-[0.4fr_1fr] grid-cols-1 gap-4 lg:gap-8 h-full"
               style={{ 
-                gridTemplateColumns: '0.4fr 1fr',
-                gap: '2rem',
                 height: '100vh', // Full viewport height
                 paddingTop: '80px', // Account for navbar
                 paddingBottom: '40px' // Bottom padding for better spacing
               }}
             >
-              
-              {/* Left Side - Project Content */}
-              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh] shadow-lg">
-                <div className="projects-left-top flex-1 flex flex-col text-left relative">
-                  
-                  {/* Fixed Section Label */}
-                  <div className="mb-4">
-                    <span className="inline-block text-sm font-normal text-blue-600">
-                      {projectsData[activeProjectIndex]?.tag}
-                    </span>
-                  </div>
-
-                  {/* Fixed Project Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-12">
-                    {projectsData[activeProjectIndex]?.title}
-                  </h3>
-
-                  {/* Dynamic Pills Container - positioned relative to fixed title */}
-                  <div className="relative">
-                    {projectsData.map((project, index) => (
-                      <div
-                        key={project.id}
-                        className="project-content-item absolute inset-0"
-                        style={{
-                          opacity: 0,
-                          transition: 'opacity 0.5s ease-in-out'
-                        }}
-                      >
-                        {/* Project Metadata - First 2 tags with dot, others on separate lines */}
-                        <div className="space-y-4 mb-12">
-                          {/* First line: First 2 tags with dot between them */}
-                          <div className="flex items-center gap-2">
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.category}
-                            </span>
-                            <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.industry}
-                            </span>
-                          </div>
-                          
-                          {/* Second line: Third tag */}
-                          <div>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.platform}
-                            </span>
-                          </div>
-                          
-                          {/* Third line: Fourth tag */}
-                          <div>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.type}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Divider Line */}
-                        <div className="w-full h-px bg-gray-200 mb-10"></div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom CTA Button - Left aligned */}
-                <div className="projects-left-bottom flex justify-start">
-                  <button 
-                    className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                    style={{
-                      background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
-                      color: buttonGradients[activeProjectIndex]?.textColor,
-                      boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
-                    }}
-                  >
-                    <span>Detail View</span>
-                    <svg 
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Side - Project Images */}
+              {/* Right Side - Project Images (Mobile: order-1, Desktop: order-2) */}
               <div 
                 ref={projectsRightRef}
-                className="projects-right w-full h-full rounded-3xl relative overflow-hidden max-h-[85vh] cursor-pointer"
+                className="projects-right w-full h-full rounded-3xl relative overflow-hidden max-h-[85vh] cursor-pointer order-1 lg:order-2"
               >
                 {/* Mouse Follower - Circle with Arrow */}
                 <div 
@@ -440,6 +352,84 @@ const Projects = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Left Side - Project Content (Mobile: order-2, Desktop: order-1) */}
+              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh] shadow-lg order-2 lg:order-1">
+                <div className="projects-left-top flex-1 flex flex-col text-left relative">
+                  {/* Fixed Section Label */}
+                  <div className="mb-4">
+                    <span className="inline-block text-sm font-normal text-blue-600">
+                      {projectsData[activeProjectIndex]?.tag}
+                    </span>
+                  </div>
+                  {/* Fixed Project Title */}
+                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-12">
+                    {projectsData[activeProjectIndex]?.title}
+                  </h3>
+                  {/* Dynamic Pills Container - positioned relative to fixed title */}
+                  <div className="relative">
+                    {projectsData.map((project, index) => (
+                      <div
+                        key={project.id}
+                        className="project-content-item absolute inset-0"
+                        style={{
+                          opacity: 0,
+                          transition: 'opacity 0.5s ease-in-out'
+                        }}
+                      >
+                        {/* Project Metadata - First 2 tags with dot, others on separate lines */}
+                        <div className="space-y-4 mb-12">
+                          {/* First line: First 2 tags with dot between them */}
+                          <div className="flex items-center gap-2">
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.category}
+                            </span>
+                            <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.industry}
+                            </span>
+                          </div>
+                          {/* Second line: Third tag */}
+                          <div>
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.platform}
+                            </span>
+                          </div>
+                          {/* Third line: Fourth tag */}
+                          <div>
+                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.type}
+                            </span>
+                          </div>
+                        </div>
+                        {/* Divider Line */}
+                        <div className="w-full h-px bg-gray-200 mb-10"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Bottom CTA Button - Left aligned */}
+                <div className="projects-left-bottom flex justify-start">
+                  <button 
+                    className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    style={{
+                      background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
+                      color: buttonGradients[activeProjectIndex]?.textColor,
+                      boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
+                    }}
+                  >
+                    <span>Detail View</span>
+                    <svg 
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -475,10 +465,10 @@ const Projects = () => {
             padding-bottom: 20px !important;
           }
           
-          .projects-left {
-            max-height: 50vh !important;
-            margin-bottom: 1rem;
-          }
+          // .projects-left {
+          //   max-height: 50vh !important;
+          //   margin-bottom: 1rem;
+          // }
           
           .projects-right {
             max-height: 40vh !important;
