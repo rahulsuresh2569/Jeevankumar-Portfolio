@@ -366,7 +366,7 @@ const About = () => {
               ref={containerRef}
             >
               <div className="h-full rounded-xl bg-transparent relative overflow-visible">
-                <div className="mt-10 relative w-full aspect-[4/5] sm:aspect-[3/4] min-h-[220px] sm:min-h-[320px] lg:min-h-[380px]">
+                <div className="mt-16 relative w-full aspect-[4/5] sm:aspect-[3/4] min-h-[280px] sm:h-[700px] sm:mt-28 lg:min-h-[680px] xl:mt-20">
                   
 
 
@@ -507,15 +507,15 @@ const About = () => {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               viewport={{ once: true, threshold: 0.3 }}
             >
-              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
+              <p className="text-center sm:text-left text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 leading-relaxed" style={{ lineHeight: '1.7' }}>
                 With <strong className="text-secondary font-semibold">1.7 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-secondary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
               </p>
 
-              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
+              <p className="text-center sm:text-left text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 leading-relaxed" style={{ lineHeight: '1.7' }}>
                 Beyond digital interfaces, I've also explored the creative side of visual communication through <strong className="text-secondary font-semibold">graphic design projects</strong>, including posters, banners, and logos. This variety has helped me build a well-rounded design perspective.
               </p>
 
-              <p className="text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 text-left leading-relaxed" style={{ lineHeight: '1.7' }}>
+              <p className="text-center sm:text-left text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 leading-relaxed" style={{ lineHeight: '1.7' }}>
                 My core strength lies in <strong className="text-secondary font-semibold">product design</strong>, where I enjoy identifying real user problems, solving complex challenges, and delivering intuitive, impactful solutions. I'm eager to push my creative boundaries further and delivering impactful and innovative design solutions who balances functionality, aesthetics, and user needs.
               </p>
             </motion.div>

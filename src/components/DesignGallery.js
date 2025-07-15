@@ -212,7 +212,7 @@ const DesignGallery = () => {
       <section 
         id="design-gallery" 
         ref={sectionRef}
-        className="relative bg-primary overflow-hidden py-6 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-[46vh] sm:min-h-[85vh] md:min-h-[110vh] lg:min-h-[130vh] xl:min-h-[160vh]"
+        className="relative bg-primary overflow-hidden py-6 sm:pb-12 lg:pb-20 min-h-[46vh] sm:min-h-[57vh] md:pt-20 md:min-h-[80vh] lg:min-h-[105vh] xl:py-0 xl:min-h-[140vh]"
         style={{
           // Mobile-specific optimizations
           WebkitOverflowScrolling: 'touch',

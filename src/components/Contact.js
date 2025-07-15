@@ -139,9 +139,9 @@ const Contact = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="bg-primary text-secondary px-10 flex flex-col items-center relative overflow-hidden py-24 md:py-32"
+      className="bg-primary text-secondary px-10 flex flex-col items-center relative overflow-hidden py-24 md:pb-40"
     >
-      <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+      <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10 mb-20">
         
         {/* Main Heading with Gochi Hand font */}
         <h1 

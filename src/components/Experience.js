@@ -51,10 +51,10 @@ const Experience = () => {
       // Background zoom animation - Independent and tied to overall page scroll
       gsap.fromTo(background,
         {
-          scale: 1.8, // Much larger initial scale for dramatic effect
+          scale: 2.0, // Much larger initial scale for dramatic effect
         },
         {
-          scale: 0.8, // Smaller final scale for dramatic zoom out
+          scale: 1, // Smaller final scale for dramatic zoom out
           ease: "none",
           scrollTrigger: {
             trigger: "body", // Tied to entire page scroll

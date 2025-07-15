@@ -64,9 +64,9 @@ function App() {
       <Hero />
       <DesignGallery />
       <About />
+      <Projects />
       <Experience />
       <Skills />
-      <Projects />
       <Testimonials />
       <Contact />
       <Footer />

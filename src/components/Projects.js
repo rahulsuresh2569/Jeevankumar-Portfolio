@@ -265,7 +265,7 @@ const Projects = () => {
   return (
     <>
       {/* Static Header Section - Normal scroll, not sticky */}
-              <section className="projects-header-section bg-primary text-secondary pt-20 pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
+              <section className="projects-header-section bg-primary text-secondary pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
             Selected Projects
@@ -461,8 +461,8 @@ const Projects = () => {
             grid-template-columns: 1fr !important;
             gap: 1rem !important;
             height: 100vh !important;
-            padding-top: 60px !important;
-            padding-bottom: 20px !important;
+            padding-top: 70px !important;
+            padding-bottom: 90px !important;
           }
           
           // .projects-left {
@@ -484,6 +484,8 @@ const Projects = () => {
           }
         }
       `}</style>
+      {/* Add extra space below Projects section */}
+      <div className="bg-primary h-40" />
     </>
   );
 };
