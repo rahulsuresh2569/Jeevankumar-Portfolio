@@ -240,8 +240,8 @@ const Experience = () => {
       <div ref={overlayRef} className="absolute inset-0" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }} />
 
       {/* Content Window */}
-      <div className="relative z-20 h-full flex items-center justify-center px-10">
-        <div className="text-center text-white max-w-6xl mx-auto py-12">
+      <div className="relative z-20 h-full flex items-center justify-center px-3 sm:px-6 md:px-10">
+        <div className="text-center text-white max-w-6xl mx-auto py-8 sm:py-10 md:py-12">
           
           {/* Main Heading - Initially Hidden */}
           <div ref={headingRef} className="opacity-0 mb-12">
@@ -251,35 +251,32 @@ const Experience = () => {
           </div>
 
           {/* Company Info & Timeline - Initially Hidden */}
-          <div ref={contentRef} className="opacity-0 space-y-8 mb-16">
+          <div ref={contentRef} className="opacity-0 space-y-6 sm:space-y-8 mb-10 sm:mb-14 md:mb-16">
             {/* Company Info */}
             <div className="flex flex-col items-center">
               
               {/* Company Name with Icon */}
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
                 <img 
                   src={workSuitcaseImg} 
                   alt="Work briefcase"
-                  className="w-12 h-12"
+                  className="w-8 h-8 sm:w-12 sm:h-12"
                 />
-                <h3 className="text-2xl lg:text-3xl font-bold">
+                <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold">
                   {experienceData.company}
                 </h3>
               </div>
               
               {/* Animated Timeline */}
               <div ref={timelineStructureRef} className="w-full max-w-2xl opacity-0">
-                
                 {/* Timeline Container */}
                 <div className="relative flex items-center w-full">
-                  
                   {/* Start Dot */}
                   <div 
                     ref={startDotRef}
-                    className="w-4 h-4 bg-white rounded-full z-10 relative flex-shrink-0"
+                    className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full z-10 relative flex-shrink-0"
                     style={{ transform: 'scale(0)', opacity: 0 }}
                   />
-                  
                   {/* Connecting Line Container */}
                   <div className="flex-1 h-0.5 relative overflow-hidden mx-0">
                     {/* Animated Dotted Line */}
@@ -294,27 +291,25 @@ const Experience = () => {
                       }}
                     />
                   </div>
-                  
                   {/* End Dot */}
                   <div 
                     ref={endDotRef}
-                    className="w-4 h-4 bg-white rounded-full z-10 relative flex-shrink-0"
+                    className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full z-10 relative flex-shrink-0"
                     style={{ transform: 'scale(0)', opacity: 0 }}
                   />
                 </div>
-                
                 {/* Date Labels */}
-                <div className="relative w-full mt-3">
+                <div className="relative w-full mt-2 sm:mt-3">
                   <span
                     ref={startDateRef}
-                    className="absolute left-0 transform -translate-x-1/2 text-sm text-white/70"
+                    className="absolute left-0 transform -translate-x-1/2 text-xs sm:text-sm text-white/70"
                     style={{ left: '8px', transform: 'translateY(10px)', opacity: 0 }}
                   >
                     {experienceData.period.split(' - ')[0]}
                   </span>
                   <span
                     ref={endDateRef}
-                    className="absolute right-0 transform translate-x-1/2 text-sm text-white/70"
+                    className="absolute right-0 transform translate-x-1/2 text-xs sm:text-sm text-white/70"
                     style={{ right: '8px', transform: 'translateY(10px)', opacity: 0 }}
                   >
                     {experienceData.period.split(' - ')[1]}
@@ -325,7 +320,7 @@ const Experience = () => {
           </div>
 
           {/* Experience Description Blocks - Initially Hidden */}
-          <div ref={descriptionsRef} className="opacity-0 space-y-8 max-w-4xl mx-auto">
+          <div ref={descriptionsRef} className="opacity-0 space-y-5 sm:space-y-8 max-w-4xl mx-auto">
             {experienceData.descriptions.map((desc, index) => (
               <div
                 key={index}
@@ -333,7 +328,7 @@ const Experience = () => {
                 className="text-center opacity-0"
                 style={{ transform: 'translateY(20px)' }}
               >
-                <p className="text-lg text-white/80 leading-relaxed">
+                <p className="text-sm sm:text-lg text-white/80 leading-relaxed">
                   {desc}
                 </p>
               </div>
