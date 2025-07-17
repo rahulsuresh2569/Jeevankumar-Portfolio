@@ -136,7 +136,7 @@ const Testimonials = () => {
           className="w-full flex flex-col items-center"
         >
           {/* Carousel Container */}
-          <div className="relative w-full h-[38rem] md:h-[27rem] flex items-center justify-center mb-2">
+          <div className="relative w-full h-[38rem] md:h-[30rem] flex items-center justify-center mb-2">
             {testimonials.map((testimonial, index) => {
                 const cardStyle = getCardStyle(index);
                 const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;

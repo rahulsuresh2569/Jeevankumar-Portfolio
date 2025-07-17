@@ -183,7 +183,7 @@ const Contact = () => {
           className="absolute bottom-0 left-0 w-full h-full opacity-0"
           style={{
             width: '100%',
-            height: '120px',
+            height: '140px',
             overflow: 'visible'
           }}
           viewBox={`0 0 ${typeof window !== 'undefined' ? window.innerWidth : 1200} 120`}
@@ -193,12 +193,12 @@ const Contact = () => {
             <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
               <stop offset="50%" stopColor="rgba(255,255,255,0.08)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
+              <stop offset="100%" stopColor="rgba(255, 255, 255, 0.03)" />
             </linearGradient>
             <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="rgba(245,245,247,0.12)" />
               <stop offset="50%" stopColor="rgba(245,245,247,0.06)" />
-              <stop offset="100%" stopColor="rgba(245,245,247,0.01)" />
+              <stop offset="100%" stopColor="rgba(255, 255, 255, 0.03)" />
             </linearGradient>
           </defs>
           
