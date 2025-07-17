@@ -11,14 +11,14 @@ const cloudinaryImages = {
 const testimonials = [
   {
     id: 1,
-    quote: "I highly recommend Jeevan as an exceptional UI/UX designer who consistently demonstrates outstanding collaboration skills with development teams. His ability to deliver ui designs while maintaining technical feasibility has been invaluable to our projects. What sets them apart is their remarkable adaptability and willingness to iterate based on technical constraints, coupled with his proactive approach to improving design systems. Through our collaboration, he shown an impressive understanding of frontend development considerations, which has significantly streamlined our workflow and enhanced the quality of our final products",
+    quote: "I highly recommend Jeevan as an exceptional UI/UX designer who consistently demonstrates outstanding collaboration skills with development teams. His ability to deliver ui designs while maintaining technical feasibility has been invaluable to our projects. What sets them apart is their remarkable adaptability and willingness to iterate based on technical constraints, coupled with his proactive approach to improving design systems. Through our collaboration, he shown an impressive understanding of frontend development considerations, which has significantly streamlined our workflow and enhanced the quality of our final products.",
     name: 'Roshin Prasad',
     designation: 'Frontend Developer',
     avatar: cloudinaryImages.roshin,
   },
   {
     id: 2,
-    quote: "I had the pleasure of working with Jeevan for at Risolutor Technologies. Jeevan has an exceptional eye for detail and a deep understanding of user-centered design principles, consistently creating interfaces that are not only visually stunning but also intuitive and user-friendly. What sets Jeevan apart is his ability to balance creativity with functionality, ensuring that the designs are both aesthetically pleasing and aligned with the goals of the project. His strong collaboration skills make him an invaluable team member, as he is always open to feedback and able to iterate quickly without losing sight of the end user's needs. In addition to their technical expertise, Jeevan brings a positive attitude and a passion for design that is truly contagious. I highly recommend Jeevan as he will be an incredible addition to the team ",
+    quote: "I had the pleasure of working with Jeevan for at Risolutor Technologies. Jeevan has an exceptional eye for detail and a deep understanding of user-centered design principles, consistently creating interfaces that are not only visually stunning but also intuitive and user-friendly. What sets Jeevan apart is his ability to balance creativity with functionality, ensuring that the designs are both aesthetically pleasing and aligned with the goals of the project. His strong collaboration skills make him an invaluable team member, as he is always open to feedback and able to iterate quickly without losing sight of the end user's needs. In addition to their technical expertise, Jeevan brings a positive attitude and a passion for design that is truly contagious. I highly recommend Jeevan as he will be an incredible addition to the team.",
     name: 'Ashika Vignanamani',
     designation: 'HR Professional',
     avatar: cloudinaryImages.ashika,
@@ -136,7 +136,7 @@ const Testimonials = () => {
           className="w-full flex flex-col items-center"
         >
           {/* Carousel Container */}
-          <div className="relative w-full h-[36rem] md:h-[27rem] flex items-center justify-center mb-2">
+          <div className="relative w-full h-[38rem] md:h-[27rem] flex items-center justify-center mb-2">
             {testimonials.map((testimonial, index) => {
                 const cardStyle = getCardStyle(index);
                 const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;

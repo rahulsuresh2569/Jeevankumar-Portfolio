@@ -463,17 +463,32 @@ const Projects = () => {
             grid-template-columns: 1fr !important;
             gap: 1rem !important;
             height: 100vh !important;
-            padding-top: 70px !important;
-            padding-bottom: 90px !important;
+            padding-top: 100px !important;
+            padding-bottom: 80px !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
           }
           
-          // .projects-left {
-          //   max-height: 50vh !important;
-          //   margin-bottom: 1rem;
-          // }
+          .projects-left {
+            height: 55vh !important;
+            max-height: 55vh !important;
+            min-height: 53vh !important;
+            width: 100% !important;
+            margin-bottom: 2rem !important;
+            order: 2 !important;
+          }
           
           .projects-right {
-            max-height: 40vh !important;
+            height: 35vh !important;
+            max-height: 35vh !important;
+            min-height: 33vh !important;
+            width: 100% !important;
+            order: 1 !important;
+            margin-bottom: 0 !important;
           }
 
           /* Disable mouse follower on mobile */
@@ -483,6 +498,50 @@ const Projects = () => {
           
           .projects-right {
             cursor: pointer !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .projects-component {
+            padding-top: 90px !important;
+            padding-bottom: 100px !important;
+            gap: 1rem !important;
+          }
+          
+          .projects-left {
+            height: 53vh !important;
+            max-height: 53vh !important;
+            min-height: 51vh !important;
+            padding: 2rem !important;
+            margin-bottom: 3rem !important;
+          }
+          
+          .projects-right {
+            height: 32vh !important;
+            max-height: 32vh !important;
+            min-height: 30vh !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .projects-component {
+            padding-top: 80px !important;
+            padding-bottom: 120px !important;
+            gap: 0.75rem !important;
+          }
+          
+          .projects-left {
+            height: 51vh !important;
+            max-height: 51vh !important;
+            min-height: 49vh !important;
+            padding: 1.75rem !important;
+            margin-bottom: 4rem !important;
+          }
+          
+          .projects-right {
+            height: 30vh !important;
+            max-height: 30vh !important;
+            min-height: 28vh !important;
           }
         }
       `}</style>
