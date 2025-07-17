@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="flex items-center space-x-4">
             {/* LinkedIn Icon */}
             <a 
-              href="https://www.linkedin.com/in/jeevan-kumar-r/" 
+              href="https://www.linkedin.com/in/jeevankumark352-pro/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-9 h-9 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors duration-300"
@@ -52,7 +52,7 @@ const Footer = () => {
             
             {/* Behance Icon */}
             <a 
-              href="https://www.behance.net/jeevankumar-r" 
+              href="https://www.behance.net/jeevankumar352" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-9 h-9 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors duration-300"
@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="flex items-center justify-center space-x-6">
             {/* LinkedIn Icon */}
             <a 
-              href="https://www.linkedin.com/in/jeevan-kumar-r/" 
+              href="https://www.linkedin.com/in/jeevankumark352-pro/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-9 h-9 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-all duration-300 hover:scale-105"
@@ -87,7 +87,7 @@ const Footer = () => {
             
             {/* Behance Icon */}
             <a 
-              href="https://www.behance.net/jeevankumar-r" 
+              href="https://www.behance.net/jeevankumar352" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-9 h-9 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-all duration-300 hover:scale-105"

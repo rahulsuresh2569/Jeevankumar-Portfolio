@@ -199,7 +199,7 @@ const Hero = () => {
             {/* Supporting Text - Center on Mobile, Left on Desktop */}
             <div className="md:mb-2 lg:mb-3 xl:mb-4 flex justify-center md:justify-start">
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-secondary/70 leading-relaxed max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg text-center md:text-left">
-                I craft user-centered, interactive designs and continually pushing creative boundaries to deliver impactful solutions
+                I craft user-centered, interactive designs and continuously pushing creative boundaries to deliver impactful solutions
               </p>
             </div>
           </div>

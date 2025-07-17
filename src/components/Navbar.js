@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Remove local logo import and use Cloudinary URL
 const cloudinaryImages = {
-  logo: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740003/logo_qerpii.svg",
+  logo: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786123/final_logo_ytgxif.svg",
 };
 
 const Navbar = () => {
@@ -27,7 +27,6 @@ const Navbar = () => {
     { href: '#experience', label: 'Experience' },
     { href: '#skills', label: 'Skills' },
     { href: '#testimonials', label: 'Testimonials' },
-    { href: '#contact', label: 'Contact Me' },
   ];
 
   const toggleMobileMenu = () => {
@@ -36,6 +35,23 @@ const Navbar = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  // Smooth scroll handler for navigation links
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+    // Close mobile menu if open
+    if (isMobileMenuOpen) {
+      closeMobileMenu();
+    }
   };
 
   useLayoutEffect(() => {
@@ -107,11 +123,11 @@ const Navbar = () => {
             let targetWidth, targetLeft;
             const screenWidth = window.innerWidth;
             if (screenWidth >= 1380) { // xl+
-              targetWidth = "55%";
-              targetLeft = "22.5%";
+              targetWidth = "46%";
+              targetLeft = "26.5%";
             } else if (screenWidth >= 1024) { // lg
-              targetWidth = "70%";
-              targetLeft = "15%";
+              targetWidth = "65%";
+              targetLeft = "17.5%";
             } else if (screenWidth >= 768) { // md
               targetWidth = "85%";
               targetLeft = "7.5%";
@@ -249,7 +265,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <a href="#hero" className="flex items-center">
+                <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="flex items-center cursor-pointer">
                   <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8" />
                 </a>
               </motion.div>
@@ -259,7 +275,8 @@ const Navbar = () => {
                   key={item.href}
                   ref={el => navLinksCompactRef.current[index] = el}
                   href={item.href}
-                  className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm opacity-0"
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm opacity-0 cursor-pointer"
                   style={{ transform: 'translateY(20px)' }}
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
@@ -272,7 +289,8 @@ const Navbar = () => {
               <motion.a
                 ref={contactCompactRef}
                 href="#contact"
-                className="px-5 py-2 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full opacity-0"
+                onClick={(e) => handleSmoothScroll(e, '#contact')}
+                className="px-5 py-2 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full opacity-0 cursor-pointer"
                 style={{ transform: 'scale(0.8)' }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -306,7 +324,7 @@ const Navbar = () => {
                    whileHover={{ scale: 1.05 }}
                    transition={{ duration: 0.2 }}
                  >
-                   <a href="#hero" className="flex items-center">
+                   <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="flex items-center cursor-pointer">
                     <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8 lg:h-10 lg:w-10" />
                    </a>
                  </motion.div>
@@ -322,7 +340,8 @@ const Navbar = () => {
                      <motion.a
                        key={item.href}
                        href={item.href}
-                       className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm"
+                       onClick={(e) => handleSmoothScroll(e, item.href)}
+                       className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm cursor-pointer"
                        whileHover={{ y: -2 }}
                        transition={{ duration: 0.2 }}
                      >
@@ -341,7 +360,8 @@ const Navbar = () => {
                    <motion.a
                      ref={contactNormalRef}
                      href="#contact"
-                     className="px-6 py-2.5 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full"
+                     onClick={(e) => handleSmoothScroll(e, '#contact')}
+                     className="px-6 py-2.5 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full cursor-pointer"
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      transition={{ duration: 0.2 }}
@@ -374,7 +394,7 @@ const Navbar = () => {
 
         {/* --- MOBILE --- */}
         <div className="md:hidden flex items-center justify-between h-14">
-           <a href="#hero" className="flex-shrink-0">
+           <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="flex-shrink-0 cursor-pointer">
              <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8" />
            </a>
             <motion.button
@@ -407,8 +427,8 @@ const Navbar = () => {
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    onClick={closeMobileMenu}
-                    className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms]"
+                    onClick={(e) => handleSmoothScroll(e, item.href)}
+                    className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms] cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}

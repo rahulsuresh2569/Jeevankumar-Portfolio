@@ -219,7 +219,7 @@ const Experience = () => {
 
   // Remove local image import and use Cloudinary URL
   const cloudinaryImages = {
-    background: "https://res.cloudinary.com/dcua87ney/image/upload/v1752746234/background_zc19us.png",
+    background: "https://res.cloudinary.com/dcua87ney/image/upload/v1752783959/digital-art-style-illustration-graphic-designer_1_qfxkog.jpg",
     workSuitcase: "https://res.cloudinary.com/dcua87ney/image/upload/v1752747463/work_suitcase_pipc9j.png",
   };
 

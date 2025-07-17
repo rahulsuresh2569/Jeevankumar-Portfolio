@@ -569,12 +569,12 @@ const About = () => {
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 sm:mb-2">Effortless Achiever</h3>
                 </div>
 
-                <div>
+                <div className="text-center">
                   <p className="text-xs sm:text-sm text-white/50 mb-2 sm:mb-3">Issued By</p>
                   <img 
                     src={cloudinaryImages.risolutorLogo} 
                     alt="Risolutor Technologies Logo" 
-                    className="w-32 sm:w-36 lg:w-40 h-auto"
+                    className="w-32 sm:w-36 lg:w-40 h-auto mx-auto"
                   />
                 </div>
 

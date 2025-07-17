@@ -12,9 +12,12 @@ import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import useDynamicFavicon from './hooks/useDynamicFavicon';
 import './App.css'; // Keep App.css for any global App-specific styles if needed
 
 function App() {
+  // Initialize dynamic favicon functionality
+  useDynamicFavicon();
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
