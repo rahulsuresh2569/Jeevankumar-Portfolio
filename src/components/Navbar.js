@@ -106,15 +106,18 @@ const Navbar = () => {
           
             let targetWidth, targetLeft;
             const screenWidth = window.innerWidth;
-            if (screenWidth >= 1280) { // xl+
+            if (screenWidth >= 1380) { // xl+
               targetWidth = "55%";
               targetLeft = "22.5%";
             } else if (screenWidth >= 1024) { // lg
               targetWidth = "70%";
               targetLeft = "15%";
-            } else { // md
+            } else if (screenWidth >= 768) { // md
               targetWidth = "85%";
               targetLeft = "7.5%";
+            } else { // md
+              targetWidth = "95%";
+              targetLeft = "2.5%";
             }
 
           gsap.to(navbar, {
@@ -135,7 +138,6 @@ const Navbar = () => {
           });
 
           gsap.to(container, {
-            maxWidth: "750px",
             padding: "0 0.75rem",
             duration: 0.6,
             ease: "power3.out"

@@ -356,7 +356,7 @@ const Projects = () => {
               </div>
 
               {/* Left Side - Project Content (Mobile: order-2, Desktop: order-1) */}
-              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[47vh] sm:max-h-[85vh] shadow-lg order-2 lg:order-1">
+              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[50vh] sm:max-h-[85vh] shadow-lg order-2 lg:order-1">
                 <div className="projects-left-top flex-1 flex flex-col text-left relative">
                   {/* Fixed Section Label */}
                   <div className="mb-4">
@@ -365,7 +365,7 @@ const Projects = () => {
                     </span>
                   </div>
                   {/* Fixed Project Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-4 sm:mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-3 sm:mb-12">
                     {projectsData[activeProjectIndex]?.title}
                   </h3>
                   {/* Dynamic Pills Container - positioned relative to fixed title */}
@@ -380,7 +380,7 @@ const Projects = () => {
                         }}
                       >
                         {/* Project Metadata - First 2 tags with dot, others on separate lines */}
-                        <div className="space-y-4 mb-8 sm:mb-12">
+                        <div className="space-y-4 mb-5 sm:mb-12">
                           {/* First line: First 2 tags with dot between them */}
                           <div className="flex items-center gap-2">
                             <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
@@ -405,7 +405,7 @@ const Projects = () => {
                           </div>
                         </div>
                         {/* Divider Line */}
-                        <div className="w-full h-px bg-gray-200 mb-10"></div>
+                        <div className="w-full h-px bg-gray-200 mb-2"></div>
                       </div>
                     ))}
                   </div>
