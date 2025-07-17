@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
-import roshinImg from '../assets/images/roshin.jpeg';
-import ashikaImg from '../assets/images/ashika.jpeg';
-import anshanImg from '../assets/images/anshan.jpeg';
+// Remove local testimonial avatar imports and use Cloudinary URLs
+const cloudinaryImages = {
+  roshin: "https://res.cloudinary.com/dcua87ney/image/upload/v1752747654/roshin_nfgcu1.jpg",
+  ashika: "https://res.cloudinary.com/dcua87ney/image/upload/v1752747653/ashika_ztsvax.jpg",
+  anshan: "https://res.cloudinary.com/dcua87ney/image/upload/v1752747651/anshan_zqjyqd.jpg",
+};
 
 const testimonials = [
   {
@@ -11,21 +14,21 @@ const testimonials = [
     quote: "I highly recommend Jeevan as an exceptional UI/UX designer who consistently demonstrates outstanding collaboration skills with development teams. His ability to deliver ui designs while maintaining technical feasibility has been invaluable to our projects. What sets them apart is their remarkable adaptability and willingness to iterate based on technical constraints, coupled with his proactive approach to improving design systems. Through our collaboration, he shown an impressive understanding of frontend development considerations, which has significantly streamlined our workflow and enhanced the quality of our final products",
     name: 'Roshin Prasad',
     designation: 'Frontend Developer',
-    avatar: roshinImg,
+    avatar: cloudinaryImages.roshin,
   },
   {
     id: 2,
     quote: "I had the pleasure of working with Jeevan for at Risolutor Technologies. Jeevan has an exceptional eye for detail and a deep understanding of user-centered design principles, consistently creating interfaces that are not only visually stunning but also intuitive and user-friendly. What sets Jeevan apart is his ability to balance creativity with functionality, ensuring that the designs are both aesthetically pleasing and aligned with the goals of the project. His strong collaboration skills make him an invaluable team member, as he is always open to feedback and able to iterate quickly without losing sight of the end user's needs. In addition to their technical expertise, Jeevan brings a positive attitude and a passion for design that is truly contagious. I highly recommend Jeevan as he will be an incredible addition to the team ",
     name: 'Ashika Vignanamani',
     designation: 'HR Professional',
-    avatar: ashikaImg,
+    avatar: cloudinaryImages.ashika,
   },
   {
     id: 3,
     quote: "Jeevan is a cool to work with guy. With his presence, he'll fill the place with charm. Same time he is keen observer, grab the requirements, and gives life to it with his creativity. Sometimes exceeds expectations. I highly recommend for him.",
     name: 'Anshan Jose A',
     designation: 'Content Administrator',
-    avatar: anshanImg,
+    avatar: cloudinaryImages.anshan,
   },
 ];
 

@@ -2,7 +2,10 @@ import React, { useState, useRef, useLayoutEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import logoSvg from '../assets/images/navbar/logo.svg';
+// Remove local logo import and use Cloudinary URL
+const cloudinaryImages = {
+  logo: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740003/logo_qerpii.svg",
+};
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -245,7 +248,7 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
               >
                 <a href="#hero" className="flex items-center">
-                  <img src={logoSvg} alt="Jeevan Kumar Logo" className="h-8 w-8" />
+                  <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8" />
                 </a>
               </motion.div>
 
@@ -302,7 +305,7 @@ const Navbar = () => {
                    transition={{ duration: 0.2 }}
                  >
                    <a href="#hero" className="flex items-center">
-                    <img src={logoSvg} alt="Jeevan Kumar Logo" className="h-8 w-8 lg:h-10 lg:w-10" />
+                    <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8 lg:h-10 lg:w-10" />
                    </a>
                  </motion.div>
                </div>
@@ -370,7 +373,7 @@ const Navbar = () => {
         {/* --- MOBILE --- */}
         <div className="md:hidden flex items-center justify-between h-14">
            <a href="#hero" className="flex-shrink-0">
-             <img src={logoSvg} alt="Jeevan Kumar Logo" className="h-8 w-8" />
+             <img src={cloudinaryImages.logo} alt="Jeevan Kumar Logo" className="h-8 w-8" />
            </a>
             <motion.button
               onClick={toggleMobileMenu}

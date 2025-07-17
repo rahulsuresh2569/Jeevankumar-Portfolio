@@ -1,8 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import workSuitcaseImg from '../assets/images/work_suitcase.png';
-import backgroundImg from '../assets/images/experience/background.png';
+
 
 const Experience = () => {
   const sectionRef = useRef(null);
@@ -218,6 +217,12 @@ const Experience = () => {
     };
   }, []);
 
+  // Remove local image import and use Cloudinary URL
+  const cloudinaryImages = {
+    background: "https://res.cloudinary.com/dcua87ney/image/upload/v1752746234/background_zc19us.png",
+    workSuitcase: "https://res.cloudinary.com/dcua87ney/image/upload/v1752747463/work_suitcase_pipc9j.png",
+  };
+
   return (
     <section 
       id="experience" 
@@ -229,7 +234,7 @@ const Experience = () => {
         ref={backgroundRef}
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${backgroundImg})`,
+          backgroundImage: `url(${cloudinaryImages.background})`,
           backgroundAttachment: 'fixed',
           transform: 'scale(1.2)',
           transformOrigin: 'center center'
@@ -258,7 +263,7 @@ const Experience = () => {
               {/* Company Name with Icon */}
               <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
                 <img 
-                  src={workSuitcaseImg} 
+                  src={cloudinaryImages.workSuitcase} 
                   alt="Work briefcase"
                   className="w-8 h-8 sm:w-12 sm:h-12"
                 />

@@ -2,16 +2,18 @@ import React, { useRef, useLayoutEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Import design gallery images
-import iPhone1 from '../assets/images/design-gallery/iPhone 14 Plus_1.png';
-import iPhone2 from '../assets/images/design-gallery/iPhone 14 Plus_2.png';
-import iPhone3 from '../assets/images/design-gallery/iPhone 14 Plus_3.png';
-import iPad1 from '../assets/images/design-gallery/iPad_1.png';
-import laptop from '../assets/images/design-gallery/Laptop.png';
-import surfacePro from '../assets/images/design-gallery/Surface Pro.png';
-import tablet from '../assets/images/design-gallery/Tablet.png';
-import watch1 from '../assets/images/design-gallery/Watch_1.png';
-import watch2 from '../assets/images/design-gallery/Watch_2.png';
+// Remove local image imports and use Cloudinary URLs
+const cloudinaryImages = {
+  iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/iPhone_14_Plus_1_ktkbdq.png",
+  iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739904/iPhone_14_Plus_2_eqex6n.png",
+  iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739900/iPhone_14_Plus_3_pvw8su.png",
+  iPad1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739907/iPad_1_jd7idi.png",
+  laptop: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739901/Laptop_ta5qul.png",
+  surfacePro: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/Surface_Pro_aespfb.png",
+  tablet: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739914/Tablet_fu52nj.png",
+  watch1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/Watch_1_x69or9.png",
+  watch2: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739909/Watch_2_lfok2w.png",
+};
 
 const DesignGallery = () => {
   const sectionRef = useRef(null);
@@ -21,7 +23,7 @@ const DesignGallery = () => {
   const galleryItems = useMemo(() => [
     {
       id: 1,
-      src: iPad1, // Top left - AI explore tablet (background)
+      src: cloudinaryImages.iPad1, // Top left - AI explore tablet (background)
       alt: 'iPad Design',
       position: '-left-[2rem] sm:-left-[2rem] md:-left-[3rem] lg:-left-[4rem] xl:-left-[6rem]',
       spacing: 'top-2 sm:top-4 md:top-6 lg:top-8 xl:top-8',
@@ -29,7 +31,7 @@ const DesignGallery = () => {
     },
     {
       id: 2,
-      src: laptop, // Top center - dashboard laptop
+      src: cloudinaryImages.laptop, // Top center - dashboard laptop
       alt: 'Laptop Design',
       position: 'left-1/2 transform -translate-x-1/2',
       spacing: 'top-4 sm:top-6 md:top-8 lg:top-10 xl:top-12',
@@ -37,7 +39,7 @@ const DesignGallery = () => {
     },
     {
       id: 3,
-      src: watch1, // Top right - first watch
+      src: cloudinaryImages.watch1, // Top right - first watch
       alt: 'Watch Design 1',
       position: 'right-20 sm:right-24 md:right-32 lg:right-36 xl:right-40',
       spacing: 'top-2 sm:top-4 md:top-6 lg:top-16 xl:top-20',
@@ -45,7 +47,7 @@ const DesignGallery = () => {
     },
     {
       id: 4,
-      src: iPhone3, // Top right - analytics phone
+      src: cloudinaryImages.iPhone3, // Top right - analytics phone
       alt: 'iPhone Design 3',
       position: '-right-[1rem] sm:-right-[1rem] md:-right-[2rem] lg:-right-[3rem] xl:-right-[4rem]',
       spacing: 'top-8 sm:top-12 md:top-16 lg:top-24 xl:top-[9rem]',
@@ -53,7 +55,7 @@ const DesignGallery = () => {
     },
     {
       id: 5,
-      src: iPhone1, // Overlapping iPad - white phone with cards
+      src: cloudinaryImages.iPhone1, // Overlapping iPad - white phone with cards
       alt: 'iPhone Design 1',
       position: 'left-8 sm:left-12 md:left-14 lg:left-16 xl:left-10',
       spacing: 'top-16 sm:top-20 md:top-24 lg:top-32 xl:top-[22rem]',
@@ -61,7 +63,7 @@ const DesignGallery = () => {
     },
     {
       id: 6,
-      src: watch2, // Bottom left - second watch
+      src: cloudinaryImages.watch2, // Bottom left - second watch
       alt: 'Watch Design 2',
       position: 'left-1 sm:left-2 md:left-4 lg:left-6 xl:left-10',
       spacing: 'top-40 sm:top-52 md:top-[22rem] lg:top-[28rem] xl:top-[50rem]',
@@ -69,7 +71,7 @@ const DesignGallery = () => {
     },
     {
       id: 7,
-      src: iPhone2, // Bottom center-left - purple/blue phone
+      src: cloudinaryImages.iPhone2, // Bottom center-left - purple/blue phone
       alt: 'iPhone Design 2',
       position: 'left-[3rem] sm:left-[5rem] md:left-[8rem] lg:left-[10rem] xl:left-[14rem]',
       spacing: 'top-[15rem] sm:top-[20rem] md:top-[26rem] lg:top-[32rem] xl:top-[46rem]',
@@ -77,7 +79,7 @@ const DesignGallery = () => {
     },
     {
       id: 8,
-      src: tablet, // Bottom center-right - AINO tablet
+      src: cloudinaryImages.tablet, // Bottom center-right - AINO tablet
       alt: 'Tablet Design',
       position: 'left-1/2 transform -translate-x-1/2',
       spacing: 'top-44 sm:top-[17rem] md:top-80 lg:top-[26rem] xl:top-[36rem]',
@@ -85,7 +87,7 @@ const DesignGallery = () => {
     },
     {
       id: 9,
-      src: surfacePro, // Bottom far right - dark analytics surface
+      src: cloudinaryImages.surfacePro, // Bottom far right - dark analytics surface
       alt: 'Surface Pro Design',
       position: '-right-[7rem] sm:-right-[4rem] md:-right-[6rem] lg:-right-[8rem] xl:-right-[10rem]',
       spacing: 'top-[14rem] sm:top-[17rem] md:top-[24rem] lg:top-[32rem] xl:top-[46rem]',

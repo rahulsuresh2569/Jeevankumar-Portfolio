@@ -5,15 +5,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Import individual element images
 
-import myPictureImg from '../assets/images/about-me/my-picture.svg';
-import cursorTooltipImg from '../assets/images/about-me/cursor-tooltip.svg';
-import helloWorldTextImg from '../assets/images/about-me/hello-world-text.svg';
-import shapeImg from '../assets/images/about-me/shape.svg';
-import toolImg from '../assets/images/about-me/tool.svg';
-import toolbarImg from '../assets/images/about-me/toolbar.svg';
-import pencilImg from '../assets/images/about-me/pencil.svg';
-import certificateImg from '../assets/images/about-me/certificate.png';
-import risolutorLogo from '../assets/images/about-me/risoluter_logo.svg';
+// Remove local image imports and use Cloudinary URLs
+const cloudinaryImages = {
+  myPictureImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739867/my-picture_y6oeai.svg",
+  cursorTooltipImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739868/cursor-tooltip_myuyx2.svg",
+  helloWorldTextImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739868/hello-world-text_bcblp6.svg",
+  shapeImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739866/shape_xlxduo.svg",
+  toolImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739867/tool_gmjeyn.svg",
+  toolbarImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739866/toolbar_cbiusl.svg",
+  pencilImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739866/pencil_zgyzsy.svg",
+  certificateImg: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739874/certificate_qh5pqe.png",
+  risolutorLogo: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739868/risoluter_logo_fh5cwl.svg",
+};
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -372,7 +375,7 @@ const About = () => {
 
                   {/* Combined Picture and Background */}
                   <img
-                    src={myPictureImg}
+                    src={cloudinaryImages.myPictureImg}
                     alt="Jeevan Kumar"
                     className="absolute w-[92%] sm:w-[90%] h-[88%] sm:h-[90%] object-contain rounded-xl sm:rounded-2xl"
                     style={{ 
@@ -390,7 +393,7 @@ const About = () => {
 
                       {/* Green Grid Shape - 3D Effect */}
                       <img
-                        src={shapeImg}
+                        src={cloudinaryImages.shapeImg}
                         alt="Grid shape"
                         className="shape-3d absolute w-[30%] sm:w-[32%] h-auto object-contain"
                         style={{ 
@@ -405,7 +408,7 @@ const About = () => {
 
                       {/* Magic Tool Icon - 3D Effect */}
                       <img
-                        src={toolImg}
+                        src={cloudinaryImages.toolImg}
                         alt="Design tool"
                         className="tool-3d absolute w-[10%] sm:w-[12%] h-auto object-contain"
                         style={{ 
@@ -419,7 +422,7 @@ const About = () => {
 
                       {/* Hello World Text - 3D Effect */}
                       <img
-                        src={helloWorldTextImg}
+                        src={cloudinaryImages.helloWorldTextImg}
                         alt="Hello World"
                         className="hello-world-3d absolute w-[18%] sm:w-[20%] h-auto object-contain"
                         style={{ 
@@ -433,7 +436,7 @@ const About = () => {
 
                       {/* Designer Tooltip - 3D Effect */}
                       <img
-                        src={cursorTooltipImg}
+                        src={cloudinaryImages.cursorTooltipImg}
                         alt="Designer tooltip"
                         className="tooltip-3d absolute w-[16%] sm:w-[18%] h-auto object-contain"
                         style={{ 
@@ -447,7 +450,7 @@ const About = () => {
 
                       {/* Figma Toolbar - 3D Effect */}
                       <img
-                        src={toolbarImg}
+                        src={cloudinaryImages.toolbarImg}
                         alt="Design toolbar"
                         className="toolbar-3d absolute w-[62%] sm:w-[65%] h-auto object-contain"
                         style={{ 
@@ -488,7 +491,7 @@ const About = () => {
                 </p>
                 {/* Pencil underline */}
                 <img 
-                  src={pencilImg} 
+                  src={cloudinaryImages.pencilImg} 
                   alt="pencil line" 
                   className="w-3/4 sm:w-full h-auto -mt-3 sm:-mt-5 md:-mt-6 mx-auto sm:mx-0"
                   style={{
@@ -554,7 +557,7 @@ const About = () => {
               {/* Certificate Image */}
               <div className="w-full lg:w-3/4 p-3 sm:p-4 lg:p-8 flex items-center justify-center">
                 <img 
-                  src={certificateImg} 
+                  src={cloudinaryImages.certificateImg} 
                   alt="Effortless Achiever Certificate" 
                   className="w-full h-full object-contain rounded-md sm:rounded-lg max-h-[60vh] lg:max-h-full"
                 />
@@ -569,7 +572,7 @@ const About = () => {
                 <div>
                   <p className="text-xs sm:text-sm text-white/50 mb-2 sm:mb-3">Issued By</p>
                   <img 
-                    src={risolutorLogo} 
+                    src={cloudinaryImages.risolutorLogo} 
                     alt="Risolutor Technologies Logo" 
                     className="w-32 sm:w-36 lg:w-40 h-auto"
                   />

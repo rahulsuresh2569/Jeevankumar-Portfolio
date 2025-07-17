@@ -2,12 +2,14 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Import project images
-import inventoryImg from '../assets/images/projects/Inventory Management Software.jpg';
-import fieldManagementImg from '../assets/images/projects/Field Management Software.jpg';
-import rfidTrackingImg from '../assets/images/projects/Active RFID Employee Tracking System.jpg';
-import aiditImg from '../assets/images/projects/AIDIT (Donation app).jpg';
-import tynsImg from '../assets/images/projects/Tyns.jpg';
+// Remove local image imports and use Cloudinary URLs
+const cloudinaryImages = {
+  inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740020/Inventory_Management_Software_zcwryf.jpg",
+  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Field_Management_Software_abv1x7.jpg",
+  rfidTracking: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Active_RFID_Employee_Tracking_System_yjuk1b.jpg",
+  aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg",
+  tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
+};
 
 const Projects = () => {
   const showcaseSectionRef = useRef(null);
@@ -35,7 +37,7 @@ const Projects = () => {
       industry: "Utilities Industry",
       platform: "Web & Mobile Application",
       description: "Comprehensive field management platform enabling real-time coordination and data collection for field service teams.",
-      image: fieldManagementImg,
+      image: cloudinaryImages.fieldManagement,
       ctaText: "Detail View"
     },
     {
@@ -47,7 +49,7 @@ const Projects = () => {
       industry: "Product Design",
       platform: "Manufacturing Industry",
       description: "Streamlined inventory tracking and management system designed for manufacturing businesses to optimize their supply chain operations.",
-      image: inventoryImg,
+      image: cloudinaryImages.inventory,
       ctaText: "Detail View"
     },
     {
@@ -59,7 +61,7 @@ const Projects = () => {
       industry: "Product Design",
       platform: "Manufacturing Industry",
       description: "Advanced RFID-based employee tracking system providing real-time location data and workplace analytics.",
-      image: rfidTrackingImg,
+      image: cloudinaryImages.rfidTracking,
       ctaText: "Detail View"
     },
     {
@@ -71,7 +73,7 @@ const Projects = () => {
       industry: "Donation app",
       platform: "Mobile Application",
       description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
-      image: tynsImg,
+      image: cloudinaryImages.tyns,
       ctaText: "Detail View"
     },
     {
@@ -83,7 +85,7 @@ const Projects = () => {
       industry: "Donation app",
       platform: "Mobile Application",
       description: "User-friendly donation platform connecting donors with verified charitable organizations for transparent giving.",
-      image: aiditImg,
+      image: cloudinaryImages.aidit,
       ctaText: "Detail View"
     }
   ];
@@ -354,7 +356,7 @@ const Projects = () => {
               </div>
 
               {/* Left Side - Project Content (Mobile: order-2, Desktop: order-1) */}
-              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[85vh] shadow-lg order-2 lg:order-1">
+              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[47vh] sm:max-h-[85vh] shadow-lg order-2 lg:order-1">
                 <div className="projects-left-top flex-1 flex flex-col text-left relative">
                   {/* Fixed Section Label */}
                   <div className="mb-4">
@@ -363,7 +365,7 @@ const Projects = () => {
                     </span>
                   </div>
                   {/* Fixed Project Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-4 sm:mb-12">
                     {projectsData[activeProjectIndex]?.title}
                   </h3>
                   {/* Dynamic Pills Container - positioned relative to fixed title */}
@@ -378,7 +380,7 @@ const Projects = () => {
                         }}
                       >
                         {/* Project Metadata - First 2 tags with dot, others on separate lines */}
-                        <div className="space-y-4 mb-12">
+                        <div className="space-y-4 mb-8 sm:mb-12">
                           {/* First line: First 2 tags with dot between them */}
                           <div className="flex items-center gap-2">
                             <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
