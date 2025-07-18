@@ -21,7 +21,7 @@ const Experience = () => {
   const experienceData = {
     company: 'Risolutor Technologies Pvt Ltd',
     position: 'UI UX Designer',
-    period: 'Oct,2023 - Jun,2025',
+    period: 'Oct, 2023 - Jun, 2025',
     descriptions: [
       'I worked on web & mobile applications, websites, and various design projects (logos, posters, banners), delivering effective solutions while continuously learning and improving.',
       'Ensuring designs align with client requirements while maintaining a user-friendly and intuitive design system',
@@ -77,10 +77,7 @@ const Experience = () => {
             start: "top top",
             end: "+=2000vh", // Match the master timeline duration
             scrub: 1,
-            onUpdate: (self) => {
-              // Debug: Log overlay color progress
-              console.log("Overlay color progress:", self.progress);
-            }
+
           }
         }
       );
@@ -94,10 +91,7 @@ const Experience = () => {
           pin: true,
           pinSpacing: true,
           scrub: 1,
-          onUpdate: (self) => {
-            // Debug: Log scroll progress
-            console.log("Scroll progress:", self.progress);
-          }
+
         }
       });
 
@@ -249,25 +243,25 @@ const Experience = () => {
         <div className="text-center text-white max-w-6xl mx-auto py-8 sm:py-10 md:py-12">
           
           {/* Main Heading - Initially Hidden */}
-          <div ref={headingRef} className="opacity-0 mb-12">
+          <div ref={headingRef} className="opacity-0 mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-none">
               Experience
             </h2>
           </div>
 
           {/* Company Info & Timeline - Initially Hidden */}
-          <div ref={contentRef} className="opacity-0 space-y-6 sm:space-y-8 mb-10 sm:mb-14 md:mb-16">
+          <div ref={contentRef} className="opacity-0 space-y-6 sm:space-y-8 mb-8 sm:mb-12 md:mb-16">
             {/* Company Info */}
             <div className="flex flex-col items-center">
               
               {/* Company Name with Icon */}
-              <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
                 <img 
                   src={cloudinaryImages.workSuitcase} 
                   alt="Work briefcase"
-                  className="w-8 h-8 sm:w-12 sm:h-12"
+                  className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
-                <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold">
+                <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold">
                   {experienceData.company}
                 </h3>
               </div>
@@ -283,7 +277,7 @@ const Experience = () => {
                     style={{ transform: 'scale(0)', opacity: 0 }}
                   />
                   {/* Connecting Line Container */}
-                  <div className="flex-1 h-0.5 relative overflow-hidden mx-0">
+                  <div className="flex-1 h-0.5 relative mx-0">
                     {/* Animated Dotted Line */}
                     <div 
                       ref={dottedLineRef}
@@ -325,15 +319,15 @@ const Experience = () => {
           </div>
 
           {/* Experience Description Blocks - Initially Hidden */}
-          <div ref={descriptionsRef} className="opacity-0 space-y-5 sm:space-y-8 max-w-4xl mx-auto">
+          <div ref={descriptionsRef} className="opacity-0 space-y-10 sm:space-y-8 max-w-3xl mx-auto">
             {experienceData.descriptions.map((desc, index) => (
               <div
                 key={index}
                 ref={el => descriptionRefs.current[index] = el}
-                className="text-center opacity-0"
+                className="text-center opacity-0 px-2 sm:px-4"
                 style={{ transform: 'translateY(20px)' }}
               >
-                <p className="text-sm sm:text-lg text-white/80 leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-xl lg:text-2xl text-white/80 leading-relaxed">
                   {desc}
                 </p>
               </div>

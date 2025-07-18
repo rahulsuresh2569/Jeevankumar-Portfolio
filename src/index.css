@@ -80,6 +80,8 @@ body::-webkit-scrollbar {
   }
 }
 
+
+
 /* Projects Component Styles */
 .project-content-item.is-active {
   opacity: 1 !important;
