@@ -29,14 +29,15 @@ const Projects = () => {
     {
       id: 1,
       tag: "Real Time Project",
-      title: "Field Management Software",
+      title: "Field Service Management Software",
       category: "B2B SaaS",
       type: "Product Design",
       industry: "Utilities Industry",
       platform: "Web & Mobile Application",
       description: "Comprehensive field management platform enabling real-time coordination and data collection for field service teams.",
       image: cloudinaryImages.fieldManagement,
-      ctaText: "Detail View"
+      ctaText: "Detail View",
+      link: "https://www.figma.com/proto/G0RWN53aP2yvhAD2VtTDAj/projects?page-id=0%3A1&node-id=2-3&viewport=316%2C52%2C0.19&t=2h70iCb5I7qpsU9g-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A3"
     },
     {
       id: 2,
@@ -330,6 +331,11 @@ const Projects = () => {
                       transform: 'translateY(100%)',
                       transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
                     }}
+                    onClick={() => {
+                      if (project.link) {
+                        window.open(project.link, '_blank', 'noopener,noreferrer');
+                      }
+                    }}
                   >
                     <img
                       src={project.image}
@@ -398,24 +404,48 @@ const Projects = () => {
                 </div>
                 {/* Bottom CTA Button - Left aligned */}
                 <div className="projects-left-bottom flex justify-start">
-                  <button 
-                    className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                    style={{
-                      background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
-                      color: buttonGradients[activeProjectIndex]?.textColor,
-                      boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
-                    }}
-                  >
-                    <span>Detail View</span>
-                    <svg 
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
+                  {projectsData[activeProjectIndex]?.link ? (
+                    <a 
+                      href={projectsData[activeProjectIndex].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                      style={{
+                        background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
+                        color: buttonGradients[activeProjectIndex]?.textColor,
+                        boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
+                      }}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
+                      <span>Detail View</span>
+                      <svg 
+                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button 
+                      className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                      style={{
+                        background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
+                        color: buttonGradients[activeProjectIndex]?.textColor,
+                        boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
+                      }}
+                    >
+                      <span>Detail View</span>
+                      <svg 
+                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
