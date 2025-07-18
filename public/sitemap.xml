@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Portfolio Page -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Hero Section Images -->
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752786123/final_logo_ytgxif.svg</image:loc>
+      <image:title>Jeevankumar Logo - UI/UX Designer</image:title>
+      <image:caption>Professional logo of Jeevankumar, UI/UX and Product Designer</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- About Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#about</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    
+    <!-- About Section Images -->
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752739867/my-picture_y6oeai.svg</image:loc>
+      <image:title>Jeevankumar - UI/UX Designer Profile Picture</image:title>
+      <image:caption>Professional profile picture of Jeevankumar, UI/UX Designer from Chennai, India</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752739874/certificate_qh5pqe.png</image:loc>
+      <image:title>Effortless Achiever Award Certificate</image:title>
+      <image:caption>Award certificate from Risolutor Technologies recognizing outstanding design performance</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Projects Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#projects</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    
+    <!-- Project Images -->
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Field_Management_Software_abv1x7.jpg</image:loc>
+      <image:title>Field Management Software - UI/UX Design Project</image:title>
+      <image:caption>B2B SaaS field management platform design for utilities industry</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752740020/Inventory_Management_Software_zcwryf.jpg</image:loc>
+      <image:title>Inventory Management Software - Product Design</image:title>
+      <image:caption>Comprehensive inventory tracking system for manufacturing industry</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg</image:loc>
+      <image:title>Tyns - Mobile Application Design</image:title>
+      <image:caption>Modern e-commerce mobile application with seamless shopping experience</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg</image:loc>
+      <image:title>AIDIT Donation App - Mobile UI/UX Design</image:title>
+      <image:caption>User-friendly donation platform connecting donors with charitable organizations</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Design Gallery Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#design-gallery</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+    <!-- Design Gallery Images -->
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_380,h_760,c_limit,dpr_auto,fl_progressive/v1752850658/iphone-1_uv5sq9</image:loc>
+      <image:title>iPhone Design Mockup 1 - Mobile UI Design</image:title>
+      <image:caption>Professional iPhone mockup showcasing mobile application design work</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_3200,h_2000,c_limit,dpr_auto,fl_progressive/v1752850357/laptop_o1ysny</image:loc>
+      <image:title>Laptop Dashboard Design - Web Application UI</image:title>
+      <image:caption>Modern dashboard design displayed on laptop mockup for web applications</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1640,h_1100,c_limit,dpr_auto,fl_progressive/v1752739914/Tablet_fu52nj</image:loc>
+      <image:title>Tablet Design Mockup - Responsive UI Design</image:title>
+      <image:caption>Tablet interface design showcasing responsive design capabilities</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Experience Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#experience</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Skills Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#skills</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Testimonials Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#testimonials</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact Section -->
+  <url>
+    <loc>https://jeevankumark.netlify.app/#contact</loc>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+</urlset> 

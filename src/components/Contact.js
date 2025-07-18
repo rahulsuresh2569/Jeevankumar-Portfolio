@@ -167,10 +167,10 @@ const Contact = () => {
         {/* Email Address */}
         <div ref={emailRef} className="mt-6">
       <a 
-            href="mailto:jeevankumarkr352@gmail.com"
+            href="mailto:jeevankumarr352@gmail.com"
             className="text-xl md:text-2xl lg:text-3xl font-medium text-secondary hover:text-accent transition-colors duration-300 underline decoration-secondary/30 hover:decoration-accent underline-offset-4"
           >
-            jeevankumarkr352@gmail.com
+            jeevankumarr352@gmail.com
           </a>
         </div>
         

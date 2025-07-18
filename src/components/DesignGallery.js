@@ -2,17 +2,17 @@ import React, { useRef, useLayoutEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Remove local image imports and use Cloudinary URLs
+// Remove local image imports and use size-optimized Cloudinary URLs
 const cloudinaryImages = {
-  iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/iPhone_14_Plus_1_ktkbdq.png",
-  iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739904/iPhone_14_Plus_2_eqex6n.png",
-  iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739900/iPhone_14_Plus_3_pvw8su.png",
-  iPad1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739907/iPad_1_jd7idi.png",
-  laptop: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739901/Laptop_ta5qul.png",
-  surfacePro: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/Surface_Pro_aespfb.png",
-  tablet: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739914/Tablet_fu52nj.png",
-  watch1: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739905/Watch_1_x69or9.png",
-  watch2: "https://res.cloudinary.com/dcua87ney/image/upload/v1752739909/Watch_2_lfok2w.png",
+  iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_380,h_760,c_limit,dpr_auto,fl_progressive/v1752850658/iphone-1_uv5sq9",
+  iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_380,h_760,c_limit,dpr_auto,fl_progressive/v1752850658/iphone-2_to256r",
+  iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_380,h_760,c_limit,dpr_auto,fl_progressive/v1752850656/iphone-3_navwyk",
+  iPad1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1940,h_1400,c_limit,dpr_auto,fl_progressive/v1752850356/ipad-1-new_pjonf0",
+  laptop: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_3200,h_2000,c_limit,dpr_auto,fl_progressive/v1752850357/laptop_o1ysny",
+  surfacePro: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1840,h_1200,c_limit,dpr_auto,fl_progressive/v1752850353/surfacepro_artprw",
+  tablet: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1640,h_1100,c_limit,dpr_auto,fl_progressive/v1752739914/Tablet_fu52nj",
+  watch1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_400,c_limit,dpr_auto,fl_progressive/v1752850659/watch-1_rwnbew",
+  watch2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_400,c_limit,dpr_auto,fl_progressive/v1752850661/watch-2_ebvone",
 };
 
 const DesignGallery = () => {
@@ -41,7 +41,7 @@ const DesignGallery = () => {
       id: 3,
       src: cloudinaryImages.watch1, // Top right - first watch
       alt: 'Watch Design 1',
-      position: 'right-20 sm:right-24 md:right-32 lg:right-36 xl:right-40',
+      position: 'right-20 sm:right-24 md:right-32 lg:right-36 xl:right-[18rem]',
       spacing: 'top-2 sm:top-4 md:top-6 lg:top-16 xl:top-20',
       zIndex: 4
     },
@@ -49,7 +49,7 @@ const DesignGallery = () => {
       id: 4,
       src: cloudinaryImages.iPhone3, // Top right - analytics phone
       alt: 'iPhone Design 3',
-      position: '-right-[1rem] sm:-right-[1rem] md:-right-[2rem] lg:-right-[3rem] xl:-right-[4rem]',
+      position: '-right-[0rem] sm:-right-[1rem] md:-right-[2rem] lg:-right-[0rem] xl:right-[3rem]',
       spacing: 'top-8 sm:top-12 md:top-16 lg:top-24 xl:top-[9rem]',
       zIndex: 5
     },
@@ -57,8 +57,8 @@ const DesignGallery = () => {
       id: 5,
       src: cloudinaryImages.iPhone1, // Overlapping iPad - white phone with cards
       alt: 'iPhone Design 1',
-      position: 'left-8 sm:left-12 md:left-14 lg:left-16 xl:left-10',
-      spacing: 'top-16 sm:top-20 md:top-24 lg:top-32 xl:top-[22rem]',
+      position: 'left-8 sm:left-12 md:left-14 lg:left-16 xl:left-24',
+      spacing: 'top-16 sm:top-20 md:top-24 lg:top-32 xl:top-[32rem]',
       zIndex: 6
     },
     {
@@ -66,15 +66,15 @@ const DesignGallery = () => {
       src: cloudinaryImages.watch2, // Bottom left - second watch
       alt: 'Watch Design 2',
       position: 'left-1 sm:left-2 md:left-4 lg:left-6 xl:left-10',
-      spacing: 'top-40 sm:top-52 md:top-[22rem] lg:top-[28rem] xl:top-[50rem]',
+      spacing: 'top-40 sm:top-52 md:top-[22rem] lg:top-[28rem] xl:top-[60rem]',
       zIndex: 7
     },
     {
       id: 7,
       src: cloudinaryImages.iPhone2, // Bottom center-left - purple/blue phone
       alt: 'iPhone Design 2',
-      position: 'left-[3rem] sm:left-[5rem] md:left-[8rem] lg:left-[10rem] xl:left-[14rem]',
-      spacing: 'top-[15rem] sm:top-[20rem] md:top-[26rem] lg:top-[32rem] xl:top-[46rem]',
+      position: 'left-[3rem] sm:left-[5rem] md:left-[8rem] lg:left-[10rem] xl:left-[22rem]',
+      spacing: 'top-[15rem] sm:top-[20rem] md:top-[26rem] lg:top-[32rem] xl:top-[55rem]',
       zIndex: 8
     },
     {
@@ -90,7 +90,7 @@ const DesignGallery = () => {
       src: cloudinaryImages.surfacePro, // Bottom far right - dark analytics surface
       alt: 'Surface Pro Design',
       position: '-right-[7rem] sm:-right-[4rem] md:-right-[6rem] lg:-right-[8rem] xl:-right-[10rem]',
-      spacing: 'top-[14rem] sm:top-[17rem] md:top-[24rem] lg:top-[32rem] xl:top-[46rem]',
+      spacing: 'top-[14rem] sm:top-[17rem] md:top-[24rem] lg:top-[32rem] xl:top-[54rem]',
       zIndex: 9
     }
   ], []);
@@ -221,10 +221,10 @@ const DesignGallery = () => {
     
     // Desktop parallax distances (original values)
     switch (zIndex) {
-      case 9: return -500; // Surface Pro - fastest
-      case 8: return -420; // iPhone2 - very fast
+      case 9: return -340; // Surface Pro - fastest
+      case 8: return -320; // iPhone2 - very fast
       case 7: return -350; // Watch2 - fast
-      case 6: return -280; // iPhone1 - medium-fast
+      case 6: return -180; // iPhone1 - medium-fast
       case 5: return -220; // iPhone3 - medium
       case 4: return -170; // Watch1 & Tablet - medium-slow
       case 3: return -120; // Laptop - slow
@@ -238,7 +238,7 @@ const DesignGallery = () => {
       <section 
         id="design-gallery" 
         ref={sectionRef}
-        className="relative bg-primary overflow-hidden py-6 sm:pb-12 lg:pb-20 min-h-[46vh] sm:min-h-[57vh] md:pt-20 md:min-h-[80vh] lg:min-h-[105vh] xl:py-0 xl:min-h-[140vh]"
+        className="relative bg-primary min-h-[45vh] sm:min-h-[62vh] md:min-h-[70vh] lg:min-h-[85vh] xl:min-h-[140vh]"
         style={{
           // Mobile-specific optimizations
           WebkitOverflowScrolling: 'touch',
@@ -267,17 +267,25 @@ const DesignGallery = () => {
                 alt={item.alt}
                 className="w-auto h-auto object-cover"
                 style={{
-                  maxWidth: item.src.includes('Watch') ? 
-                    'clamp(50px, 13vw, 230px)' : 
-                  item.src.includes('iPhone') ? 
-                    'clamp(80px, 15vw, 280px)' :
-                  item.src.includes('iPad') ? 
-                    'clamp(100px, 30vw, 470px)' :
-                  item.src.includes('Tablet') ? 
+                  maxWidth: item.src.includes('ipad-1-new') ? 
+                    'clamp(100px, 26vw, 970px)' : 
+                  item.src.includes('laptop_o1ysny') ? 
+                    'clamp(200px, 65vw, 1600px)' :
+                  item.src.includes('watch-1_rwnbew') ? 
+                    'clamp(45px, 12vw, 200px)' :
+                  item.src.includes('iphone-3_navwyk') ? 
+                    'clamp(50px, 13vw, 190px)' :
+                  item.src.includes('iphone-1_uv5sq9') ? 
+                    'clamp(50px, 13vw, 190px)' :
+                  item.src.includes('watch-2_ebvone') ? 
+                    'clamp(55px, 14vw, 200px)' :
+                  item.src.includes('iphone-2_to256r') ? 
+                    'clamp(50px, 13vw, 190px)' :
+                  item.src.includes('Tablet_fu52nj') ? 
                     'clamp(200px, 50vw, 820px)' :
-                  item.src.includes('Laptop') ? 
-                    'clamp(300px, 72vw, 1300px)' :
-                    'clamp(220px, 35vw, 760px)'
+                  item.src.includes('surfacepro_artprw') ? 
+                    'clamp(240px, 34vw, 920px)' :
+                    'clamp(220px, 35vw, 260px)'
                 }}
                 loading="lazy"
               />

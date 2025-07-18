@@ -1,3 +1,26 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow crawling of build files and development directories
+Disallow: /static/
+Disallow: /.netlify/
+Disallow: /node_modules/
+
+# Allow crawling of all main content
+Allow: /#about
+Allow: /#projects
+Allow: /#design-gallery
+Allow: /#experience
+Allow: /#skills
+Allow: /#testimonials
+Allow: /#contact
+
+# Sitemap location
+Sitemap: https://jeevankumark.netlify.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Host preference
+Host: https://jeevankumark.netlify.app

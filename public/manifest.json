@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Jeevankumar",
+  "name": "Jeevankumar Portfolio - UI/UX Designer & Product Designer",
+  "description": "Portfolio showcasing innovative design solutions across web and mobile applications by Jeevankumar, a passionate UI/UX and Product Designer.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,25 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_192,h_192,c_fit,dpr_auto/v1752786123/final_logo_ytgxif.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable any"
     },
     {
-      "src": "logo512.png",
+      "src": "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_512,h_512,c_fit,dpr_auto/v1752786123/final_logo_ytgxif.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable any"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#111111",
+  "background_color": "#111111",
+  "categories": ["design", "portfolio", "business"],
+  "lang": "en",
+  "scope": "/",
+  "id": "jeevankumar-portfolio"
 }
