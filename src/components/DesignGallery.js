@@ -104,8 +104,24 @@ const DesignGallery = () => {
     if (section && images.length > 0) {
       const mm = gsap.matchMedia();
 
+      // Initialize gallery container with mobile transform as default
+      const galleryContainer = section.querySelector('.gallery-container');
+      if (galleryContainer) {
+        gsap.set(galleryContainer, {
+          transform: 'rotate(-1.5deg) translateY(-4%) scale(1.05)'
+        });
+      }
+
       // Desktop parallax (enhanced)
       mm.add("(min-width: 768px)", () => {
+        // Set desktop transform for gallery container
+        const galleryContainer = section.querySelector('.gallery-container');
+        if (galleryContainer) {
+          gsap.set(galleryContainer, {
+            transform: 'rotate(-2deg) translateY(-8%) scale(1.1)'
+          });
+        }
+
         images.forEach((image, index) => {
           if (image) {
             const item = galleryItems[index];
@@ -136,6 +152,14 @@ const DesignGallery = () => {
 
       // Mobile parallax (optimized for performance and battery life)
       mm.add("(max-width: 767px)", () => {
+        // Set mobile transform for gallery container
+        const galleryContainer = section.querySelector('.gallery-container');
+        if (galleryContainer) {
+          gsap.set(galleryContainer, {
+            transform: 'rotate(-1.5deg) translateY(-4%) scale(1.05)'
+          });
+        }
+
         images.forEach((image, index) => {
           if (image) {
             const item = galleryItems[index];
@@ -262,19 +286,6 @@ const DesignGallery = () => {
         </div>
       </div>
     </section>
-    
-    {/* Mobile-specific styling */}
-    <style jsx>{`
-      .gallery-container {
-        transform: rotate(-1.5deg) translateY(-4%) scale(1.05);
-      }
-      
-      @media (min-width: 768px) {
-        .gallery-container {
-          transform: rotate(-2deg) translateY(-8%) scale(1.1);
-        }
-      }
-    `}</style>
     </>
   );
 };

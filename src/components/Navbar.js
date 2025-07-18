@@ -40,18 +40,37 @@ const Navbar = () => {
   // Smooth scroll handler for navigation links
   const handleSmoothScroll = (e, href) => {
     e.preventDefault();
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
-    // Close mobile menu if open
+    e.stopPropagation();
+    
+    // Close mobile menu first
     if (isMobileMenuOpen) {
       closeMobileMenu();
     }
+    
+    // Delay to ensure menu closes before scrolling
+    setTimeout(() => {
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        // Get the navbar height to offset scroll position
+        const navbarHeight = navRef.current ? navRef.current.offsetHeight : 80;
+        const elementPosition = targetElement.offsetTop - navbarHeight;
+        
+        // Primary scroll method
+        window.scrollTo({
+          top: elementPosition,
+          left: 0,
+          behavior: 'smooth'
+        });
+        
+        // Fallback method for better compatibility
+        setTimeout(() => {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 50);
+      }
+    }, isMobileMenuOpen ? 150 : 50);
   };
 
   useLayoutEffect(() => {
@@ -75,7 +94,6 @@ const Navbar = () => {
         right: "0",
         background: 'transparent',
         backdropFilter: 'none',
-        WebkitBackdropFilter: 'none',
         border: 'none',
         boxShadow: 'none',
         padding: '0 0.5rem',
@@ -97,7 +115,6 @@ const Navbar = () => {
             boxShadow: "none",
             background: "rgba(17, 17, 17, 0.95)",
             backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
           });
         },
         onLeaveBack: () => {
@@ -106,7 +123,6 @@ const Navbar = () => {
             top: '2rem',
             background: 'transparent',
             backdropFilter: 'none',
-            WebkitBackdropFilter: 'none',
             border: 'none',
           });
         }
@@ -143,7 +159,6 @@ const Navbar = () => {
             transform: "none",
             background: "rgba(16, 18, 27, 0.4)",
             backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
             border: "1px solid rgba(113, 119, 144, 0.1)",
             padding: "0.25rem 0",
             marginTop: "1rem",
@@ -192,7 +207,6 @@ const Navbar = () => {
             transform: "none",
             background: "rgba(17, 17, 17, 0.95)",
             backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
             border: "none",
             borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
             padding: "0 0.5rem",
@@ -242,7 +256,7 @@ const Navbar = () => {
       ref={navRef}
       className="bg-primary/95 backdrop-blur-md text-secondary fixed top-0 z-50 w-full md:bg-transparent md:backdrop-filter-none md:border-none"
       style={{ 
-        willChange: 'background, padding, margin-top, border-radius, border, border-bottom, box-shadow, width, left, right, backdrop-filter, -webkit-backdrop-filter',
+        willChange: 'background, padding, margin-top, border-radius, border, border-bottom, box-shadow, width, left, right, backdrop-filter',
       }}
     >
               <div 
@@ -438,6 +452,17 @@ const Navbar = () => {
                 ))}
                 
                 <motion.a
+                  href="#contact"
+                  onClick={(e) => handleSmoothScroll(e, '#contact')}
+                  className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms] cursor-pointer"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navItems.length * 0.05 }}
+                >
+                  Contact Me
+                </motion.a>
+                
+                <motion.a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -445,7 +470,7 @@ const Navbar = () => {
                   className="block px-3 py-2 text-base font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/10 rounded-md transition-colors duration-[600ms]"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.05 }}
+                  transition={{ delay: (navItems.length + 1) * 0.05 }}
                 >
                   Resume
                 </motion.a>

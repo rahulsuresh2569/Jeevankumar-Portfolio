@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 // Cloudinary URLs for favicons
 const faviconUrls = {
-  light: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786500/fav_light_mode_hecvm1.svg", // Light mode favicon
-  dark: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786500/fav_dark_mode_geuiyx.svg"   // Dark mode favicon
+  light: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786500/fav_dark_mode_geuiyx.svg", // Light mode favicon
+  dark: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786500/fav_light_mode_hecvm1.svg"   // Dark mode favicon
 };
 
 const useDynamicFavicon = () => {

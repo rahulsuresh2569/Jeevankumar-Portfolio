@@ -75,30 +75,30 @@ const About = () => {
       width: '100%',
       height: '100%',
       transformStyle: 'preserve-3d',
-      transition: 'transform 150ms ease-out',
+      transition: 'transform 130ms ease-out',
       borderRadius: '1.5rem',
       position: 'relative',
     },
-    // Base 3D positioning for elements - reduced elevation
+    // Base 3D positioning for elements - moderate elevation
     shapeBase: {
-      transform: 'translate3d(0, 0, 8px)',
-      transition: 'transform 150ms ease-out',
+      transform: 'translate3d(0, 0, 12px)',
+      transition: 'transform 130ms ease-out',
     },
     toolBase: {
-      transform: 'translate3d(0, 0, 12px)',
-      transition: 'transform 150ms ease-out',
+      transform: 'translate3d(0, 0, 18px)',
+      transition: 'transform 130ms ease-out',
     },
     helloWorldBase: {
-      transform: 'translate3d(0, 0, 10px)',
-      transition: 'transform 150ms ease-out',
+      transform: 'translate3d(0, 0, 15px)',
+      transition: 'transform 130ms ease-out',
     },
     tooltipBase: {
-      transform: 'translate3d(0, 0, 16px)',
-      transition: 'transform 150ms ease-out',
+      transform: 'translate3d(0, 0, 22px)',
+      transition: 'transform 130ms ease-out',
     },
     toolbarBase: {
-      transform: 'translate3d(-50%, 0, 14px)',
-      transition: 'transform 150ms ease-out',
+      transform: 'translate3d(-50%, 0, 20px)',
+      transition: 'transform 130ms ease-out',
     },
   };
 
@@ -134,32 +134,32 @@ const About = () => {
     const tooltip = container.querySelector('.tooltip-3d');
     const toolbar = container.querySelector('.toolbar-3d');
 
-    // Calculate rotation intensity - REDUCED
-    const rotationIntensity = Math.log(distance + 1) * 1.5;
-    const scaleValue = 1.02;
+    // Calculate rotation intensity - MODERATE
+    const rotationIntensity = Math.log(distance + 1) * 2.2;
+    const scaleValue = 1.05;
 
-    // Apply dynamic transforms to card container - REDUCED SENSITIVITY
+    // Apply dynamic transforms to card container - MODERATE SENSITIVITY
     if (card) {
       card.style.transform = `
         scale3d(${scaleValue}, ${scaleValue}, ${scaleValue})
         rotate3d(
-          ${center.y / 150},
-          ${-center.x / 150},
+          ${center.y / 110},
+          ${-center.x / 110},
           0,
           ${rotationIntensity}deg
         )
       `;
     }
 
-    // Apply individual transforms to elements with REDUCED elevation and sensitivity
+    // Apply individual transforms to elements with MODERATE elevation and sensitivity
     if (shape) {
       shape.style.transform = `
-        translate3d(0, 0, 40px)
+        translate3d(0, 0, 60px)
         rotate3d(
-          ${center.y / 200},
-          ${-center.x / 200},
+          ${center.y / 130},
+          ${-center.x / 130},
           0,
-          ${rotationIntensity * 0.8}deg
+          ${rotationIntensity * 1.0}deg
         )
         rotate(-2deg)
       `;
@@ -167,48 +167,48 @@ const About = () => {
 
     if (tool) {
       tool.style.transform = `
-        translate3d(0, 0, 50px)
+        translate3d(0, 0, 70px)
         rotate3d(
-          ${center.y / 180},
-          ${-center.x / 180},
+          ${center.y / 120},
+          ${-center.x / 120},
           0,
-          ${rotationIntensity * 0.9}deg
+          ${rotationIntensity * 1.15}deg
         )
       `;
     }
 
     if (helloWorld) {
       helloWorld.style.transform = `
-        translate3d(0, 0, 45px)
+        translate3d(0, 0, 65px)
         rotate3d(
-          ${center.y / 190},
-          ${-center.x / 190},
+          ${center.y / 125},
+          ${-center.x / 125},
           0,
-          ${rotationIntensity * 0.85}deg
+          ${rotationIntensity * 1.1}deg
         )
       `;
     }
 
     if (tooltip) {
       tooltip.style.transform = `
-        translate3d(0, 0, 60px)
+        translate3d(0, 0, 80px)
         rotate3d(
-          ${center.y / 140},
-          ${-center.x / 140},
+          ${center.y / 100},
+          ${-center.x / 100},
           0,
-          ${rotationIntensity * 1.0}deg
+          ${rotationIntensity * 1.3}deg
         )
       `;
     }
 
     if (toolbar) {
       toolbar.style.transform = `
-        translate3d(-50%, 0, 55px)
+        translate3d(-50%, 0, 75px)
         rotate3d(
-          ${center.y / 170},
-          ${-center.x / 170},
+          ${center.y / 115},
+          ${-center.x / 115},
           0,
-          ${rotationIntensity * 0.95}deg
+          ${rotationIntensity * 1.2}deg
         )
         rotate(-1deg)
       `;
@@ -242,19 +242,19 @@ const About = () => {
         card.style.transform = '';
       }
       if (shape) {
-        shape.style.transform = 'translate3d(0, 0, 8px) rotate(-2deg)';
+        shape.style.transform = 'translate3d(0, 0, 12px) rotate(-2deg)';
       }
       if (tool) {
-        tool.style.transform = 'translate3d(0, 0, 12px)';
+        tool.style.transform = 'translate3d(0, 0, 18px)';
       }
       if (helloWorld) {
-        helloWorld.style.transform = 'translate3d(0, 0, 10px)';
+        helloWorld.style.transform = 'translate3d(0, 0, 15px)';
       }
       if (tooltip) {
-        tooltip.style.transform = 'translate3d(0, 0, 16px)';
+        tooltip.style.transform = 'translate3d(0, 0, 22px)';
       }
       if (toolbar) {
-        toolbar.style.transform = 'translate3d(-50%, 0, 14px) rotate(-1deg)';
+        toolbar.style.transform = 'translate3d(-50%, 0, 20px) rotate(-1deg)';
       }
     }
   };
@@ -265,7 +265,7 @@ const About = () => {
     return (
       <div
         onClick={onClick}
-        className={`rounded-full p-[1px] transition-all duration-200 hover:shadow-md w-fit ${isClickable ? 'cursor-pointer hover:scale-105' : ''}`}
+        className={`rounded-full p-[1px] transition-all duration-250 hover:shadow-lg hover:shadow-white/10 w-fit ${isClickable ? 'cursor-pointer hover:scale-107 hover:-translate-y-1' : 'hover:scale-103'}`}
         style={{
           background: 'linear-gradient(45deg, #9ca3af, #f9fafb, #9ca3af, #f9fafb)',
           backgroundSize: '200% 200%'
@@ -350,10 +350,21 @@ const About = () => {
             >
               {/* Responsive Pills Layout */}
               <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 max-w-full sm:max-w-fit items-start">
-                <InfoPill index={0} delay={0} icon="⭐" looped={true} onClick={openModal}>
-                  Effortless Achiever
-                  <span className="ml-1">→</span>
-                </InfoPill>
+                <motion.div
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <InfoPill index={0} delay={0} icon="⭐" looped={true} onClick={openModal}>
+                    Effortless Achiever
+                    <i className="fas fa-arrow-right ml-1 text-sm"></i>
+                  </InfoPill>
+                </motion.div>
                 <InfoPill index={1} delay={0.2} icon="🌐">English, Tamil</InfoPill>
                 <InfoPill index={2} delay={0.4} icon="📍">
                   <span className="block sm:hidden">Chennai, India</span>
@@ -543,16 +554,23 @@ const About = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-[#111111] rounded-xl sm:rounded-2xl w-full max-w-6xl h-auto max-h-[90vh] flex flex-col lg:flex-row overflow-hidden shadow-2xl mx-2 sm:mx-4"
+              className="relative bg-[#111111] rounded-xl sm:rounded-2xl w-full max-w-6xl h-auto max-h-[90vh] flex flex-col overflow-hidden shadow-2xl mx-2 sm:mx-4"
             >
-              <button
-                onClick={closeModal}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white/50 hover:text-white transition-colors z-20 p-1"
-              >
-                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              {/* Header with Award title and close button */}
+              <div className="flex items-center justify-between p-4 sm:p-6 bg-[#151515] sm:py-2 border-b border-white/10">
+                <h2 className="text-xl sm:text-2xl font-bold text-white">Award</h2>
+                <button
+                  onClick={closeModal}
+                  className="text-white/50 hover:text-white transition-colors p-1"
+                >
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Main content area */}
+              <div className="flex flex-col lg:flex-row flex-1">
 
               {/* Certificate Image */}
               <div className="w-full lg:w-3/4 p-3 sm:p-4 lg:p-8 flex items-center justify-center">
@@ -564,71 +582,33 @@ const About = () => {
               </div>
 
               {/* Details Panel - Mobile: Bottom, Desktop: Right */}
-              <div className="w-full lg:w-1/4 bg-black/20 flex flex-col justify-center p-4 sm:p-6 lg:p-10 space-y-4 sm:space-y-6 lg:space-y-10 border-t lg:border-t-0 lg:border-l border-white/10">
+              <div className="w-full lg:w-1/4 bg-[#111111] flex flex-col justify-start p-4 sm:p-6 lg:px-2 lg:p-8 space-y-3 sm:space-y-4 lg:space-y-5">
                 <div>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 sm:mb-2">Effortless Achiever</h3>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 text-left">Effortless Achiever</h3>
                 </div>
 
-                <div className="text-center">
-                  <p className="text-xs sm:text-sm text-white/50 mb-2 sm:mb-3">Issued By</p>
+                <div className="text-left">
+                  <p className="text-xs text-white/50 mb-2">Issued By</p>
                   <img 
                     src={cloudinaryImages.risolutorLogo} 
                     alt="Risolutor Technologies Logo" 
-                    className="w-32 sm:w-36 lg:w-40 h-auto mx-auto"
+                    className="w-24 sm:w-28 lg:w-32 h-auto"
                   />
                 </div>
 
-                <div>
-                  <p className="text-xs sm:text-sm text-white/50 mb-1 sm:mb-2">Period</p>
-                  <p className="text-base sm:text-lg font-medium text-white">2023 - 2024</p>
+                <div className="text-left">
+                  <p className="text-xs text-white/50 mb-1">Period</p>
+                  <p className="text-sm sm:text-base font-medium text-white">2023 - 2024</p>
                 </div>
               </div>
 
+                            </div> {/* Close main content area */}
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
       
-      {/* Mobile Performance Optimizations */}
-      <style jsx>{`
-        @media (max-width: 767px) {
-          .card-3d,
-          .shape-3d,
-          .tool-3d,
-          .hello-world-3d,
-          .tooltip-3d,
-          .toolbar-3d {
-            transform: none !important;
-            transition: none !important;
-          }
-          .toolbar-3d {
-            left: 22% !important;
-          }
-          .info-pill-text {
-            white-space: normal !important;
-            max-width: 200px;
-            line-height: 1.4;
-            text-align: center;
-            justify-content: center;
-          }
-          .flex-wrap {
-            align-items: flex-start;
-          }
-          .about-mobile-spacing {
-            margin-bottom: 1.2rem !important;
-          }
-        }
-        @media (max-width: 639px) {
-          .about-mobile-spacing {
-            margin-bottom: 1.2rem !important;
-          }
-        }
-        @media (min-width: 640px) {
-          .info-pill-text {
-            white-space: nowrap !important;
-          }
-        }
-      `}</style>
+      {/* Mobile Performance Optimizations handled via CSS */}
     </section>
   );
 };

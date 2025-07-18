@@ -213,7 +213,7 @@ const Testimonials = () => {
           </div>
 
           {/* Avatar Navigation */}
-          <div className="flex items-center justify-center space-x-3 sm:space-x-4 mt-4">
+          <div className="flex items-center justify-center space-x-3 h-10 sm:space-x-4 mt-4">
             {testimonials.map((testimonial, index) => {
               const currentIndex = (rotationCounter % numTestimonials + numTestimonials) % numTestimonials;
               return (

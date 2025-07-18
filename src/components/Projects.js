@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740020/Inventory_Management_Software_zcwryf.jpg",
   fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Field_Management_Software_abv1x7.jpg",
-  rfidTracking: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Active_RFID_Employee_Tracking_System_yjuk1b.jpg",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };
@@ -22,9 +21,8 @@ const Projects = () => {
   const buttonGradients = [
     { from: '#E8B513', to: '#FFEBAC', textColor: 'black' }, // Project 1: Yellow
     { from: '#7161EF', to: '#9E92FF', textColor: 'white' }, // Project 2: Purple
-    { from: '#FFFFFF', to: '#D8D8D8', textColor: 'black' }, // Project 3: White/Gray
-    { from: '#25BD18', to: '#80E777', textColor: 'black' }, // Project 4: Green
-    { from: '#3D8361', to: '#6CC298', textColor: 'white' }  // Project 5: Teal
+    { from: '#25BD18', to: '#80E777', textColor: 'black' }, // Project 3: Green
+    { from: '#3D8361', to: '#6CC298', textColor: 'white' }  // Project 4: Teal
   ];
 
   const projectsData = [
@@ -55,18 +53,6 @@ const Projects = () => {
     {
       id: 3,
       tag: "Real Time Project",
-      title: "Active RFID Employee Tracking System",
-      category: "B2B SaaS",
-      type: "Web & Mobile Application",
-      industry: "Product Design",
-      platform: "Manufacturing Industry",
-      description: "Advanced RFID-based employee tracking system providing real-time location data and workplace analytics.",
-      image: cloudinaryImages.rfidTracking,
-      ctaText: "Detail View"
-    },
-    {
-      id: 4,
-      tag: "Real Time Project",
       title: "Tyns",
       category: "B2C",
       type: "Product Design",
@@ -77,7 +63,7 @@ const Projects = () => {
       ctaText: "Detail View"
     },
     {
-      id: 5,
+      id: 4,
       tag: "Mock Project",
       title: "AIDIT (Donation app)",
       category: "B2B & C2C",
@@ -437,114 +423,7 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Custom Styles */}
-      <style jsx>{`
-        .project-content-item.is-active {
-          opacity: 1 !important;
-        }
-        
-        .project-image-item.is-active {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
-        }
-
-        .mouse-follower {
-          backdrop-filter: blur(20px);
-          background: rgba(255, 255, 255, 0.95);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .projects-right:hover {
-          cursor: none !important;
-        }
-
-        @media (max-width: 1024px) {
-          .projects-component {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-            height: 100vh !important;
-            padding-top: 100px !important;
-            padding-bottom: 80px !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            align-items: center !important;
-          }
-          
-          .projects-left {
-            height: 55vh !important;
-            max-height: 55vh !important;
-            min-height: 53vh !important;
-            width: 100% !important;
-            margin-bottom: 2rem !important;
-            order: 2 !important;
-          }
-          
-          .projects-right {
-            height: 35vh !important;
-            max-height: 35vh !important;
-            min-height: 33vh !important;
-            width: 100% !important;
-            order: 1 !important;
-            margin-bottom: 0 !important;
-          }
-
-          /* Disable mouse follower on mobile */
-          .mouse-follower {
-            display: none !important;
-          }
-          
-          .projects-right {
-            cursor: pointer !important;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .projects-component {
-            padding-top: 90px !important;
-            padding-bottom: 100px !important;
-            gap: 1rem !important;
-          }
-          
-          .projects-left {
-            height: 53vh !important;
-            max-height: 53vh !important;
-            min-height: 51vh !important;
-            padding: 2rem !important;
-            margin-bottom: 3rem !important;
-          }
-          
-          .projects-right {
-            height: 32vh !important;
-            max-height: 32vh !important;
-            min-height: 30vh !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .projects-component {
-            padding-top: 80px !important;
-            padding-bottom: 120px !important;
-            gap: 0.75rem !important;
-          }
-          
-          .projects-left {
-            height: 51vh !important;
-            max-height: 51vh !important;
-            min-height: 49vh !important;
-            padding: 1.75rem !important;
-            margin-bottom: 4rem !important;
-          }
-          
-          .projects-right {
-            height: 30vh !important;
-            max-height: 30vh !important;
-            min-height: 28vh !important;
-          }
-        }
-      `}</style>
+      {/* Custom Styles handled via CSS */}
       {/* Add extra space below Projects section */}
       <div className="bg-primary h-40" />
     </>

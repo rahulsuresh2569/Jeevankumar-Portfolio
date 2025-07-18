@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar globally while maintaining scroll functionality */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,6 +21,170 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Hide scrollbar for any element that might have overflow */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* About Component Mobile Optimizations */
+@media (max-width: 767px) {
+  .card-3d,
+  .shape-3d,
+  .tool-3d,
+  .hello-world-3d,
+  .tooltip-3d,
+  .toolbar-3d {
+    transform: none !important;
+    transition: none !important;
+  }
+  .toolbar-3d {
+    left: 22% !important;
+  }
+  .info-pill-text {
+    white-space: normal !important;
+    max-width: 200px;
+    line-height: 1.4;
+    text-align: center;
+    justify-content: center;
+  }
+  .flex-wrap {
+    align-items: flex-start;
+  }
+  .about-mobile-spacing {
+    margin-bottom: 1.2rem !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .about-mobile-spacing {
+    margin-bottom: 1.2rem !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .info-pill-text {
+    white-space: nowrap !important;
+  }
+}
+
+/* Projects Component Styles */
+.project-content-item.is-active {
+  opacity: 1 !important;
+}
+
+.project-image-item.is-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.mouse-follower {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.projects-right:hover {
+  cursor: none !important;
+}
+
+@media (max-width: 1024px) {
+  .projects-component {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    height: 100vh !important;
+    padding-top: 100px !important;
+    padding-bottom: 80px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+  
+  .projects-left {
+    height: 55vh !important;
+    max-height: 55vh !important;
+    min-height: 53vh !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    order: 2 !important;
+  }
+  
+  .projects-right {
+    height: 35vh !important;
+    max-height: 35vh !important;
+    min-height: 33vh !important;
+    width: 100% !important;
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Disable mouse follower on mobile */
+  .mouse-follower {
+    display: none !important;
+  }
+  
+  .projects-right {
+    cursor: pointer !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-component {
+    padding-top: 90px !important;
+    padding-bottom: 100px !important;
+    gap: 1rem !important;
+  }
+  
+  .projects-left {
+    height: 53vh !important;
+    max-height: 53vh !important;
+    min-height: 51vh !important;
+    padding: 2rem !important;
+    margin-bottom: 3rem !important;
+  }
+  
+  .projects-right {
+    height: 32vh !important;
+    max-height: 32vh !important;
+    min-height: 30vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-component {
+    padding-top: 80px !important;
+    padding-bottom: 120px !important;
+    gap: 0.75rem !important;
+  }
+  
+  .projects-left {
+    height: 51vh !important;
+    max-height: 51vh !important;
+    min-height: 49vh !important;
+    padding: 1.75rem !important;
+    margin-bottom: 4rem !important;
+  }
+  
+  .projects-right {
+    height: 30vh !important;
+    max-height: 30vh !important;
+    min-height: 28vh !important;
+  }
 }
 
 code {
