@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import Lenis from 'lenis'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,11 +13,52 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import useDynamicFavicon from './hooks/useDynamicFavicon';
+import { initGA, trackPageView, trackScrollDepth } from './utils/analytics';
 import './App.css'; // Keep App.css for any global App-specific styles if needed
 
 function App() {
   // Initialize dynamic favicon functionality
   useDynamicFavicon();
+
+  // Initialize Google Analytics
+  useEffect(() => {
+    // Initialize GA4
+    const setupAnalytics = async () => {
+      await initGA();
+      // Track initial page view after GA is loaded
+      trackPageView(window.location.pathname);
+    };
+    
+    setupAnalytics();
+    
+    // Track scroll depth
+    let scrollDepthTracked = {
+      25: false,
+      50: false,
+      75: false,
+      100: false
+    };
+    
+    const handleScroll = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      
+      // Track scroll milestones
+      [25, 50, 75, 100].forEach(milestone => {
+        if (scrollPercent >= milestone && !scrollDepthTracked[milestone]) {
+          scrollDepthTracked[milestone] = true;
+          trackScrollDepth(milestone);
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
