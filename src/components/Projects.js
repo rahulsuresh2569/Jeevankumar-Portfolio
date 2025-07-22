@@ -1,21 +1,152 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Remove local image imports and use Cloudinary URLs
 const cloudinaryImages = {
-  inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740020/Inventory_Management_Software_zcwryf.jpg",
-  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740021/Field_Management_Software_abv1x7.jpg",
+  inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753215053/Inventory_2_qmbfhm.png",
+  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753212364/FSM_fk28ai.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };
 
+// Project Scroll Stack Item Component
+const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName = "" }) => (
+  <div
+    className={`scroll-stack-card relative w-full min-h-[320px] sm:min-h-[350px] md:min-h-[380px] lg:min-h-[400px] xl:min-h-[420px] h-auto my-8 rounded-[40px] border-none origin-top will-change-transform overflow-hidden ${itemClassName}`.trim()}
+    style={{
+      backfaceVisibility: 'hidden',
+      transformStyle: 'preserve-3d',
+    }}
+  >
+    {/* Direct Project Layout */}
+    <div className="grid items-stretch sm:grid-cols-1 md:grid-cols-[0.6fr_1fr] lg:grid-cols-[0.5fr_1fr] xl:grid-cols-[0.4fr_1fr] h-full">
+      
+      {/* Right Side - Project Image (Mobile: order-1, Desktop: order-2) */}
+      <div className="w-full h-full lg:h-[450px] xl:h-[600px] relative overflow-hidden cursor-pointer order-1 md:order-2">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover object-center"
+          loading="lazy"
+          onClick={() => {
+            if (project.link) {
+              window.open(project.link, '_blank', 'noopener,noreferrer');
+            }
+          }}
+        />
+      </div>
+
+      {/* Left Side - Project Content (Mobile: order-2, Desktop: order-1) */}
+      <div className="bg-white p-6 sm:p-7 md:p-8 lg:p-10 xl:p-12 flex flex-col h-full lg:h-[450px] xl:h-[600px] shadow-lg order-2 md:order-1">
+        
+        <div className="flex-1 flex flex-col justify-between text-left min-h-0">
+          
+          {/* Content Area - Top Section */}
+          <div className="flex-shrink-0">
+            {/* Project Tag */}
+            <div className="mb-3 sm:mb-4 lg:mb-4">
+              <span className="inline-block text-xs sm:text-sm lg:text-sm font-normal text-blue-600">
+                {project.tag}
+              </span>
+            </div>
+            
+            {/* Project Title */}
+            <h3 className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-4xl font-bold text-gray-900 leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-6 xl:mb-10">
+              {project.title}
+            </h3>
+          </div>
+          
+          {/* Project Metadata - Middle Section */}
+          <div className="flex-1 min-h-0">
+            <div className="space-y-2.5 sm:space-y-3 lg:space-y-3 mb-5 sm:mb-6 md:mb-7 lg:mb-7 xl:mb-12">
+              
+              {/* First line: First 2 tags with dot between them */}
+              <div className="flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 flex-wrap">
+                <span className="inline-block px-3 sm:px-3.5 lg:px-3.5 py-1.5 sm:py-1.5 lg:py-1.5 bg-gray-100 text-gray-700 text-xs lg:text-xs font-medium rounded-full">
+                  {project.category}
+                </span>
+                <span className="w-1 h-1 lg:w-1 lg:h-1 bg-gray-400 rounded-full"></span>
+                <span className="inline-block px-3 sm:px-3.5 lg:px-3.5 py-1.5 sm:py-1.5 lg:py-1.5 bg-gray-100 text-gray-700 text-xs lg:text-xs font-medium rounded-full">
+                  {project.industry}
+                </span>
+              </div>
+              
+              {/* Second line: Third tag */}
+              <div>
+                <span className="inline-block px-3 sm:px-3.5 lg:px-3.5 py-1.5 sm:py-1.5 lg:py-1.5 bg-gray-100 text-gray-700 text-xs lg:text-xs font-medium rounded-full">
+                  {project.platform}
+                </span>
+              </div>
+              
+              {/* Third line: Fourth tag */}
+              <div>
+                <span className="inline-block px-3 sm:px-3.5 lg:px-3.5 py-1.5 sm:py-1.5 lg:py-1.5 bg-gray-100 text-gray-700 text-xs lg:text-xs font-medium rounded-full">
+                  {project.type}
+                </span>
+              </div>
+              
+            </div>
+            
+            {/* Divider Line */}
+            <div className="w-full h-px bg-gray-200"></div>
+          </div>
+        
+        {/* Bottom CTA Button - with proper spacing */}
+        <div className="flex justify-start pt-4 sm:pt-5 md:pt-6 lg:pt-6 xl:pt-10 flex-shrink-0">
+          {project.link ? (
+            <a 
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+              style={{
+                background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                color: buttonGradients[index]?.textColor,
+                boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+              }}
+            >
+              <span>Detail View</span>
+              <svg 
+                className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          ) : (
+            <button 
+              className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+              style={{
+                background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                color: buttonGradients[index]?.textColor,
+                boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+              }}
+            >
+              <span>Detail View</span>
+              <svg 
+                className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </button>
+          )}
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const Projects = () => {
-  const showcaseSectionRef = useRef(null);
-  const stickyWrapperRef = useRef(null);
-  const [activeProjectIndex, setActiveProjectIndex] = React.useState(0);
-  const mouseFollowerRef = useRef(null);
-  const projectsRightRef = useRef(null);
+  const sectionRef = useRef(null);
+  const scrollStackContainerRef = useRef(null);
+  const cardsRef = useRef([]);
 
   // Button gradient colors for each project
   const buttonGradients = [
@@ -77,386 +208,182 @@ const Projects = () => {
     }
   ];
 
+  // Scroll Stack Animation Logic using main page scroll
+  const calculateProgress = useCallback((scrollTop, start, end) => {
+    if (scrollTop < start) return 0;
+    if (scrollTop > end) return 1;
+    return (scrollTop - start) / (end - start);
+  }, []);
+
+  const parsePercentage = useCallback((value, containerHeight) => {
+    if (typeof value === 'string' && value.includes('%')) {
+      return (parseFloat(value) / 100) * containerHeight;
+    }
+    return parseFloat(value);
+  }, []);
+
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    // Capture ref values at the beginning of the effect
-    const showcaseElement = showcaseSectionRef.current;
-    const stickyWrapperElement = stickyWrapperRef.current;
-    const projectsRightElement = projectsRightRef.current;
-    const mouseFollowerElement = mouseFollowerRef.current;
-
-    // Initialize - hide all projects except first
-    const initializeProjects = () => {
-      const sections = document.querySelectorAll('.project-content-item');
-      const images = document.querySelectorAll('.project-image-item');
-      
-      sections.forEach((section, index) => {
-        if (index === 0) {
-          section.classList.add('is-active');
-          section.style.opacity = '1';
-        } else {
-          section.classList.remove('is-active');
-          section.style.opacity = '0';
-        }
-      });
-      
-      images.forEach((image, index) => {
-        if (index === 0) {
-          image.classList.add('is-active');
-          image.style.opacity = '1';
-        } else {
-          image.classList.remove('is-active');
-          image.style.opacity = '0';
-        }
-      });
-    };
-
-    // Create sticky behavior ONLY for the showcase section
-    if (showcaseElement && stickyWrapperElement) {
-      ScrollTrigger.create({
-        trigger: showcaseElement,
-        start: "top top",
-        end: "bottom bottom",
-        pin: stickyWrapperElement,
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      });
-    }
-
-    // Handle scroll-based project switching
-    const handleScroll = () => {
-      if (!showcaseElement) return;
-      
-      const showcaseSection = showcaseElement;
-      const rect = showcaseSection.getBoundingClientRect();
-      const sectionHeight = showcaseSection.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // Only proceed if showcase section is sticky (top <= 0)
-      if (rect.top <= 0 && rect.bottom >= viewportHeight) {
-        const scrollProgress = Math.abs(rect.top) / (sectionHeight - viewportHeight);
-        const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-        
-        // Calculate which project should be active
-        const projectIndex = Math.floor(clampedProgress * projectsData.length);
-        const currentIndex = Math.min(projectIndex, projectsData.length - 1);
-        
-        const sections = document.querySelectorAll('.project-content-item');
-        const images = document.querySelectorAll('.project-image-item');
-        
-        // Update active project
-        setActiveProjectIndex(currentIndex);
-        
-        sections.forEach((section, index) => {
-          if (index === currentIndex) {
-            section.classList.add('is-active');
-            section.style.opacity = '1';
-          } else {
-            section.classList.remove('is-active');
-            section.style.opacity = '0';
-          }
-        });
-        
-        images.forEach((image, index) => {
-          if (index === currentIndex) {
-            image.classList.add('is-active');
-            image.style.opacity = '1';
-          } else {
-            image.classList.remove('is-active');
-            image.style.opacity = '0';
-          }
-        });
-      }
-    };
-
-    // Initialize after component mounts
-    setTimeout(initializeProjects, 100);
-
-    // Add scroll listener
-    window.addEventListener('scroll', handleScroll);
     
-    // Initial call
-    handleScroll();
+    const section = sectionRef.current;
+    const scrollStackContainer = scrollStackContainerRef.current;
+    
+    if (!section || !scrollStackContainer) return;
 
-    // Mouse follower animation for right section
-    if (projectsRightElement && mouseFollowerElement) {
-      const follower = mouseFollowerElement;
-      const mouseBox = projectsRightElement;
+    // Get all cards
+    const cards = Array.from(scrollStackContainer.querySelectorAll(".scroll-stack-card"));
+    cardsRef.current = cards;
+
+    // Scroll Stack parameters - matching scroll-stack.js exactly
+    const itemDistance = 100;
+    const itemScale = 0.03;
+    const itemStackDistance = 30;
+    const stackPosition = "10%";
+    const scaleEndPosition = "5%";
+    const baseScale = 0.85;
+
+    // Set up card styling exactly like scroll-stack.js
+    cards.forEach((card, i) => {
+      if (i < cards.length - 1) {
+        card.style.marginBottom = `${itemDistance}px`;
+      }
+      card.style.willChange = 'transform, filter';
+      card.style.transformOrigin = 'top center';
+      card.style.backfaceVisibility = 'hidden';
+      card.style.transform = 'translateZ(0)';
+      card.style.webkitTransform = 'translateZ(0)';
+      card.style.perspective = '1000px';
+      card.style.webkitPerspective = '1000px';
+    });
+
+    // Performance optimization: cache last transforms to avoid unnecessary updates
+    const lastTransforms = new Map();
+    let isUpdating = false;
+
+    // Create the scroll-triggered animation matching scroll-stack.js behavior
+    const updateCardTransforms = () => {
+      if (isUpdating) return;
+      isUpdating = true;
+
+      // Get current scroll position and container dimensions
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const containerHeight = window.innerHeight;
+      const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+      const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
       
-      // Set initial state
-      gsap.set(follower, {
-        xPercent: -50,
-        yPercent: -50,
-        scale: 0,
-        opacity: 1
+      // Get the end element position for pin release
+      const endElement = scrollStackContainer.querySelector('.scroll-stack-end');
+      const endElementTop = endElement ? endElement.offsetTop : scrollStackContainer.offsetTop + scrollStackContainer.offsetHeight;
+
+      cards.forEach((card, i) => {
+        if (!card) return;
+
+        const cardTop = card.offsetTop;
+        
+        // Calculate trigger points exactly like scroll-stack.js
+        const triggerStart = cardTop - stackPositionPx - (itemStackDistance * i);
+        const triggerEnd = cardTop - scaleEndPositionPx;
+        const pinStart = cardTop - stackPositionPx - (itemStackDistance * i);
+        const pinEnd = endElementTop - containerHeight / 2;
+
+        // Scale animation - cards shrink as they approach the stack
+        const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
+        const targetScale = baseScale + (i * itemScale);
+        const scale = 1 - scaleProgress * (1 - targetScale);
+
+        // Pin/translate animation - cards move to stack position
+        let translateY = 0;
+        const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
+        
+        if (isPinned) {
+          // Card is pinned at the stack position
+          translateY = scrollTop - cardTop + stackPositionPx + (itemStackDistance * i);
+        } else if (scrollTop > pinEnd) {
+          // Card moves away with the rest of the content after stack completes
+          translateY = pinEnd - cardTop + stackPositionPx + (itemStackDistance * i);
+        }
+        // else: card is still in normal document flow (translateY = 0)
+
+        const newTransform = {
+          translateY: Math.round(translateY * 100) / 100,
+          scale: Math.round(scale * 1000) / 1000
+        };
+
+        // Performance optimization: only update if values changed significantly
+        const lastTransform = lastTransforms.get(i);
+        const hasChanged = !lastTransform || 
+          Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
+          Math.abs(lastTransform.scale - newTransform.scale) > 0.001;
+
+        if (hasChanged) {
+          // Apply transforms exactly like scroll-stack.js
+          const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale})`;
+          card.style.transform = transform;
+          
+          lastTransforms.set(i, newTransform);
+        }
       });
 
-      // Create quick animations for smooth following
-      const xTo = gsap.quickTo(follower, "x", { duration: 0.3, ease: "power2" });
-      const yTo = gsap.quickTo(follower, "y", { duration: 0.3, ease: "power2" });
-      
-      // Scale animation for enter/leave
-      const scaleTween = gsap.to(follower, {
-        scale: 1,
-        ease: "power1.inOut",
-        paused: true
-      });
+      isUpdating = false;
+    };
 
-      // Event handlers
-      const handleMouseEnter = () => {
-        scaleTween.play();
-        mouseBox.style.cursor = 'none';
-      };
+    ScrollTrigger.create({
+      trigger: scrollStackContainer,
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: updateCardTransforms,
+      onRefresh: updateCardTransforms
+    });
 
-      const handleMouseLeave = () => {
-        scaleTween.reverse();
-        mouseBox.style.cursor = 'default';
-      };
-
-      const handleMouseMove = (e) => {
-        const rect = mouseBox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        xTo(x);
-        yTo(y);
-      };
-
-      // Add event listeners
-      mouseBox.addEventListener("mouseenter", handleMouseEnter);
-      mouseBox.addEventListener("mouseleave", handleMouseLeave);
-      mouseBox.addEventListener("mousemove", handleMouseMove);
-
-      // Cleanup function
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-        mouseBox.removeEventListener("mouseenter", handleMouseEnter);
-        mouseBox.removeEventListener("mouseleave", handleMouseLeave);
-        mouseBox.removeEventListener("mousemove", handleMouseMove);
-        ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === showcaseElement) {
-            trigger.kill();
-          }
-        });
-      };
-    }
+    // Initial update
+    updateCardTransforms();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      // Clean up ScrollTrigger instances
       ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === showcaseElement) {
+        if (trigger.trigger === scrollStackContainer) {
           trigger.kill();
         }
       });
     };
-  }, [projectsData.length]);
+  }, [calculateProgress, parsePercentage]);
 
   return (
-    <>
-      {/* Static Header Section - Normal scroll, not sticky */}
-              <section className="projects-header-section bg-primary text-secondary pb-8 px-4 sm:px-6 md:px-8 lg:px-10">
+    <section id="projects" ref={sectionRef} className="bg-primary text-secondary">
+      
+      {/* Section Header - Scrolls away normally */}
+      <div className="py-20 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
             Selected Projects
           </h2>
-                      <p className="text-lg sm:text-xl text-secondary/70 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-secondary/70 leading-relaxed max-w-2xl mx-auto">
             Showcasing innovative solutions across various industries and platforms through immersive design experiences
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* Project Showcase Section - Becomes sticky when it hits viewport */}
-      <section 
-        ref={showcaseSectionRef}
-        id="projects"
-                  className="section-projects relative bg-primary"
-        style={{ 
-          height: `${projectsData.length * 100}vh` // Height for scroll-based animation
-        }}
+      {/* Scroll Stack Container - Natural document flow like scroll-stack.js */}
+      <div 
+        ref={scrollStackContainerRef}
+        className="w-full px-4 sm:px-6 md:px-8 lg:px-10 pb-[30rem] sm:pb-[20rem] md:pb-[25rem] lg:pb-[30rem] xl:pb-[35rem]"
       >
-        {/* Sticky wrapper - ONLY the showcase content */}
-        <div 
-          ref={stickyWrapperRef}
-                      className="sticky bg-primary"
-          style={{ 
-            height: '100vh',
-            top: '0px' // Account for navbar height
-          }}
-        >
-          <div className="projects-container w-full max-w-7xl mx-auto h-full">
-            
-            {/* Projects Content Grid - Centered accounting for navbar */}
-            <div 
-              className="projects-component grid items-center px-4 sm:px-6 md:px-8 lg:px-10 lg:grid-cols-[0.4fr_1fr] grid-cols-1 gap-4 lg:gap-8 h-full"
-              style={{ 
-                height: '100vh', // Full viewport height
-                paddingTop: '80px', // Account for navbar
-                paddingBottom: '40px' // Bottom padding for better spacing
-              }}
-            >
-              {/* Right Side - Project Images (Mobile: order-1, Desktop: order-2) */}
-              <div 
-                ref={projectsRightRef}
-                className="projects-right w-full h-full rounded-3xl relative overflow-hidden max-h-[85vh] cursor-pointer order-1 lg:order-2"
-              >
-                {/* Mouse Follower - Circle with Arrow */}
-                <div 
-                  ref={mouseFollowerRef}
-                  className="mouse-follower absolute pointer-events-none z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl border-2 border-gray-200"
-                  style={{
-                    transform: 'translate(-50%, -50%)',
-                  }}
-                >
-                  <svg 
-                    className="w-6 h-6 text-gray-800" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                    />
-                  </svg>
-                </div>
-
-                {projectsData.map((project, index) => (
-                  <div
-                    key={`image-${project.id}`}
-                    className="project-image-item absolute inset-0"
-                    style={{
-                      opacity: 0,
-                      transform: 'translateY(100%)',
-                      transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
-                    }}
-                    onClick={() => {
-                      if (project.link) {
-                        window.open(project.link, '_blank', 'noopener,noreferrer');
-                      }
-                    }}
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-center rounded-3xl"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Left Side - Project Content (Mobile: order-2, Desktop: order-1) */}
-              <div className="projects-left bg-white rounded-3xl p-10 flex flex-col justify-between h-full max-h-[50vh] sm:max-h-[85vh] shadow-lg order-2 lg:order-1">
-                <div className="projects-left-top flex-1 flex flex-col text-left relative">
-                  {/* Fixed Section Label */}
-                  <div className="mb-4">
-                    <span className="inline-block text-sm font-normal text-blue-600">
-                      {projectsData[activeProjectIndex]?.tag}
-                    </span>
-                  </div>
-                  {/* Fixed Project Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-3 sm:mb-12">
-                    {projectsData[activeProjectIndex]?.title}
-                  </h3>
-                  {/* Dynamic Pills Container - positioned relative to fixed title */}
-                  <div className="relative">
-                    {projectsData.map((project, index) => (
-                      <div
-                        key={project.id}
-                        className="project-content-item absolute inset-0"
-                        style={{
-                          opacity: 0,
-                          transition: 'opacity 0.5s ease-in-out'
-                        }}
-                      >
-                        {/* Project Metadata - First 2 tags with dot, others on separate lines */}
-                        <div className="space-y-4 mb-5 sm:mb-12">
-                          {/* First line: First 2 tags with dot between them */}
-                          <div className="flex items-center gap-2">
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.category}
-                            </span>
-                            <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.industry}
-                            </span>
-                          </div>
-                          {/* Second line: Third tag */}
-                          <div>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.platform}
-                            </span>
-                          </div>
-                          {/* Third line: Fourth tag */}
-                          <div>
-                            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                              {project.type}
-                            </span>
-                          </div>
-                        </div>
-                        {/* Divider Line */}
-                        <div className="w-full h-px bg-gray-200 mb-2"></div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Bottom CTA Button - Left aligned */}
-                <div className="projects-left-bottom flex justify-start">
-                  {projectsData[activeProjectIndex]?.link ? (
-                    <a 
-                      href={projectsData[activeProjectIndex].link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                      style={{
-                        background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
-                        color: buttonGradients[activeProjectIndex]?.textColor,
-                        boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
-                      }}
-                    >
-                      <span>Detail View</span>
-                      <svg 
-                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </a>
-                  ) : (
-                    <button 
-                      className="group relative inline-flex items-center gap-2 font-medium text-sm px-6 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                      style={{
-                        background: `linear-gradient(to right, ${buttonGradients[activeProjectIndex]?.from}, ${buttonGradients[activeProjectIndex]?.to})`,
-                        color: buttonGradients[activeProjectIndex]?.textColor,
-                        boxShadow: `0 4px 15px ${buttonGradients[activeProjectIndex]?.from}25`
-                      }}
-                    >
-                      <span>Detail View</span>
-                      <svg 
-                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="scroll-stack-inner pt-[3vh] sm:pt-[4vh] md:pt-[5vh] max-w-7xl mx-auto">
+          {/* Cards laid out in natural document flow */}
+          {projectsData.map((project, index) => (
+            <ProjectScrollStackItem
+              key={project.id}
+              project={project}
+              index={index}
+              buttonGradients={buttonGradients}
+              itemClassName="bg-primary border border-secondary/10 h-auto shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+            />
+          ))}
+          {/* End spacer for proper animation completion */}
+          <div className="scroll-stack-end w-full h-px" />
         </div>
-      </section>
-
-      {/* Custom Styles handled via CSS */}
-      {/* Add extra space below Projects section */}
-      <div className="bg-primary h-40" />
-    </>
+      </div>
+    </section>
   );
 };
 
