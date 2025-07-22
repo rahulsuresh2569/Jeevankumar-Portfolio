@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Remove local image imports and use Cloudinary URLs
 const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753215053/Inventory_2_qmbfhm.png",
-  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753212364/FSM_fk28ai.png",
+  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753220738/FSM_3_pp6afr.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };
@@ -366,7 +366,7 @@ const Projects = () => {
       {/* Scroll Stack Container - Natural document flow like scroll-stack.js */}
       <div 
         ref={scrollStackContainerRef}
-        className="w-full px-4 sm:px-6 md:px-8 lg:px-10 pb-[30rem] sm:pb-[20rem] md:pb-[25rem] lg:pb-[30rem] xl:pb-[35rem]"
+        className="w-full px-4 sm:px-6 md:px-8 lg:px-10 pb-[20rem] sm:pb-[10rem] md:pb-[12rem] lg:pb-[15rem] xl:pb-[25rem]"
       >
         <div className="scroll-stack-inner pt-[3vh] sm:pt-[4vh] md:pt-[5vh] max-w-7xl mx-auto">
           {/* Cards laid out in natural document flow */}
