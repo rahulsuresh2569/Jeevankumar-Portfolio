@@ -15,6 +15,9 @@ module.exports = {
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif'],
       },
+      screens: {
+        'xs': '475px',
+      },
     },
   },
   plugins: [],

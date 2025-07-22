@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,11 +13,13 @@ import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import NotFound from './components/NotFound';
 import useDynamicFavicon from './hooks/useDynamicFavicon';
 import { initGA, trackPageView, trackScrollDepth } from './utils/analytics';
-import './App.css'; // Keep App.css for any global App-specific styles if needed
+import './App.css';
 
-function App() {
+// Main Portfolio Component
+const Portfolio = () => {
   // Initialize dynamic favicon functionality
   useDynamicFavicon();
 
@@ -115,6 +118,17 @@ function App() {
       <Contact />
       <Footer />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
