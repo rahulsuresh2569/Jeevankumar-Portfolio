@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ResumePage = () => {
+  const [pdfError, setPdfError] = useState(false);
+
   useEffect(() => {
     // Set the page title
     document.title = 'Jeevankumar - Resume';
@@ -26,6 +28,28 @@ const ResumePage = () => {
     document.getElementsByTagName('head')[0].appendChild(linkFallback);
   }, []);
 
+  const handleIframeError = () => {
+    setPdfError(true);
+  };
+
+  if (pdfError) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">Resume</h1>
+          <p className="text-gray-600 mb-6">Unable to display PDF in browser.</p>
+          <a
+            href="/Jeevankumar-Resume.pdf"
+            download="Jeevankumar-Resume.pdf"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Download Resume PDF
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full h-screen">
       <iframe
@@ -33,6 +57,7 @@ const ResumePage = () => {
         className="w-full h-full"
         title="Jeevan Kumar Resume"
         frameBorder="0"
+        onError={handleIframeError}
       />
     </div>
   );
