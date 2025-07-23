@@ -2,7 +2,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 
 const DEFAULT_PARTICLE_COUNT = 12;
-const DEFAULT_SPOTLIGHT_RADIUS = 300;
+const DEFAULT_SPOTLIGHT_RADIUS = 200;
 const DEFAULT_GLOW_COLOR = "132, 0, 255";
 
 const createParticleElement = (
@@ -319,16 +319,16 @@ const GlobalSpotlight = ({
     spotlight.className = "global-spotlight";
     spotlight.style.cssText = `
       position: fixed;
-      width: 800px;
-      height: 800px;
+      width: 600px;
+      height: 600px;
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle,
-        rgba(${glowColor}, 0.15) 0%,
-        rgba(${glowColor}, 0.08) 15%,
-        rgba(${glowColor}, 0.04) 25%,
-        rgba(${glowColor}, 0.02) 40%,
-        rgba(${glowColor}, 0.01) 65%,
+        rgba(${glowColor}, 0.08) 0%,
+        rgba(${glowColor}, 0.04) 15%,
+        rgba(${glowColor}, 0.02) 25%,
+        rgba(${glowColor}, 0.01) 40%,
+        rgba(${glowColor}, 0.005) 65%,
         transparent 70%
       );
       z-index: 200;
@@ -345,7 +345,10 @@ const GlobalSpotlight = ({
       // Check if the gridRef itself has the target grid class, or find the grid container
       const gridContainer = gridRef.current.classList.contains("other-projects-grid") 
         ? gridRef.current 
+        : gridRef.current.classList.contains("stats-grid")
+        ? gridRef.current
         : gridRef.current.querySelector(".other-projects-grid") ||
+          gridRef.current.querySelector(".stats-grid") ||
           gridRef.current.closest(".bento-section") ||
           gridRef.current.closest("section") ||
           gridRef.current.parentElement;
@@ -415,9 +418,9 @@ const GlobalSpotlight = ({
 
       const targetOpacity =
         minDistance <= proximity
-          ? 0.8
+          ? 0.4
           : minDistance <= fadeDistance
-            ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.8
+            ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.4
             : 0;
 
       gsap.to(spotlightRef.current, {
