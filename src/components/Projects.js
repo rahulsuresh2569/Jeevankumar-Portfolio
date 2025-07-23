@@ -1,4 +1,5 @@
 import React, { useRef, useLayoutEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -6,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753215053/Inventory_2_qmbfhm.png",
   fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753220738/FSM_3_pp6afr.png",
-  aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740018/AIDIT_Donation_app_z1fjdu.jpg",
+  aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1753305296/Aidit_fhxqif.png",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };
 
@@ -95,27 +96,49 @@ const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName
         {/* Bottom CTA Button - with proper spacing */}
         <div className="flex justify-start pt-4 sm:pt-5 md:pt-6 lg:pt-6 xl:pt-10 flex-shrink-0">
           {project.link ? (
-            <a 
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-              style={{
-                background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
-                color: buttonGradients[index]?.textColor,
-                boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
-              }}
-            >
-              <span>Detail View</span>
-              <svg 
-                className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 transition-transform duration-300 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+            project.isInternal ? (
+              <Link 
+                to={project.link}
+                className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                style={{
+                  background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                  color: buttonGradients[index]?.textColor,
+                  boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+                }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+                <span>Detail View</span>
+                <svg 
+                  className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            ) : (
+              <a 
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                style={{
+                  background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                  color: buttonGradients[index]?.textColor,
+                  boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+                }}
+              >
+                <span>Detail View</span>
+                <svg 
+                  className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 transition-transform duration-300 group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            )
           ) : (
             <button 
               className="group relative inline-flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 font-medium text-xs sm:text-sm lg:text-sm px-4 sm:px-5 md:px-6 lg:px-6 xl:px-10 py-2.5 sm:py-3 lg:py-3 xl:py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
@@ -168,7 +191,8 @@ const Projects = () => {
       description: "Comprehensive field management platform enabling real-time coordination and data collection for field service teams.",
       image: cloudinaryImages.fieldManagement,
       ctaText: "Detail View",
-      link: "https://www.figma.com/proto/G0RWN53aP2yvhAD2VtTDAj/projects?page-id=0%3A1&node-id=2-3&viewport=316%2C52%2C0.19&t=2h70iCb5I7qpsU9g-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A3"
+      link: "/field-service-management",
+      isInternal: true
     },
     {
       id: 2,
@@ -180,20 +204,22 @@ const Projects = () => {
       platform: "Manufacturing Industry",
       description: "Streamlined inventory tracking and management system designed for manufacturing businesses to optimize their supply chain operations.",
       image: cloudinaryImages.inventory,
-      ctaText: "Detail View"
+      ctaText: "Detail View",
+      link: "https://www.figma.com/proto/CTxbWIG0LI7Qyr4RKlpcvq/Inventory-pre?page-id=0%3A1&node-id=1-923&viewport=479%2C60%2C0.07&t=XddSXKt12Vc0J9Ru-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A923",
+      isInternal: false
     },
-    {
-      id: 3,
-      tag: "Real Time Project",
-      title: "Tyns",
-      category: "B2C",
-      type: "Product Design",
-      industry: "Donation app",
-      platform: "Mobile Application",
-      description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
-      image: cloudinaryImages.tyns,
-      ctaText: "Detail View"
-    },
+    // {
+    //   id: 3,
+    //   tag: "Real Time Project",
+    //   title: "Tyns",
+    //   category: "B2C",
+    //   type: "Product Design",
+    //   industry: "Donation app",
+    //   platform: "Mobile Application",
+    //   description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
+    //   image: cloudinaryImages.tyns,
+    //   ctaText: "Detail View"
+    // },
     {
       id: 4,
       tag: "Mock Project",
@@ -204,7 +230,9 @@ const Projects = () => {
       platform: "Mobile Application",
       description: "User-friendly donation platform connecting donors with verified charitable organizations for transparent giving.",
       image: cloudinaryImages.aidit,
-      ctaText: "Detail View"
+      ctaText: "Detail View",
+      link: "https://www.behance.net/gallery/173833547/AIDIT-(Donation-app)-UIUX-Case-Study",
+      isInternal: false
     }
   ];
 
@@ -355,7 +383,7 @@ const Projects = () => {
       <div className="py-20 px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
-            Selected Projects
+            Selective Projects
           </h2>
           <p className="text-lg sm:text-xl text-secondary/70 leading-relaxed max-w-2xl mx-auto">
             Showcasing innovative solutions across various industries and platforms through immersive design experiences

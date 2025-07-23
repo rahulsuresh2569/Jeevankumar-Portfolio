@@ -15,6 +15,8 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import FieldServiceManagement from './components/FieldServiceManagement';
+import ResumePage from './components/ResumePage';
 import useDynamicFavicon from './hooks/useDynamicFavicon';
 import { initGA, trackPageView, trackScrollDepth } from './utils/analytics';
 import './App.css';
@@ -128,6 +130,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/field-service-management" element={<FieldServiceManagement />} />
+        <Route path="/resume" element={<ResumePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

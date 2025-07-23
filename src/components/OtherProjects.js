@@ -73,7 +73,7 @@ const OtherProjects = () => {
           .stats-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
           }
           
           @media (min-width: 640px) {
@@ -83,6 +83,7 @@ const OtherProjects = () => {
             
             .stats-grid {
               grid-template-columns: repeat(3, 1fr);
+              gap: 1.5rem;
             }
           }
           
@@ -102,12 +103,25 @@ const OtherProjects = () => {
             background: var(--background-dark);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 2rem;
-            min-height: 200px;
+            padding: 1.5rem;
+            min-height: 160px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             text-align: center;
+          }
+          
+          @media (min-width: 640px) {
+            .stats-card {
+              padding: 2rem;
+              min-height: 180px;
+            }
+          }
+          
+          @media (min-width: 1024px) {
+            .stats-card {
+              min-height: 200px;
+            }
           }
           
           .stats-card::after {
@@ -248,10 +262,10 @@ const OtherProjects = () => {
           </div>
 
           {/* Overall Projects Done Section */}
-          <div className="mt-20 pb-20">
+          <div className="mt-16 sm:mt-20 pb-16 sm:pb-20">
             {/* Stats Section Header */}
-            <div className="text-center mb-12">
-              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4 px-4">
                 Overall Projects Done
               </h3>
             </div>
@@ -271,19 +285,19 @@ const OtherProjects = () => {
                 >
                   <div className="relative z-10 h-full flex flex-col justify-center items-center">
                     {/* Count Display */}
-                    <div className="mb-4">
+                    <div className="mb-3 sm:mb-4">
                       <CountUp
                         from={0}
                         to={stat.count}
                         direction="up"
                         duration={2}
                         delay={0.5}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-secondary"
+                        className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-secondary"
                       />
                     </div>
                     
                     {/* Project Type */}
-                    <h4 className="text-lg sm:text-xl font-medium text-secondary/80 leading-tight text-center">
+                    <h4 className="text-base sm:text-lg md:text-xl font-medium text-secondary/80 leading-tight text-center px-2">
                       {stat.title}
                     </h4>
                   </div>
@@ -293,16 +307,26 @@ const OtherProjects = () => {
 
             {/* For Mock Projects Button */}
             <div className="text-center mt-12">
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-secondary/20 text-secondary/80 rounded-full hover:border-secondary/40 hover:text-secondary transition-all duration-300 hover:scale-105">
-                <span className="text-sm font-medium">For Mock Projects</span>
+              <button 
+                onClick={() => window.open('https://www.behance.net/jeevankumar352', '_blank', 'noopener,noreferrer')}
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-secondary/20 text-secondary/80 hover:border-secondary/40 hover:text-secondary rounded-full font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
+              >
+                {/* Background glow effect */}
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Button content */}
+                <span className="relative z-10 text-base font-semibold">For Mock Projects</span>
                 <svg 
-                  className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1" 
+                  className="relative z-10 w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
+                
+                {/* Shine effect */}
+                <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
               </button>
             </div>
           </div>

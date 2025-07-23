@@ -7,7 +7,7 @@ const cloudinaryImages = {
   logo: "https://res.cloudinary.com/dcua87ney/image/upload/v1752786123/final_logo_ytgxif.svg",
 };
 
-const Navbar = () => {
+const Navbar = ({ isProjectPage = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
   const navRef = useRef(null);
@@ -47,6 +47,17 @@ const Navbar = () => {
       closeMobileMenu();
     }
     
+    // If on a project page, navigate to main page with hash
+    if (isProjectPage) {
+      // For project pages, navigate to main page with the section hash
+      if (href === '#hero') {
+        window.location.href = '/';
+      } else {
+        window.location.href = `/${href}`;
+      }
+      return;
+    }
+    
     // Delay to ensure menu closes before scrolling
     setTimeout(() => {
       const targetElement = document.querySelector(href);
@@ -79,34 +90,21 @@ const Navbar = () => {
 
     mm.add("(min-width: 768px)", () => {
       // --- DESKTOP ANIMATION LOGIC ---
-    const navbar = navRef.current;
-    const container = containerRef.current;
+      const navbar = navRef.current;
+      const container = containerRef.current;
 
-    let compactAnimationTimeout;
-    let normalAnimationTimeout;
+      let compactAnimationTimeout;
+      let normalAnimationTimeout;
 
-    if (navbar && container) {
-      gsap.set(navbar, {
-        position: 'absolute',
-        top: '2rem',
-        width: "100%",
-        left: "0",
-        right: "0",
-        background: 'transparent',
-        backdropFilter: 'none',
-        border: 'none',
-        boxShadow: 'none',
-        padding: '0 0.5rem',
-        opacity: 0,
-      });
-
-      ScrollTrigger.create({
-        trigger: navbar,
-        start: 'top top',
-        onEnter: () => {
+      if (navbar && container) {
+        if (isProjectPage) {
+          // For project pages, start with a fixed navbar and enable compact transition
           gsap.set(navbar, {
             position: 'fixed',
             top: '0px',
+            width: "100%",
+            left: "0",
+            right: "0",
             margin: "0",
             borderRadius: "0rem",
             padding: "0 0.5rem",
@@ -115,141 +113,285 @@ const Navbar = () => {
             boxShadow: "none",
             background: "rgba(17, 17, 17, 0.95)",
             backdropFilter: "blur(12px)",
+            opacity: 1,
           });
-        },
-        onLeaveBack: () => {
+
+          // Create a scroll trigger for compact mode on project pages
+          ScrollTrigger.create({
+            trigger: "body",
+            start: "200px top",
+            end: "bottom bottom",
+            onEnter: () => {
+              clearTimeout(normalAnimationTimeout);
+              setIsCompact(true);
+              
+              let targetWidth, targetLeft;
+              const screenWidth = window.innerWidth;
+              if (screenWidth >= 1380) { // xl+
+                targetWidth = "46%";
+                targetLeft = "26.5%";
+              } else if (screenWidth >= 1024) { // lg
+                targetWidth = "65%";
+                targetLeft = "17.5%";
+              } else if (screenWidth >= 768) { // md
+                targetWidth = "85%";
+                targetLeft = "7.5%";
+              } else { // md
+                targetWidth = "95%";
+                targetLeft = "2.5%";
+              }
+
+              gsap.to(navbar, {
+                width: targetWidth,
+                left: targetLeft,
+                right: targetLeft,
+                transform: "none",
+                background: "rgba(16, 18, 27, 0.4)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(113, 119, 144, 0.1)",
+                padding: "0.25rem 0",
+                marginTop: "1rem",
+                borderRadius: "1rem",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              gsap.to(container, {
+                padding: "0 0.75rem",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              const logoNormal = logoNormalRef.current;
+              const navLinksNormal = navLinksNormalRef.current;
+              const contactNormal = contactNormalRef.current;
+              const resumeButtonNormal = resumeButtonNormalRef.current;
+
+              if (logoNormal) gsap.to(logoNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+              if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 0, y: -20, duration: 0.3, ease: "power3.out" });
+              if (contactNormal) gsap.to(contactNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+              if (resumeButtonNormal) gsap.to(resumeButtonNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+
+              compactAnimationTimeout = setTimeout(() => {
+                const logoCompact = logoCompactRef.current;
+                const navLinksCompact = navLinksCompactRef.current;
+                const contactCompact = contactCompactRef.current;
+                const resumeButtonCompact = resumeButtonCompactRef.current;
+
+                if (logoCompact) gsap.fromTo(logoCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
+                if (navLinksCompact && navLinksCompact.length > 0) gsap.fromTo(navLinksCompact, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" });
+                if (contactCompact) gsap.fromTo(contactCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" });
+                if (resumeButtonCompact) gsap.fromTo(resumeButtonCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" });
+              }, 250);
+            },
+            onLeaveBack: () => {
+              clearTimeout(compactAnimationTimeout);
+              setIsCompact(false);
+              
+              gsap.to(navbar, {
+                width: "100%",
+                left: "0",
+                right: "0",
+                transform: "none",
+                background: "rgba(17, 17, 17, 0.95)",
+                backdropFilter: "blur(12px)",
+                border: "none",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                padding: "0 0.5rem",
+                marginTop: "0rem",
+                borderRadius: "0rem",
+                boxShadow: "none",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              gsap.to(container, {
+                maxWidth: "1152px",
+                padding: "0 1.5rem",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              normalAnimationTimeout = setTimeout(() => {
+                const logoNormal = logoNormalRef.current;
+                const navLinksNormal = navLinksNormalRef.current;
+                const contactNormal = contactNormalRef.current;
+
+                if (logoNormal) gsap.to(logoNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
+                if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" });
+                if (contactNormal) gsap.to(contactNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
+              }, 250);
+            }
+          });
+
+        } else {
+          // Original main page logic
           gsap.set(navbar, {
             position: 'absolute',
             top: '2rem',
-            background: 'transparent',
-            backdropFilter: 'none',
-            border: 'none',
-          });
-        }
-      });
-
-      ScrollTrigger.create({
-        trigger: "#hero",
-        start: "bottom top",
-        end: "bottom top",
-        onEnter: () => {
-          clearTimeout(normalAnimationTimeout);
-          setIsCompact(true);
-          
-            let targetWidth, targetLeft;
-            const screenWidth = window.innerWidth;
-            if (screenWidth >= 1380) { // xl+
-              targetWidth = "46%";
-              targetLeft = "26.5%";
-            } else if (screenWidth >= 1024) { // lg
-              targetWidth = "65%";
-              targetLeft = "17.5%";
-            } else if (screenWidth >= 768) { // md
-              targetWidth = "85%";
-              targetLeft = "7.5%";
-            } else { // md
-              targetWidth = "95%";
-              targetLeft = "2.5%";
-            }
-
-          gsap.to(navbar, {
-              width: targetWidth,
-              left: targetLeft,
-              right: targetLeft,
-            transform: "none",
-            background: "rgba(16, 18, 27, 0.4)",
-            backdropFilter: "blur(20px)",
-            border: "1px solid rgba(113, 119, 144, 0.1)",
-            padding: "0.25rem 0",
-            marginTop: "1rem",
-            borderRadius: "1rem",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-            duration: 0.6,
-            ease: "power3.out"
-          });
-
-          gsap.to(container, {
-            padding: "0 0.75rem",
-            duration: 0.6,
-            ease: "power3.out"
-          });
-
-          const logoNormal = logoNormalRef.current;
-          const navLinksNormal = navLinksNormalRef.current;
-          const contactNormal = contactNormalRef.current;
-          const resumeButtonNormal = resumeButtonNormalRef.current;
-
-            if (logoNormal) gsap.to(logoNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-            if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 0, y: -20, duration: 0.3, ease: "power3.out" });
-            if (contactNormal) gsap.to(contactNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-            if (resumeButtonNormal) gsap.to(resumeButtonNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-
-          compactAnimationTimeout = setTimeout(() => {
-            const logoCompact = logoCompactRef.current;
-            const navLinksCompact = navLinksCompactRef.current;
-            const contactCompact = contactCompactRef.current;
-            const resumeButtonCompact = resumeButtonCompactRef.current;
-
-              if (logoCompact) gsap.fromTo(logoCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
-              if (navLinksCompact && navLinksCompact.length > 0) gsap.fromTo(navLinksCompact, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" });
-              if (contactCompact) gsap.fromTo(contactCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" });
-              if (resumeButtonCompact) gsap.fromTo(resumeButtonCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" });
-          }, 250);
-        },
-        onLeaveBack: () => {
-          clearTimeout(compactAnimationTimeout);
-          setIsCompact(false);
-          
-          gsap.to(navbar, {
             width: "100%",
             left: "0",
             right: "0",
-            transform: "none",
-            background: "rgba(17, 17, 17, 0.95)",
-            backdropFilter: "blur(12px)",
-            border: "none",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            padding: "0 0.5rem",
-            marginTop: "0rem",
-            borderRadius: "0rem",
-            boxShadow: "none",
-            duration: 0.6,
-            ease: "power3.out"
+            background: 'transparent',
+            backdropFilter: 'none',
+            border: 'none',
+            boxShadow: 'none',
+            padding: '0 0.5rem',
+            opacity: 0,
           });
 
-          gsap.to(container, {
-            maxWidth: "1152px",
-            padding: "0 1.5rem",
-            duration: 0.6,
-            ease: "power3.out"
+          ScrollTrigger.create({
+            trigger: navbar,
+            start: 'top top',
+            onEnter: () => {
+              gsap.set(navbar, {
+                position: 'fixed',
+                top: '0px',
+                margin: "0",
+                borderRadius: "0rem",
+                padding: "0 0.5rem",
+                border: "none",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                boxShadow: "none",
+                background: "rgba(17, 17, 17, 0.95)",
+                backdropFilter: "blur(12px)",
+              });
+            },
+            onLeaveBack: () => {
+              gsap.set(navbar, {
+                position: 'absolute',
+                top: '2rem',
+                background: 'transparent',
+                backdropFilter: 'none',
+                border: 'none',
+              });
+            }
           });
 
-          normalAnimationTimeout = setTimeout(() => {
-            const logoNormal = logoNormalRef.current;
-            const navLinksNormal = navLinksNormalRef.current;
-            const contactNormal = contactNormalRef.current;
+          ScrollTrigger.create({
+            trigger: "#hero",
+            start: "bottom top",
+            end: "bottom top",
+            onEnter: () => {
+              clearTimeout(normalAnimationTimeout);
+              setIsCompact(true);
+              
+              let targetWidth, targetLeft;
+              const screenWidth = window.innerWidth;
+              if (screenWidth >= 1380) { // xl+
+                targetWidth = "46%";
+                targetLeft = "26.5%";
+              } else if (screenWidth >= 1024) { // lg
+                targetWidth = "65%";
+                targetLeft = "17.5%";
+              } else if (screenWidth >= 768) { // md
+                targetWidth = "85%";
+                targetLeft = "7.5%";
+              } else { // md
+                targetWidth = "95%";
+                targetLeft = "2.5%";
+              }
 
-              if (logoNormal) gsap.to(logoNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
-              if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" });
-              if (contactNormal) gsap.to(contactNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
-          }, 250);
+              gsap.to(navbar, {
+                width: targetWidth,
+                left: targetLeft,
+                right: targetLeft,
+                transform: "none",
+                background: "rgba(16, 18, 27, 0.4)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(113, 119, 144, 0.1)",
+                padding: "0.25rem 0",
+                marginTop: "1rem",
+                borderRadius: "1rem",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              gsap.to(container, {
+                padding: "0 0.75rem",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              const logoNormal = logoNormalRef.current;
+              const navLinksNormal = navLinksNormalRef.current;
+              const contactNormal = contactNormalRef.current;
+              const resumeButtonNormal = resumeButtonNormalRef.current;
+
+              if (logoNormal) gsap.to(logoNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+              if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 0, y: -20, duration: 0.3, ease: "power3.out" });
+              if (contactNormal) gsap.to(contactNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+              if (resumeButtonNormal) gsap.to(resumeButtonNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+
+              compactAnimationTimeout = setTimeout(() => {
+                const logoCompact = logoCompactRef.current;
+                const navLinksCompact = navLinksCompactRef.current;
+                const contactCompact = contactCompactRef.current;
+                const resumeButtonCompact = resumeButtonCompactRef.current;
+
+                if (logoCompact) gsap.fromTo(logoCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
+                if (navLinksCompact && navLinksCompact.length > 0) gsap.fromTo(navLinksCompact, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" });
+                if (contactCompact) gsap.fromTo(contactCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" });
+                if (resumeButtonCompact) gsap.fromTo(resumeButtonCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" });
+              }, 250);
+            },
+            onLeaveBack: () => {
+              clearTimeout(compactAnimationTimeout);
+              setIsCompact(false);
+              
+              gsap.to(navbar, {
+                width: "100%",
+                left: "0",
+                right: "0",
+                transform: "none",
+                background: "rgba(17, 17, 17, 0.95)",
+                backdropFilter: "blur(12px)",
+                border: "none",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                padding: "0 0.5rem",
+                marginTop: "0rem",
+                borderRadius: "0rem",
+                boxShadow: "none",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              gsap.to(container, {
+                maxWidth: "1152px",
+                padding: "0 1.5rem",
+                duration: 0.6,
+                ease: "power3.out"
+              });
+
+              normalAnimationTimeout = setTimeout(() => {
+                const logoNormal = logoNormalRef.current;
+                const navLinksNormal = navLinksNormalRef.current;
+                const contactNormal = contactNormalRef.current;
+
+                if (logoNormal) gsap.to(logoNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
+                if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" });
+                if (contactNormal) gsap.to(contactNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
+              }, 250);
+            }
+          });
+
+          gsap.to(navbar, { opacity: 1, duration: 0.3, delay: 0.1 });
         }
-      });
+      }
 
-      gsap.to(navbar, { opacity: 1, duration: 0.3, delay: 0.1 });
-    }
-
-    return () => {
-      clearTimeout(compactAnimationTimeout);
-      clearTimeout(normalAnimationTimeout);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      return () => {
+        clearTimeout(compactAnimationTimeout);
+        clearTimeout(normalAnimationTimeout);
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       };
     });
 
     return () => {
       mm.revert();
     };
-  }, []);
+  }, [isProjectPage]);
 
   return (
     <nav 
@@ -315,7 +457,7 @@ const Navbar = () => {
               
               <div ref={resumeButtonCompactRef} className="opacity-0" style={{ transform: 'scale(0.8)' }}>
                 <motion.a
-                  href="/resume.pdf"
+                  href="/resume"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
@@ -389,7 +531,7 @@ const Navbar = () => {
                      style={{ transform: 'scale(0.8)' }}
                    >
                      <motion.a
-                       href="/resume.pdf"
+                       href="/resume"
                        target="_blank"
                        rel="noopener noreferrer"
                        className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
@@ -463,7 +605,7 @@ const Navbar = () => {
                 </motion.a>
                 
                 <motion.a
-                  href="/resume.pdf"
+                  href="/resume"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMobileMenu}

@@ -56,7 +56,7 @@ const NotFound = () => {
               fontSize="clamp(5rem, 18vw, 16rem)"
               fontWeight={900}
               color="#ffffff"
-              fontFamily="'Space Grotesk', sans-serif"
+              fontFamily="'DM Sans', sans-serif"
             >
               404
             </FuzzyText>

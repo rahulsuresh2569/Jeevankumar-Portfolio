@@ -522,7 +522,7 @@ const About = () => {
               viewport={{ once: true, threshold: 0.3 }}
             >
               <p className="text-center sm:text-left text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 leading-relaxed" style={{ lineHeight: '1.7' }}>
-                With <strong className="text-secondary font-semibold">1.7 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-secondary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
+                With <strong className="text-secondary font-semibold">1.8 years of experience</strong> crafting user-centered, interactive designs using tools like <strong className="text-secondary font-semibold">Figma and Photoshop</strong>, I've honed my skills and expanded my knowledge by worked on a various projects like mobile applications, web applications, websites, and cross-platform design solutions.
               </p>
 
               <p className="text-center sm:text-left text-sm sm:text-sm md:text-base lg:text-lg text-secondary/80 leading-relaxed" style={{ lineHeight: '1.7' }}>

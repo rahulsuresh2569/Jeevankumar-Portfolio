@@ -13,7 +13,7 @@ module.exports = {
         'accent': '#f5f5f7',      // Light gray for subtle text
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
       },
       screens: {
         'xs': '475px',
