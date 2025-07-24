@@ -424,69 +424,105 @@ const FieldServiceManagement = () => {
       {/* Section 7: UI Design */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-12 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
             <span className="text-yellow-400">UI</span>{' '}
             <span className="text-white">Design</span>
           </h2>
           
+          {/* Web Application for Admin Title */}
+          <div className="mb-12">
+            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
+              Web Application
+              <br />
+              for Admin
+            </h3>
+          </div>
+          
           {/* Tablet Mockups */}
           <div className="mb-16">
-            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent mb-8 text-center">
-              Tablet Interface
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={fsmImages.tabletDesign1}
-                  alt="Tablet UI Design 1"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={fsmImages.tabletDesign2}
-                  alt="Tablet UI Design 2"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={fsmImages.tabletDesign3}
-                  alt="Tablet UI Design 3"
-                  className="w-full h-auto object-cover"
-                />
+            
+            {/* Overlapping Tablets Container */}
+            <div className="flex justify-center items-center">
+              <div className="relative w-full max-w-6xl h-[300px] sm:h-[350px] md:h-[450px] lg:h-[700px]">
+                
+                {/* Top-right tablet (lowest z-index) */}
+                <div className="absolute top-4 right-8 sm:top-6 sm:right-12 md:-top-10 md:right-20 lg:-top-14 lg:right-[8rem] w-48 sm:w-60 md:w-96 lg:w-[600px] z-10">
+                  <div>
+                    <img 
+                      src={fsmImages.tabletDesign1}
+                      alt="Tablet UI Design 1"
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+                
+                {/* Bottom-right tablet (middle z-index) */}
+                <div className="absolute bottom-2 right-8 sm:bottom-4 sm:right-12 md:-bottom-10 md:right-20 lg:-bottom-14 lg:right-[8rem] w-48 sm:w-60 md:w-96 lg:w-[600px] z-20">
+                  <div>
+                    <img 
+                      src={fsmImages.tabletDesign2}
+                      alt="Tablet UI Design 2"
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+                
+                {/* Left tablet (highest z-index) */}
+                <div className="absolute top-1/2 left-0 sm:left-2 md:left-4 lg:left-8 transform -translate-y-1/2 w-48 sm:w-60 md:w-96 lg:w-[600px] z-30">
+                  <div>
+                    <img 
+                      src={fsmImages.tabletDesign3}
+                      alt="Tablet UI Design 3"
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>
           
+          {/* Mobile Application for Employee Title */}
+          <div className="mb-12">
+            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
+              Mobile Application
+              <br />
+              for Employee
+            </h3>
+          </div>
+          
           {/* iPhone Mockups */}
           <div>
-            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent mb-8 text-center">
-              Mobile Interface
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
-              <div className="rounded-lg overflow-hidden max-w-xs">
+            <div className="flex flex-wrap justify-center items-start gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              {/* iPhone 1 - Higher position */}
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone1}
                   alt="iPhone UI Design 1"
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden max-w-xs">
+              
+              {/* iPhone 2 - Lower position */}
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone2}
                   alt="iPhone UI Design 2"
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden max-w-xs">
+              
+              {/* iPhone 3 - Higher position */}
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone3}
                   alt="iPhone UI Design 3"
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden max-w-xs">
+              
+              {/* iPhone 4 - Lower position */}
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone4}
                   alt="iPhone UI Design 4"
@@ -500,37 +536,73 @@ const FieldServiceManagement = () => {
 
       {/* Section 8: Project Summary Card */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-tertiary rounded-xl p-8 shadow-lg text-center">
-            <p className="text-lg text-accent leading-relaxed">
-              [Project summary and key takeaways will be added here]
-            </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
+            {/* Caution Icon - Top Right Corner */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                <svg 
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-black font-bold" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+              </div>
+            </div>
+            
+            {/* Card Content */}
+            <div className="pr-16 sm:pr-20">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed text-left">
+                <span className="font-semibold text-white">Note :</span> Due to the project scope and confidentiality, only selected screens are shared here to highlight key UX decisions, improvements, and outcomes. The complete interface details can be discussed in a one-on-one call
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Section 9: Thank You & Back to Projects */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-secondary mb-12 text-center">
-            <span className="text-yellow-400">Thank</span>{' '}
-            <span className="text-white">You</span>
-          </h2>
+        <div className="max-w-7xl mx-auto">
+          {/* Thank You Text with Underline Design */}
+          <div className="text-center mb-16">
+            <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold text-white mb-8 tracking-tight leading-none">
+              THANK YOU
+            </h2>
+            
+            {/* Underline Design */}
+            <div className="flex justify-center items-center gap-4 mb-12 w-fit mx-auto">
+              {/* Long white line - matches actual text width */}
+              <div className="h-1 bg-white w-[200px] sm:w-[280px] md:w-[380px] lg:w-[500px] xl:w-[620px]"></div>
+              {/* Yellow accent line */}
+              <div className="h-1 bg-yellow-400 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32"></div>
+            </div>
+          </div>
           
-          <Link 
-            to="/"
-            className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            <span>Back to Projects</span>
-            <svg 
-              className="w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+          {/* Back to Projects Button */}
+          <div className="text-center">
+            <Link 
+              to="/#projects"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-secondary/20 text-secondary/80 hover:border-secondary/40 hover:text-secondary rounded-full font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Button content */}
+              <span className="relative z-10 text-base font-semibold">Back to Projects</span>
+              <svg 
+                className="relative z-10 w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              
+              {/* Shine effect */}
+              <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
+            </Link>
+          </div>
         </div>
       </section>
       </div>
