@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,7 +12,7 @@ const cloudinaryImages = {
 };
 
 // Project Scroll Stack Item Component
-const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName = "" }) => (
+const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName = "", navigate }) => (
   <div
     className={`scroll-stack-card relative w-full min-h-[320px] sm:min-h-[350px] md:min-h-[380px] lg:min-h-[400px] xl:min-h-[420px] h-auto my-8 rounded-[40px] border-none origin-top will-change-transform overflow-hidden ${itemClassName}`.trim()}
     style={{
@@ -33,8 +33,8 @@ const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName
           onClick={() => {
             if (project.link) {
               if (project.isInternal) {
-                // For internal links, navigate in the same tab and scroll to top
-                window.location.href = project.link;
+                // For internal links, use React Router navigation
+                navigate(project.link);
               } else {
                 // For external links, open in new tab
                 window.open(project.link, '_blank', 'noopener,noreferrer');
@@ -176,6 +176,7 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const scrollStackContainerRef = useRef(null);
   const cardsRef = useRef([]);
+  const navigate = useNavigate();
 
   // Button gradient colors for each project
   const buttonGradients = [
@@ -205,14 +206,14 @@ const Projects = () => {
       tag: "Real Time Project", 
       title: "Inventory Management Software",
       category: "B2B SaaS",
-      type: "Web & Mobile Application",
-      industry: "Product Design",
-      platform: "Manufacturing Industry",
+      type: "Product Design",
+      industry: "Manufacturing Industry",
+      platform: "Web Application",
       description: "Streamlined inventory tracking and management system designed for manufacturing businesses to optimize their supply chain operations.",
       image: cloudinaryImages.inventory,
       ctaText: "Detail View",
-      link: "https://www.figma.com/proto/CTxbWIG0LI7Qyr4RKlpcvq/Inventory-pre?page-id=0%3A1&node-id=1-923&viewport=479%2C60%2C0.07&t=XddSXKt12Vc0J9Ru-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A923",
-      isInternal: false
+      link: "/inventory-management",
+      isInternal: true
     },
     // {
     //   id: 3,
@@ -411,6 +412,7 @@ const Projects = () => {
               index={index}
               buttonGradients={buttonGradients}
               itemClassName="bg-primary border border-secondary/10 h-auto shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              navigate={navigate}
             />
           ))}
           {/* End spacer for proper animation completion */}

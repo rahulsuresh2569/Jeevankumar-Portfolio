@@ -6,9 +6,9 @@ import { ParticleCard, GlobalSpotlight } from './MagicBento';
 import Footer from './Footer';
 import useDynamicFavicon from '../hooks/useDynamicFavicon';
 
-const FieldServiceManagement = () => {
+const InventoryManagement = () => {
   const designProcessRef = useRef(null);
-  const glowColor = "252, 211, 77"; // Yellow glow to match the page theme (#FCD34D)
+  const glowColor = "113, 97, 239"; // Purple glow to match the design theme (#7161EF)
   
   // Initialize dynamic favicon functionality to match main page
   useDynamicFavicon();
@@ -30,29 +30,26 @@ const FieldServiceManagement = () => {
     return () => clearTimeout(timeoutId);
   }, []);
   
-  // Project data from Projects.js
+  // Project data
   const projectData = {
     tag: "Real Time Project",
-    title: "Field Service Management Software",
+    title: "Inventory Management Software",
     category: "B2B SaaS",
     type: "Product Design", 
-    industry: "Utilities Industry",
-    platform: "Web & Mobile Application"
+    industry: "Manufacturing Industry",
+    platform: "Web Application"
   };
 
-  // Image paths for the FSM assets - using public folder for reliable access
-  const fsmImages = {
-    main: "/images/fsm/Main.png",
-    overview: "/images/fsm/Overview.png", 
-    problemSolution: "/images/fsm/Problem_Solution.png",
-    modules: "/images/fsm/Modules.png",
-    tabletDesign1: "/images/fsm/UI_Design_Tablet_1.png",
-    tabletDesign2: "/images/fsm/UI_Design_Tablet_2.png", 
-    tabletDesign3: "/images/fsm/UI_Design_Tablet_3.png",
-    iPhone1: "/images/fsm/iPhone_1.png",
-    iPhone2: "/images/fsm/iPhone_2.png",
-    iPhone3: "/images/fsm/iPhone_3.png",
-    iPhone4: "/images/fsm/iPhone_4.png"
+  // Image paths for the Inventory assets - using public folder for reliable access
+  const inventoryImages = {
+    main: "/images/inventory/Main.png",
+    overview: "/images/inventory/Overview.png", 
+    problemSolution: "/images/inventory/Problem_Solution.png",
+    modules: "/images/inventory/Modules.png",
+    tabletDesign1: "/images/inventory/UI Design_Tablet-1.png",
+    tabletDesign2: "/images/inventory/UI Design_Tablet-2.png", 
+    tabletDesign3: "/images/inventory/UI Design_Tablet-3.png",
+    tabletDesign4: "/images/inventory/UI Design_Tablet-4.png"
   };
 
   // Roadmap steps data
@@ -61,31 +58,28 @@ const FieldServiceManagement = () => {
       description: "First, Our team had a call with the client to understand their pain points."
     },
     {
-      description: "Collected the key requirements and needed functionalities."
+      description: "Identified key missing functionalities such as order tracking, manufacturing process management, raw material lot tracking, cash flow management, and FG dispatch tracking."
     },
     {
-      description: "Conducted a competitor analysis of relevant products. And analyzed feedback from various clients who struggled with tracking and assigning field jobs."
+      description: "Conducted a competitor analysis of relevant products. And analyzed recurring requirements and need. Noted down features that could be suitable for solving the client's problems."
     },
     {
-      description: "Noted down features that could be suitable for solving the client's problems."
+      description: "Created a user flow and discussed it with the client.After several discussions and iterations, we finalized the flow and began Ul design using a design system based on the company's color code."
     },
     {
-      description: "We Start Creating User Flow, particularly the two-step job assignment model from inspection to execution, based on job complexity."
-    },
-    {
-      description: "After Client satisfied with the flow we start designing screens and created prototype."
-    },
-    {
-      description: "Created the complete UI for the admin web portal and employee mobile portal, including job assignment, inventory integration, attendance tracking, reimbursements, and leave management."
+      description: "Started designing the screens and created a prototype."
     },
     {
       description: "After completing the screen designs and setting up the prototype, we shared it with the client to check usability."
     },
     {
-      description: "Based on client feedback, made necessary iterations and finalized the design."
+      description: "Based on client feedback, made necessary iterations and finalized the design"
     },
     {
-      description: "Handed over a well-structured, user-friendly design that met all the client's requirements."
+      description: "Delivered a clean, intuitive design that made the system easy to use and met all the client's requirements."
+    },
+    {
+      description: "Made sure the new solution fit naturally into their daily operations, solving past frustrations without disrupting their existing flow."
     }
   ];
 
@@ -139,7 +133,7 @@ const FieldServiceManagement = () => {
             --glow-intensity: 0;
             --glow-radius: 200px;
             --glow-color: ${glowColor};
-            --border-color: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(113, 97, 239, 0.1);
             --background-dark: #1f1f1f;
             --white: #ffffff;
           }
@@ -233,7 +227,7 @@ const FieldServiceManagement = () => {
           
           .design-process-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(113, 97, 239, 0.1);
           }
         `}
       </style>
@@ -241,12 +235,11 @@ const FieldServiceManagement = () => {
       <div className="min-h-screen bg-primary">
       <Navbar isProjectPage={true} />
       
-      {/* Section 1: Project Header with Main Image */}
+      {/* Section 1: Hero Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Top section with title and tags */}
           <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-start mb-8">
-            {/* Left side - Project Info */}
+            {/* Left side - Project title and tags */}
             <div className="lg:flex-1 lg:max-w-2xl mb-8 lg:mb-0">
               {/* Back to projects link */}
               <div className="mb-6">
@@ -277,32 +270,32 @@ const FieldServiceManagement = () => {
               </div>
             </div>
             
-            {/* Right side - Project Tags */}
+            {/* Right side - Project info tags */}
             <div className="lg:flex-shrink-0 lg:ml-8">
               <div className="flex flex-col gap-3 lg:items-end">
-                {/* Mobile: Single column layout, Desktop: Multi-row layout */}
+                {/* First row - Industry and Category */}
                 <div className="flex flex-col sm:flex-row gap-3 lg:flex-col lg:gap-3">
-                  {/* First row - two tags */}
+                  {/* Industry and Category side by side on mobile/tablet, stacked on desktop */}
                   <div className="flex flex-col sm:flex-row gap-3 lg:flex-row">
                     <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center">
-                      {projectData.industry}
+                      {projectData.type}
                     </span>
                     <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center">
                       {projectData.category}
                     </span>
                   </div>
                   
-                  {/* Second row - one tag */}
+                  {/* Platform */}
                   <div className="flex justify-start lg:justify-end">
                     <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center w-full sm:w-auto">
                       {projectData.platform}
                     </span>
                   </div>
                   
-                  {/* Third row - one tag */}
+                  {/* Type */}
                   <div className="flex justify-start lg:justify-end">
                     <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center w-full sm:w-auto">
-                      {projectData.type}
+                      {projectData.industry}
                     </span>
                   </div>
                 </div>
@@ -310,19 +303,19 @@ const FieldServiceManagement = () => {
             </div>
           </div>
           
-          {/* White separator line */}
+          {/* Separator */}
           <div className="w-full h-px bg-secondary mb-12"></div>
           
-          {/* Main Project Image - Full Width */}
+          {/* Main Project Image */}
           <div className="w-full">
             <div className="w-full h-96 lg:h-[500px] xl:h-[600px] rounded-lg overflow-hidden">
               <img 
-                src={fsmImages.main}
-                alt="Field Service Management Software Main View"
+                src={inventoryImages.main}
+                alt="Inventory Management Software Main View"
                 className="w-full h-full object-cover"
                 onError={(e) => {
+                  console.error('Error loading main image:', e);
                   e.target.style.display = 'none';
-                  e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-accent">Image not available</div>';
                 }}
               />
             </div>
@@ -334,22 +327,22 @@ const FieldServiceManagement = () => {
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Content */}
+            {/* Left side - Text content */}
             <div className="pr-8">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
-                <span className="text-yellow-400">Overview</span>
+                <span style={{color: '#7161EF'}}>Overview</span>
               </h2>
               <p className="text-base lg:text-lg text-accent leading-relaxed">
-                This project focused on building a Field Service Management (FSM) system to streamline field operations for the client. It enables real-time tracking of service orders, employee progress, and resource usage. The platform includes modules for inventory, leave, customer management, and invoicing. Both web and mobile apps were designed for admins and employees to ensure smooth coordination and updates.
+                We collaborated with a manufacturing industry client to redesign their outdated inventory system. Their existing tool only managed basic stock records and lacked features critical to their daily operations. Our goal was to build a more complete solution that would support their entire manufacturing and financial process. The result was a modern, user-friendly system that fit seamlessly into their existing workflow.
               </p>
             </div>
             
-            {/* Right side - Overview Image */}
+            {/* Right side - Overview image */}
             <div>
               <div className="w-full rounded-2xl overflow-hidden">
                 <img 
-                  src={fsmImages.overview}
-                  alt="Field Service Management Overview"
+                  src={inventoryImages.overview}
+                  alt="Inventory Management Overview"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -361,23 +354,49 @@ const FieldServiceManagement = () => {
       {/* Section 3: Problem & Solution */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="w-full rounded-lg overflow-hidden">
-            <img 
-              src={fsmImages.problemSolution}
-              alt="Problem and Solution Analysis"
-              className="w-full h-auto object-cover"
-            />
+          <div className="space-y-16 lg:space-y-20">
+            
+            {/* Problem Section */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10 lg:mb-12 text-left text-white">
+                Problem
+              </h2>
+              
+              <div className="space-y-6 lg:space-y-8">
+                <p className="text-base sm:text-lg lg:text-xl text-accent leading-relaxed">
+                  This product is designed for a Manufacturing industry-based client who is currently using an inventory management system that only maintains inventory records. However, the system lacks essential functionalities such as order tracking and manufacturing process management.
+                </p>
+                
+                <p className="text-base sm:text-lg lg:text-xl text-accent leading-relaxed">
+                  A critical challenge is the inability to track raw material lots used in specific products, which is crucial for quality control and auditing. Additionally, the client has requested the integration of a cash flow management module to efficiently handle financial transactions within the office.
+                </p>
+              </div>
+            </div>
+            
+            {/* Solution Section */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10 lg:mb-12 text-left text-white">
+                Solution
+              </h2>
+              
+              <div>
+                <p className="text-base sm:text-lg lg:text-xl text-accent leading-relaxed">
+                  We start designing a custom inventory management system with all the missing features: order tracking, manufacturing process management, raw material lot tracking, FG dispatch tracking, and an integrated cash flow module. The interface was designed to be intuitive and aligned with the client's workflow, ensuring easy adoption. The final product empowered them to manage production and finances more effectively, with full traceability and control.
+                </p>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
 
-      {/* Section 4: My Journey in This Project */}
+      {/* Section 4: My Journey in this Project */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section Heading */}
+          {/* Section Title */}
           <div className="mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
-              <span className="text-yellow-400">My Journey in</span>
+              <span style={{color: '#7161EF'}}>My Journey in</span>
               <br />
               <span className="text-white">this Project</span>
             </h2>
@@ -387,9 +406,9 @@ const FieldServiceManagement = () => {
         {/* Roadmap Component */}
         <ProjectRoadmap 
           steps={roadmapSteps} 
-          themeColor="#FCD34D" 
-          textColor="text-black" 
-          borderColor="border-yellow-400/50" 
+          themeColor="#7161EF" 
+          textColor="text-white" 
+          borderColor="border-purple-400/50" 
         />
       </section>
 
@@ -405,11 +424,11 @@ const FieldServiceManagement = () => {
         
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
-            <span className="text-yellow-400">Design</span>{' '}
+            <span style={{color: '#7161EF'}}>Design</span>{' '}
             <span className="text-white">Process</span>
           </h2>
           
-          {/* Design Process Cards */}
+          {/* Design Process Grid */}
           <div ref={designProcessRef} className="design-process-grid">
             {designProcessSteps.map((step, index) => (
               <ParticleCard
@@ -443,18 +462,18 @@ const FieldServiceManagement = () => {
         </div>
       </section>
 
-      {/* Section 6: Modules & Sub-modules */}
+      {/* Section 6: Modules & Sub Module */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
-            <span className="text-yellow-400">Modules &</span>
+            <span style={{color: '#7161EF'}}>Modules &</span>
             <br />
             <span className="text-white">Sub Module</span>
           </h2>
           
           <div className="w-full rounded-lg overflow-hidden">
             <img 
-              src={fsmImages.modules}
+              src={inventoryImages.modules}
               alt="System Modules and Sub-modules Flowchart"
               className="w-full h-auto object-cover"
             />
@@ -466,20 +485,18 @@ const FieldServiceManagement = () => {
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
-            <span className="text-yellow-400">UI</span>{' '}
+            <span style={{color: '#7161EF'}}>UI</span>{' '}
             <span className="text-white">Design</span>
           </h2>
           
-          {/* Web Application for Admin Title */}
+          {/* Web Application Section */}
           <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Web Application
-              <br />
-              for Admin
             </h3>
           </div>
           
-          {/* Tablet Mockups */}
+          {/* Tablet Mockups Section */}
           <div className="mb-16">
             
             {/* Desktop Layout - Zigzag Alignment */}
@@ -490,7 +507,7 @@ const FieldServiceManagement = () => {
                 <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
-                      src={fsmImages.tabletDesign1}
+                      src={inventoryImages.tabletDesign1}
                       alt="Tablet UI Design 1"
                       className="w-full h-auto object-cover"
                     />
@@ -501,7 +518,7 @@ const FieldServiceManagement = () => {
                 <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
-                      src={fsmImages.tabletDesign2}
+                      src={inventoryImages.tabletDesign2}
                       alt="Tablet UI Design 2"
                       className="w-full h-auto object-cover"
                     />
@@ -512,8 +529,19 @@ const FieldServiceManagement = () => {
                 <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
-                      src={fsmImages.tabletDesign3}
+                      src={inventoryImages.tabletDesign3}
                       alt="Tablet UI Design 3"
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+                
+                {/* Tablet Design 4 - LEFT ALIGNED */}
+                <div className="flex justify-start">
+                  <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
+                    <img 
+                      src={inventoryImages.tabletDesign4}
+                      alt="Tablet UI Design 4"
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -526,73 +554,30 @@ const FieldServiceManagement = () => {
             <div className="block md:hidden space-y-10">
               <div className="w-full">
                 <img 
-                  src={fsmImages.tabletDesign1}
+                  src={inventoryImages.tabletDesign1}
                   alt="Tablet UI Design 1"
                   className="w-full h-auto object-cover rounded-lg"
                 />
               </div>
               <div className="w-full">
                 <img 
-                  src={fsmImages.tabletDesign2}
+                  src={inventoryImages.tabletDesign2}
                   alt="Tablet UI Design 2"
                   className="w-full h-auto object-cover rounded-lg"
                 />
               </div>
               <div className="w-full">
                 <img 
-                  src={fsmImages.tabletDesign3}
+                  src={inventoryImages.tabletDesign3}
                   alt="Tablet UI Design 3"
                   className="w-full h-auto object-cover rounded-lg"
                 />
               </div>
-            </div>
-          </div>
-          
-          {/* Mobile Application for Employee Title */}
-          <div className="mb-12">
-            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
-              Mobile Application
-              <br />
-              for Employee
-            </h3>
-          </div>
-          
-          {/* iPhone Mockups */}
-          <div>
-            <div className="flex flex-wrap justify-center items-start gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              {/* iPhone 1 - Higher position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
+              <div className="w-full">
                 <img 
-                  src={fsmImages.iPhone1}
-                  alt="iPhone UI Design 1"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              
-              {/* iPhone 2 - Lower position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
-                <img 
-                  src={fsmImages.iPhone2}
-                  alt="iPhone UI Design 2"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              
-              {/* iPhone 3 - Higher position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
-                <img 
-                  src={fsmImages.iPhone3}
-                  alt="iPhone UI Design 3"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              
-              {/* iPhone 4 - Lower position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
-                <img 
-                  src={fsmImages.iPhone4}
-                  alt="iPhone UI Design 4"
-                  className="w-full h-auto object-cover"
+                  src={inventoryImages.tabletDesign4}
+                  alt="Tablet UI Design 4"
+                  className="w-full h-auto object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -606,9 +591,9 @@ const FieldServiceManagement = () => {
           <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
             {/* Caution Icon - Top Right Corner */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{backgroundColor: '#7161EF'}}>
                 <svg 
-                  className="w-6 h-6 sm:w-7 sm:h-7 text-black font-bold" 
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-white font-bold" 
                   fill="currentColor" 
                   viewBox="0 0 24 24"
                 >
@@ -617,7 +602,7 @@ const FieldServiceManagement = () => {
               </div>
             </div>
             
-            {/* Card Content */}
+            {/* Content with right margin for icon */}
             <div className="pr-16 sm:pr-20">
               <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed text-left">
                 <span className="font-semibold text-white">Note :</span> Due to the project scope and confidentiality, only selected screens are shared here to highlight key UX decisions, improvements, and outcomes. The complete interface details can be discussed in a one-on-one call
@@ -627,21 +612,21 @@ const FieldServiceManagement = () => {
         </div>
       </section>
 
-      {/* Section 9: Thank You & Back to Projects */}
+      {/* Section 9: Thank You Section */}
       <section className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Thank You Text with Underline Design */}
+          {/* Thank You Text */}
           <div className="text-center mb-16">
             <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold text-white mb-8 tracking-tight leading-none">
               THANK YOU
             </h2>
             
-            {/* Underline Design */}
+            {/* Decorative line with accent */}
             <div className="flex justify-center items-center gap-4 mb-12 w-fit mx-auto">
-              {/* Long white line - matches actual text width */}
+              {/* Main line */}
               <div className="h-1 bg-white w-[200px] sm:w-[280px] md:w-[380px] lg:w-[500px] xl:w-[620px]"></div>
-              {/* Yellow accent line */}
-              <div className="h-1 bg-yellow-400 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32"></div>
+              {/* Accent line */}
+              <div className="h-1 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32" style={{backgroundColor: '#7161EF'}}></div>
             </div>
           </div>
           
@@ -654,7 +639,7 @@ const FieldServiceManagement = () => {
               {/* Background glow effect */}
               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              {/* Button content */}
+              {/* Button text and arrow */}
               <span className="relative z-10 text-base font-semibold">Back to Projects</span>
               <svg 
                 className="relative z-10 w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1" 
@@ -665,7 +650,7 @@ const FieldServiceManagement = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
               
-              {/* Shine effect */}
+              {/* Shimmer effect */}
               <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700 ease-out"></div>
             </Link>
           </div>
@@ -678,4 +663,4 @@ const FieldServiceManagement = () => {
   );
 };
 
-export default FieldServiceManagement;
+export default InventoryManagement;

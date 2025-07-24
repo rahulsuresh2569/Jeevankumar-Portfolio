@@ -16,6 +16,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import FieldServiceManagement from './components/FieldServiceManagement';
+import InventoryManagement from './components/InventoryManagement';
 import ResumePage from './components/ResumePage';
 import useDynamicFavicon from './hooks/useDynamicFavicon';
 import { initGA, trackPageView, trackScrollDepth } from './utils/analytics';
@@ -158,6 +159,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/field-service-management" element={<FieldServiceManagement />} />
+        <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

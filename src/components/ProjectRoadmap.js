@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectRoadmap = ({ steps }) => {
+const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black', borderColor = 'border-yellow-400/50' }) => {
   // Define a more organized grid positioning logic
   const getStepPosition = (stepNumber) => {
     // Create a snaking pattern with consistent spacing
@@ -39,7 +39,7 @@ const ProjectRoadmap = ({ steps }) => {
                     key={i} 
                     className={`border-l border-dashed h-full ${
                       isMainColumn 
-                        ? 'border-yellow-400/50' 
+                        ? borderColor 
                         : 'border-white/30'
                     }`}
                   ></div>
@@ -75,7 +75,7 @@ const ProjectRoadmap = ({ steps }) => {
                           className="relative flex justify-start"
                           style={{ gridColumn: position.markerColumn }}
                         >
-                          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-lg z-30 shadow-lg">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${textColor} text-xl z-30 shadow-lg`} style={{backgroundColor: themeColor}}>
                             {stepNumber}
                           </div>
                         </div>
@@ -114,13 +114,13 @@ const ProjectRoadmap = ({ steps }) => {
                   <div className="flex items-start space-x-4">
                     {/* Step Number with Connecting Line */}
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-base z-20 shadow-lg">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${textColor} text-lg z-20 shadow-lg`} style={{backgroundColor: themeColor}}>
                         {stepNumber}
                       </div>
                       
                       {/* Connecting Line to Next Step */}
                       {index < steps.length - 1 && (
-                        <div className="w-px h-8 bg-gradient-to-b from-yellow-400 to-yellow-400/30 mt-2"></div>
+                        <div className="w-px h-8 mt-2" style={{background: `linear-gradient(to bottom, ${themeColor}, ${themeColor}30)`}}></div>
                       )}
                     </div>
                     
