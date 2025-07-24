@@ -26,6 +26,33 @@ const Portfolio = () => {
   // Initialize dynamic favicon functionality
   useDynamicFavicon();
 
+  // Handle hash-based navigation when page loads
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Wait for the page to fully load before scrolling
+      const scrollToSection = () => {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          // Get the navbar height to offset scroll position
+          const navbarHeight = 80; // Approximate navbar height
+          const elementPosition = targetElement.offsetTop - navbarHeight;
+          
+          window.scrollTo({
+            top: elementPosition,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }
+      };
+
+      // Delay to ensure all components are mounted and rendered
+      const timeoutId = setTimeout(scrollToSection, 500);
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, []);
+
   // Initialize Google Analytics
   useEffect(() => {
     // Initialize GA4

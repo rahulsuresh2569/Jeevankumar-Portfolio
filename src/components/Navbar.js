@@ -53,6 +53,7 @@ const Navbar = ({ isProjectPage = false }) => {
       if (href === '#hero') {
         window.location.href = '/';
       } else {
+        // Use the hash directly so the main page can handle scroll to section
         window.location.href = `/${href}`;
       }
       return;
