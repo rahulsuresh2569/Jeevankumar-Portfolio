@@ -23,7 +23,7 @@ const ProjectRoadmap = ({ steps }) => {
   return (
     <div className="relative">
       {/* Desktop Version - Hidden on mobile */}
-      <section className="hidden md:block py-16 px-4 sm:px-6 lg:px-8 relative">
+      <section className="hidden md:block py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative">
         {/* Background Grid - Perfectly aligned with existing 12-column system */}
         <div className="absolute inset-0 opacity-40">
           <div className="h-full w-full mx-auto max-w-7xl">
@@ -102,33 +102,35 @@ const ProjectRoadmap = ({ steps }) => {
       </section>
 
       {/* Mobile Version - Visible only on mobile */}
-      <section className="block md:hidden px-4">
+      <section className="block md:hidden py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md mx-auto">
-          <div className="space-y-8">
+          <div className="relative space-y-8">
             {steps.map((step, index) => {
               const stepNumber = index + 1;
               
               return (
                 <div key={stepNumber} className="relative">
                   {/* Mobile Step Marker and Card */}
-                  <div className="flex flex-col items-start space-y-3">
-                    {/* Step Number */}
-                    <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-base z-20">
-                      {stepNumber}
+                  <div className="flex items-start space-x-4">
+                    {/* Step Number with Connecting Line */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-base z-20 shadow-lg">
+                        {stepNumber}
+                      </div>
+                      
+                      {/* Connecting Line to Next Step */}
+                      {index < steps.length - 1 && (
+                        <div className="w-px h-8 bg-gradient-to-b from-yellow-400 to-yellow-400/30 mt-2"></div>
+                      )}
                     </div>
                     
                     {/* Content Card */}
-                    <div className="w-full bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-700/50">
+                    <div className="flex-1 bg-gray-800/90 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300">
                       <p className="text-white text-sm leading-relaxed">
                         {step.description}
                       </p>
                     </div>
                   </div>
-                  
-                  {/* Connecting Line to Next Step */}
-                  {index < steps.length - 1 && (
-                    <div className="absolute left-5 top-10 w-px h-8 bg-yellow-400/30 z-10"></div>
-                  )}
                 </div>
               );
             })}

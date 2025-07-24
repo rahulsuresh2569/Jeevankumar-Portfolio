@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import ProjectRoadmap from './ProjectRoadmap';
@@ -11,6 +11,11 @@ const FieldServiceManagement = () => {
   
   // Initialize dynamic favicon functionality to match main page
   useDynamicFavicon();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Project data from Projects.js
   const projectData = {
@@ -224,7 +229,7 @@ const FieldServiceManagement = () => {
       <Navbar isProjectPage={true} />
       
       {/* Section 1: Project Header with Main Image */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Top section with title and tags */}
           <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-32 lg:items-start mb-8">
@@ -295,7 +300,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 2: Overview */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Content */}
@@ -323,7 +328,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 3: Problem & Solution */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="w-full rounded-lg overflow-hidden">
             <img 
@@ -336,7 +341,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 4: My Journey in This Project */}
-      <section className="py-5 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Heading */}
           <div className="mb-24">
@@ -353,7 +358,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 5: Design Process */}
-      <section className="design-process-section py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-primary">
+      <section className="design-process-section py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-primary">
         {/* Global Spotlight Effect */}
         <GlobalSpotlight
           gridRef={designProcessRef}
@@ -403,7 +408,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 6: Modules & Sub-modules */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
             <span className="text-yellow-400">Modules &</span>
@@ -411,7 +416,7 @@ const FieldServiceManagement = () => {
             <span className="text-white">Sub Module</span>
           </h2>
           
-          <div className="w-full rounded-lg overflow-hidden shadow-lg">
+          <div className="w-full rounded-lg overflow-hidden">
             <img 
               src={fsmImages.modules}
               alt="System Modules and Sub-modules Flowchart"
@@ -422,7 +427,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
             <span className="text-yellow-400">UI</span>{' '}
@@ -441,8 +446,8 @@ const FieldServiceManagement = () => {
           {/* Tablet Mockups */}
           <div className="mb-16">
             
-            {/* Overlapping Tablets Container */}
-            <div className="flex justify-center items-center">
+            {/* Desktop Overlapping Layout - Hidden on mobile */}
+            <div className="hidden md:flex justify-center items-center">
               <div className="relative w-full max-w-6xl h-[300px] sm:h-[350px] md:h-[450px] lg:h-[700px]">
                 
                 {/* Top-right tablet (lowest z-index) */}
@@ -478,6 +483,31 @@ const FieldServiceManagement = () => {
                   </div>
                 </div>
                 
+              </div>
+            </div>
+            
+            {/* Mobile Stacked Layout - Visible only on mobile */}
+            <div className="block md:hidden space-y-6">
+              <div className="w-full">
+                <img 
+                  src={fsmImages.tabletDesign1}
+                  alt="Tablet UI Design 1"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              </div>
+              <div className="w-full">
+                <img 
+                  src={fsmImages.tabletDesign2}
+                  alt="Tablet UI Design 2"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              </div>
+              <div className="w-full">
+                <img 
+                  src={fsmImages.tabletDesign3}
+                  alt="Tablet UI Design 3"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
               </div>
             </div>
           </div>
@@ -535,7 +565,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 8: Project Summary Card */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
             {/* Caution Icon - Top Right Corner */}
@@ -562,7 +592,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 9: Thank You & Back to Projects */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Thank You Text with Underline Design */}
           <div className="text-center mb-16">

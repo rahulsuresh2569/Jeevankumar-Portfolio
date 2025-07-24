@@ -32,7 +32,13 @@ const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName
           loading="lazy"
           onClick={() => {
             if (project.link) {
-              window.open(project.link, '_blank', 'noopener,noreferrer');
+              if (project.isInternal) {
+                // For internal links, navigate in the same tab and scroll to top
+                window.location.href = project.link;
+              } else {
+                // For external links, open in new tab
+                window.open(project.link, '_blank', 'noopener,noreferrer');
+              }
             }
           }}
         />
