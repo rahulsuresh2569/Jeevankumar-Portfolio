@@ -98,132 +98,68 @@ const Navbar = ({ isProjectPage = false }) => {
 
       if (navbar && container) {
         if (isProjectPage) {
-          // For project pages, start with a fixed navbar and enable compact transition
+          // For project pages, use only compact floating navbar (no transitions)
+          setIsCompact(true);
+          
+          let targetWidth, targetLeft;
+          const screenWidth = window.innerWidth;
+          if (screenWidth >= 1380) { // xl+
+            targetWidth = "46%";
+            targetLeft = "26.5%";
+          } else if (screenWidth >= 1024) { // lg
+            targetWidth = "65%";
+            targetLeft = "17.5%";
+          } else if (screenWidth >= 768) { // md
+            targetWidth = "85%";
+            targetLeft = "7.5%";
+          } else { // md
+            targetWidth = "95%";
+            targetLeft = "2.5%";
+          }
+
+          // Set initial compact floating navbar state
           gsap.set(navbar, {
             position: 'fixed',
-            top: '0px',
-            width: "100%",
-            left: "0",
-            right: "0",
+            top: '1rem',
+            width: targetWidth,
+            left: targetLeft,
+            right: targetLeft,
             margin: "0",
-            borderRadius: "0rem",
-            padding: "0 0.5rem",
-            border: "none",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            boxShadow: "none",
-            background: "rgba(17, 17, 17, 0.95)",
-            backdropFilter: "blur(12px)",
+            borderRadius: "1rem",
+            padding: "0.25rem 0",
+            border: "1px solid rgba(113, 119, 144, 0.1)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+            background: "rgba(16, 18, 27, 0.4)",
+            backdropFilter: "blur(20px)",
             opacity: 1,
           });
 
-          // Create a scroll trigger for compact mode on project pages
-          ScrollTrigger.create({
-            trigger: "body",
-            start: "200px top",
-            end: "bottom bottom",
-            onEnter: () => {
-              clearTimeout(normalAnimationTimeout);
-              setIsCompact(true);
-              
-              let targetWidth, targetLeft;
-              const screenWidth = window.innerWidth;
-              if (screenWidth >= 1380) { // xl+
-                targetWidth = "46%";
-                targetLeft = "26.5%";
-              } else if (screenWidth >= 1024) { // lg
-                targetWidth = "65%";
-                targetLeft = "17.5%";
-              } else if (screenWidth >= 768) { // md
-                targetWidth = "85%";
-                targetLeft = "7.5%";
-              } else { // md
-                targetWidth = "95%";
-                targetLeft = "2.5%";
-              }
-
-              gsap.to(navbar, {
-                width: targetWidth,
-                left: targetLeft,
-                right: targetLeft,
-                transform: "none",
-                background: "rgba(16, 18, 27, 0.4)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(113, 119, 144, 0.1)",
-                padding: "0.25rem 0",
-                marginTop: "1rem",
-                borderRadius: "1rem",
-                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-                duration: 0.6,
-                ease: "power3.out"
-              });
-
-              gsap.to(container, {
-                padding: "0 0.75rem",
-                duration: 0.6,
-                ease: "power3.out"
-              });
-
-              const logoNormal = logoNormalRef.current;
-              const navLinksNormal = navLinksNormalRef.current;
-              const contactNormal = contactNormalRef.current;
-              const resumeButtonNormal = resumeButtonNormalRef.current;
-
-              if (logoNormal) gsap.to(logoNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-              if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 0, y: -20, duration: 0.3, ease: "power3.out" });
-              if (contactNormal) gsap.to(contactNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-              if (resumeButtonNormal) gsap.to(resumeButtonNormal, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
-
-              compactAnimationTimeout = setTimeout(() => {
-                const logoCompact = logoCompactRef.current;
-                const navLinksCompact = navLinksCompactRef.current;
-                const contactCompact = contactCompactRef.current;
-                const resumeButtonCompact = resumeButtonCompactRef.current;
-
-                if (logoCompact) gsap.fromTo(logoCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
-                if (navLinksCompact && navLinksCompact.length > 0) gsap.fromTo(navLinksCompact, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.05, stagger: 0.1, ease: "power3.out" });
-                if (contactCompact) gsap.fromTo(contactCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.5, ease: "power3.out" });
-                if (resumeButtonCompact) gsap.fromTo(resumeButtonCompact, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.55, ease: "power3.out" });
-              }, 250);
-            },
-            onLeaveBack: () => {
-              clearTimeout(compactAnimationTimeout);
-              setIsCompact(false);
-              
-              gsap.to(navbar, {
-                width: "100%",
-                left: "0",
-                right: "0",
-                transform: "none",
-                background: "rgba(17, 17, 17, 0.95)",
-                backdropFilter: "blur(12px)",
-                border: "none",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-                padding: "0 0.5rem",
-                marginTop: "0rem",
-                borderRadius: "0rem",
-                boxShadow: "none",
-                duration: 0.6,
-                ease: "power3.out"
-              });
-
-              gsap.to(container, {
-                maxWidth: "1152px",
-                padding: "0 1.5rem",
-                duration: 0.6,
-                ease: "power3.out"
-              });
-
-              normalAnimationTimeout = setTimeout(() => {
-                const logoNormal = logoNormalRef.current;
-                const navLinksNormal = navLinksNormalRef.current;
-                const contactNormal = contactNormalRef.current;
-
-                if (logoNormal) gsap.to(logoNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
-                if (navLinksNormal) gsap.to(navLinksNormal, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" });
-                if (contactNormal) gsap.to(contactNormal, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
-              }, 250);
-            }
+          gsap.set(container, {
+            padding: "0 0.75rem",
           });
+
+          // Initialize compact elements immediately (they should be visible by default)
+          const logoCompact = logoCompactRef.current;
+          const navLinksCompact = navLinksCompactRef.current;
+          const contactCompact = contactCompactRef.current;
+          const resumeButtonCompact = resumeButtonCompactRef.current;
+
+          // Ensure compact elements are visible (no need to set opacity since classes are updated)
+          if (logoCompact) gsap.set(logoCompact, { scale: 1 });
+          if (navLinksCompact && navLinksCompact.length > 0) gsap.set(navLinksCompact, { y: 0 });
+          if (contactCompact) gsap.set(contactCompact, { scale: 1 });
+          if (resumeButtonCompact) gsap.set(resumeButtonCompact, { scale: 1 });
+
+          // Hide normal elements
+          const logoNormal = logoNormalRef.current;
+          const navLinksNormal = navLinksNormalRef.current;
+          const contactNormal = contactNormalRef.current;
+          const resumeButtonNormal = resumeButtonNormalRef.current;
+
+          if (logoNormal) gsap.set(logoNormal, { opacity: 0, scale: 0.8 });
+          if (navLinksNormal) gsap.set(navLinksNormal, { opacity: 0, y: -20 });
+          if (contactNormal) gsap.set(contactNormal, { opacity: 0, scale: 0.8 });
+          if (resumeButtonNormal) gsap.set(resumeButtonNormal, { opacity: 0, scale: 0.8 });
 
         } else {
           // Original main page logic
@@ -382,8 +318,10 @@ const Navbar = ({ isProjectPage = false }) => {
       }
 
       return () => {
-        clearTimeout(compactAnimationTimeout);
-        clearTimeout(normalAnimationTimeout);
+        if (!isProjectPage) {
+          clearTimeout(compactAnimationTimeout);
+          clearTimeout(normalAnimationTimeout);
+        }
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       };
     });
@@ -416,8 +354,7 @@ const Navbar = ({ isProjectPage = false }) => {
               {/* Logo */}
               <motion.div 
                 ref={logoCompactRef}
-                className="flex-shrink-0 opacity-0"
-                style={{ transform: 'scale(0.8)' }}
+                className="flex-shrink-0"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
@@ -432,8 +369,7 @@ const Navbar = ({ isProjectPage = false }) => {
                   ref={el => navLinksCompactRef.current[index] = el}
                   href={item.href}
                   onClick={(e) => handleSmoothScroll(e, item.href)}
-                  className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm opacity-0 cursor-pointer"
-                  style={{ transform: 'translateY(20px)' }}
+                  className="font-medium text-secondary/80 hover:text-secondary relative group whitespace-nowrap text-sm cursor-pointer"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -446,8 +382,7 @@ const Navbar = ({ isProjectPage = false }) => {
                 ref={contactCompactRef}
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, '#contact')}
-                className="px-5 py-2 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full opacity-0 cursor-pointer"
-                style={{ transform: 'scale(0.8)' }}
+                className="px-5 py-2 text-sm font-medium bg-white/8 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 backdrop-blur-sm rounded-full cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
@@ -455,7 +390,7 @@ const Navbar = ({ isProjectPage = false }) => {
                 Contact Me
               </motion.a>
               
-              <div ref={resumeButtonCompactRef} className="opacity-0" style={{ transform: 'scale(0.8)' }}>
+              <div ref={resumeButtonCompactRef}>
                 <motion.a
                   href="/resume"
                   target="_blank"

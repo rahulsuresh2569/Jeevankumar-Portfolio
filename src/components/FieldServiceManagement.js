@@ -229,7 +229,7 @@ const FieldServiceManagement = () => {
           {/* Top section with title and tags */}
           <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-32 lg:items-start mb-8">
             {/* Left side - Project Info */}
-            <div className="lg:flex-1 lg:max-w-2xl">
+            <div className="lg:flex-1 lg:max-w-2xl mb-8 lg:mb-0">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary leading-tight mb-4">
                 {projectData.title}
               </h1>
@@ -244,28 +244,31 @@ const FieldServiceManagement = () => {
             {/* Right side - Project Tags */}
             <div className="lg:flex-shrink-0 lg:ml-8">
               <div className="flex flex-col gap-3 lg:items-end">
-                {/* First row - two tags */}
-                <div className="flex gap-3">
-                  <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600">
-                    {projectData.industry}
-                  </span>
-                  <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600">
-                    {projectData.category}
-                  </span>
-                </div>
-                
-                {/* Second row - one tag */}
-                <div className="flex justify-end">
-                  <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600">
-                    {projectData.platform}
-                  </span>
-                </div>
-                
-                {/* Third row - one tag */}
-                <div className="flex justify-end">
-                  <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600">
-                    {projectData.type}
-                  </span>
+                {/* Mobile: Single column layout, Desktop: Multi-row layout */}
+                <div className="flex flex-col sm:flex-row gap-3 lg:flex-col lg:gap-3">
+                  {/* First row - two tags */}
+                  <div className="flex flex-col sm:flex-row gap-3 lg:flex-row">
+                    <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center">
+                      {projectData.industry}
+                    </span>
+                    <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center">
+                      {projectData.category}
+                    </span>
+                  </div>
+                  
+                  {/* Second row - one tag */}
+                  <div className="flex justify-start lg:justify-end">
+                    <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center w-full sm:w-auto">
+                      {projectData.platform}
+                    </span>
+                  </div>
+                  
+                  {/* Third row - one tag */}
+                  <div className="flex justify-start lg:justify-end">
+                    <span className="inline-block px-4 py-2 bg-tertiary text-accent text-sm font-medium rounded-full border border-gray-600 text-center w-full sm:w-auto">
+                      {projectData.type}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -297,8 +300,8 @@ const FieldServiceManagement = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Content */}
             <div className="pr-8">
-              <h2 className="text-4xl lg:text-5xl font-bold text-secondary mb-8 text-left">
-                Overview
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
+                <span className="text-yellow-400">Overview</span>
               </h2>
               <p className="text-base lg:text-lg text-accent leading-relaxed">
                 This project focused on building a Field Service Management (FSM) system to streamline field operations for the client. It enables real-time tracking of service orders, employee progress, and resource usage. The platform includes modules for inventory, leave, customer management, and invoicing. Both web and mobile apps were designed for admins and employees to ensure smooth coordination and updates.
@@ -333,11 +336,11 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 4: My Journey in This Project */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Heading */}
           <div className="mb-24">
-            <h2 className="text-4xl lg:text-5xl font-bold text-secondary text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
               <span className="text-yellow-400">My Journey in</span>
               <br />
               <span className="text-white">this Project</span>
@@ -360,7 +363,7 @@ const FieldServiceManagement = () => {
         />
         
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
             <span className="text-yellow-400">Design</span>{' '}
             <span className="text-white">Process</span>
           </h2>
@@ -402,7 +405,7 @@ const FieldServiceManagement = () => {
       {/* Section 6: Modules & Sub-modules */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-16 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
             <span className="text-yellow-400">Modules &</span>
             <br />
             <span className="text-white">Sub Module</span>
@@ -421,13 +424,14 @@ const FieldServiceManagement = () => {
       {/* Section 7: UI Design */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-12 text-center">
-            UI Design
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-12 text-left">
+            <span className="text-yellow-400">UI</span>{' '}
+            <span className="text-white">Design</span>
           </h2>
           
           {/* Tablet Mockups */}
           <div className="mb-16">
-            <h3 className="text-xl font-semibold text-accent mb-8 text-center">
+            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent mb-8 text-center">
               Tablet Interface
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -457,7 +461,7 @@ const FieldServiceManagement = () => {
           
           {/* iPhone Mockups */}
           <div>
-            <h3 className="text-xl font-semibold text-accent mb-8 text-center">
+            <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent mb-8 text-center">
               Mobile Interface
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
@@ -508,8 +512,9 @@ const FieldServiceManagement = () => {
       {/* Section 9: Thank You & Back to Projects */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-6xl lg:text-8xl font-bold text-secondary mb-12">
-            Thank You
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-secondary mb-12 text-center">
+            <span className="text-yellow-400">Thank</span>{' '}
+            <span className="text-white">You</span>
           </h2>
           
           <Link 

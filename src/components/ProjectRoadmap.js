@@ -1,36 +1,51 @@
 import React from 'react';
 
 const ProjectRoadmap = ({ steps }) => {
-  // Define the grid positioning logic for the snaking pattern
+  // Define a more organized grid positioning logic
   const getStepPosition = (stepNumber) => {
+    // Create a snaking pattern with consistent spacing
+    // Grid has 12 columns for better organization
     const positions = {
-      1: { gridColumn: '1 / span 3', side: 'left', height: 'min-h-24', markerColumn: '1' },
-      2: { gridColumn: '5 / span 3', side: 'left', height: 'min-h-20', markerColumn: '5' },
-      3: { gridColumn: '9 / span 3', side: 'left', height: 'min-h-20', markerColumn: '9' },
-      4: { gridColumn: '12 / span 3', side: 'right', height: 'min-h-20', markerColumn: '12' },
-      5: { gridColumn: '8 / span 3', side: 'right', height: 'min-h-16', markerColumn: '8' },
-      6: { gridColumn: '4 / span 3', side: 'right', height: 'min-h-16', markerColumn: '4' },
-      7: { gridColumn: '1 / span 3', side: 'left', height: 'min-h-16', markerColumn: '1' },
-      8: { gridColumn: '5 / span 3', side: 'left', height: 'min-h-16', markerColumn: '5' },
-      9: { gridColumn: '9 / span 3', side: 'left', height: 'min-h-14', markerColumn: '9' },
-      10: { gridColumn: '12 / span 3', side: 'left', height: 'min-h-14', markerColumn: '12' }
+      1: { gridColumn: '1 / span 3', side: 'left', markerColumn: '1' },
+      2: { gridColumn: '4 / span 3', side: 'left', markerColumn: '4' },
+      3: { gridColumn: '7 / span 3', side: 'left', markerColumn: '7' },
+      4: { gridColumn: '10 / span 3', side: 'right', markerColumn: '10' },
+      5: { gridColumn: '7 / span 3', side: 'right', markerColumn: '7' },
+      6: { gridColumn: '4 / span 3', side: 'right', markerColumn: '4' },
+      7: { gridColumn: '1 / span 3', side: 'left', markerColumn: '1' },
+      8: { gridColumn: '4 / span 3', side: 'left', markerColumn: '4' },
+      9: { gridColumn: '7 / span 3', side: 'left', markerColumn: '7' },
+      10: { gridColumn: '10 / span 3', side: 'right', markerColumn: '10' }
     };
-    return positions[stepNumber] || { gridColumn: '8 / span 3', side: 'left', height: 'min-h-16', markerColumn: '8' };
+    return positions[stepNumber] || { gridColumn: '7 / span 3', side: 'left', markerColumn: '7' };
   };
 
   return (
     <div className="relative">
       {/* Desktop Version - Hidden on mobile */}
       <section className="hidden md:block py-16 px-4 sm:px-6 lg:px-8 relative">
-        {/* Background Grid - 15 vertical dashed lines */}
+        {/* Background Grid - Perfectly aligned with existing 12-column system */}
         <div className="absolute inset-0 opacity-40">
-          <div 
-            className="h-full w-full grid gap-0"
-            style={{ gridTemplateColumns: 'repeat(15, minmax(0, 1fr))' }}
-          >
-            {[...Array(15)].map((_, i) => (
-              <div key={i} className="border-r border-dashed border-white/60 h-full"></div>
-            ))}
+          <div className="h-full w-full mx-auto max-w-7xl">
+            <div 
+              className="h-full w-full grid gap-2"
+              style={{ gridTemplateColumns: 'repeat(12, minmax(0, 1fr))' }}
+            >
+              {[...Array(12)].map((_, i) => {
+                // Highlight main positioning columns (1, 4, 7, 10) where cards are placed
+                const isMainColumn = [0, 3, 6, 9].includes(i);
+                return (
+                  <div 
+                    key={i} 
+                    className={`border-l border-dashed h-full ${
+                      isMainColumn 
+                        ? 'border-yellow-400/50' 
+                        : 'border-white/30'
+                    }`}
+                  ></div>
+                );
+              })}
+            </div>
           </div>
         </div>
         
@@ -38,59 +53,56 @@ const ProjectRoadmap = ({ steps }) => {
           {/* Calculate total height needed for the roadmap */}
           <div 
             className="relative"
-            style={{ height: `${(steps.length * 120) + 120}px` }}
+            style={{ height: `${(steps.length * 140) + 100}px` }}
           >
-            {/* Central Spine for Markers */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-px bg-transparent z-10 h-full">
-              {/* Roadmap Grid Container */}
-              <div className="relative h-full">
-                {steps.map((step, index) => {
-                  const stepNumber = index + 1;
-                  const position = getStepPosition(stepNumber);
-                  const markerTop = `${(index * 120) + 60}px`; // Spacing between markers
-                  
-                  return (
-                    <div key={stepNumber} className="absolute w-full" style={{ top: markerTop }}>
-                      {/* Connecting Line and Card Container */}
-                      <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-screen max-w-7xl">
+            {/* Roadmap Grid Container */}
+            <div className="relative h-full w-full">
+              {steps.map((step, index) => {
+                const stepNumber = index + 1;
+                const position = getStepPosition(stepNumber);
+                const stepTop = `${(index * 140) + 70}px`; // Consistent spacing between steps
+                
+                return (
+                  <div key={stepNumber} className="absolute w-full" style={{ top: stepTop }}>
+                    {/* Main Grid Container */}
+                    <div className="w-full" style={{ marginLeft: '-25px' }}>
+                      <div 
+                        className="relative w-full grid gap-2"
+                        style={{ gridTemplateColumns: 'repeat(12, minmax(0, 1fr))' }}
+                      >
+                        {/* Step Marker positioned on grid line */}
                         <div 
-                          className="relative w-full grid gap-2"
-                          style={{ gridTemplateColumns: 'repeat(15, minmax(0, 1fr))' }}
+                          className="relative flex justify-start"
+                          style={{ gridColumn: position.markerColumn }}
                         >
-                          {/* Step Marker positioned on grid line */}
-                          <div 
-                            className="relative"
-                            style={{ gridColumn: position.markerColumn }}
-                          >
-                            <div className="absolute -top-12 left-0 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-lg z-30">
-                              {stepNumber}
-                            </div>
+                          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-lg z-30 shadow-lg">
+                            {stepNumber}
                           </div>
-                          
-                          {/* Content Card */}
-                          <div 
-                            className="relative"
-                            style={{ gridColumn: position.gridColumn }}
-                          >
-                            <div className={`roadmap-card bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 ${position.height} min-h-16 flex items-center relative shadow-lg border border-gray-700/50`}>
-                              <p className="text-white text-xs lg:text-sm leading-relaxed relative z-20">
-                                {step.description}
-                              </p>
-                            </div>
+                        </div>
+                        
+                        {/* Content Card */}
+                        <div 
+                          className="relative"
+                          style={{ gridColumn: position.gridColumn }}
+                        >
+                          <div className={`roadmap-card bg-gray-800/90 backdrop-blur-sm rounded-2xl p-5 min-h-20 flex items-center relative shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300`}>
+                            <p className="text-white text-sm lg:text-base leading-relaxed relative z-20">
+                              {step.description}
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* Mobile Version - Visible only on mobile */}
-      <section className="block md:hidden py-8 px-4">
+      <section className="block md:hidden px-4">
         <div className="max-w-md mx-auto">
           <div className="space-y-8">
             {steps.map((step, index) => {
