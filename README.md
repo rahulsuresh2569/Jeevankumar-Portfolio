@@ -6,7 +6,48 @@ A stunning, interactive portfolio website showcasing UI/UX design work through c
 
 **🔗 [View Live Portfolio](https://jeevankumark.netlify.app/)**
 
-## 📖 About
+## � Demo
+
+### Portfolio Showcase
+
+<div align="center">
+
+#### 🎯 Hero Section
+*Landing page with animated text and interactive elements*
+
+<img src="public/images/hero.jpg" alt="Hero Section - Interactive landing page with GSAP animations" width="800"/>
+
+---
+
+#### 👨‍💻 About Me
+*3D interactive about section with parallax effects*
+
+<img src="public/images/about-me.jpg" alt="About Section - 3D interactive elements and smooth animations" width="800"/>
+
+---
+
+#### 🚀 Projects Showcase
+*Scroll-stack project cards with depth effects*
+
+<img src="public/images/projects.jpg" alt="Projects Section - Interactive project cards with hover effects" width="800"/>
+
+---
+
+#### 💼 Experience Timeline
+*Animated timeline with progressive reveal*
+
+<img src="public/images/experience.jpg" alt="Experience Section - Interactive timeline with scroll animations" width="800"/>
+
+---
+
+#### 💬 Testimonials
+*Auto-rotating carousel with smooth transitions*
+
+<img src="public/images/testimonials.jpg" alt="Testimonials Section - Interactive carousel with magnetic effects" width="800"/>
+
+</div>
+
+## �📖 About
 
 This portfolio was created to showcase Jeevankumar's UI/UX design expertise through an immersive, interactive web experience. The project pushes the boundaries of modern web development, featuring complex animations, smooth interactions, and performance-optimized design that rivals award-winning websites.
 
