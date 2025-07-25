@@ -69,7 +69,7 @@ const ProjectScrollStackItem = ({ project, index, buttonGradients, itemClassName
             <div className="space-y-2.5 sm:space-y-3 lg:space-y-3 mb-5 sm:mb-6 md:mb-7 lg:mb-7 xl:mb-12">
               
               {/* First line: First 2 tags with dot between them */}
-              <div className="flex items-center gap-2 sm:gap-2.5 lg:gap-2.5 flex-wrap">
+              <div className="flex items-center gap-2 sm:gap-2.5 lg:gap-2.5">
                 <span className="inline-block px-3 sm:px-3.5 lg:px-3.5 py-1.5 sm:py-1.5 lg:py-1.5 bg-gray-100 text-gray-700 text-xs lg:text-xs font-medium rounded-full">
                   {project.category}
                 </span>

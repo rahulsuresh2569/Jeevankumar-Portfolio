@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import ProjectRoadmap from './ProjectRoadmap';
 import { ParticleCard, GlobalSpotlight } from './MagicBento';
 import Footer from './Footer';
+import WaveAnimation from './WaveAnimation';
 import useDynamicFavicon from '../hooks/useDynamicFavicon';
 
 const InventoryManagement = () => {
@@ -655,6 +656,14 @@ const InventoryManagement = () => {
           </div>
         </div>
       </section>
+      
+      {/* Additional spacing before wave animation */}
+      <div className="h-24 md:h-32 lg:h-40"></div>
+      </div>
+      
+      {/* Wave Animation before Footer */}
+      <div className="relative">
+        <WaveAnimation />
       </div>
       
       <Footer />
