@@ -40,19 +40,19 @@ const FieldServiceManagement = () => {
     platform: "Web & Mobile Application"
   };
 
-  // Image paths for the FSM assets - using public folder for reliable access
+  // Image paths for the FSM assets - using optimized Cloudinary URLs for better performance
   const fsmImages = {
-    main: "/images/fsm/Main.png",
-    overview: "/images/fsm/Overview.png", 
-    problemSolution: "/images/fsm/Problem_Solution.png",
-    modules: "/images/fsm/Modules.png",
-    tabletDesign1: "/images/fsm/UI_Design_Tablet_1.png",
-    tabletDesign2: "/images/fsm/UI_Design_Tablet_2.png", 
-    tabletDesign3: "/images/fsm/UI_Design_Tablet_3.png",
-    iPhone1: "/images/fsm/iPhone_1.png",
-    iPhone2: "/images/fsm/iPhone_2.png",
-    iPhone3: "/images/fsm/iPhone_3.png",
-    iPhone4: "/images/fsm/iPhone_4.png"
+    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753450577/Main_h6p0qu.png",
+    overview: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1400,h_900,c_limit,dpr_auto,fl_progressive/v1753450578/Overview_bwncht.png", 
+    problemSolution: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450578/Problem_Solution_jv0rsb.png",
+    modules: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450577/Modules_mzmfj0.png",
+    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450579/UI_Design_Tablet_1_ee5ms2.png",
+    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450580/UI_Design_Tablet_2_swuqky.png", 
+    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450581/UI_Design_Tablet_3_ppaxty.png",
+    iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450575/iPhone_1_vur2y2.png",
+    iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450576/iPhone_2_j74tw7.png",
+    iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450575/iPhone_3_ttfqjz.png",
+    iPhone4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450576/iPhone_4_lvqila.png"
   };
 
   // Roadmap steps data
@@ -245,7 +245,7 @@ const FieldServiceManagement = () => {
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Top section with title and tags */}
-          <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-start mb-8">
+          <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-center mb-8">
             {/* Left side - Project Info */}
             <div className="lg:flex-1 lg:max-w-2xl mb-8 lg:mb-0">
               {/* Back to projects link */}
@@ -333,20 +333,20 @@ const FieldServiceManagement = () => {
       {/* Section 2: Overview */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
             {/* Left side - Content */}
-            <div className="pr-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
+            <div className="lg:pr-8 xl:pr-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 lg:mb-10 text-left">
                 <span className="text-yellow-400">Overview</span>
               </h2>
-              <p className="text-base lg:text-lg text-accent leading-relaxed">
+              <p className="text-base lg:text-lg xl:text-xl text-accent leading-relaxed lg:leading-8">
                 This project focused on building a Field Service Management (FSM) system to streamline field operations for the client. It enables real-time tracking of service orders, employee progress, and resource usage. The platform includes modules for inventory, leave, customer management, and invoicing. Both web and mobile apps were designed for admins and employees to ensure smooth coordination and updates.
               </p>
             </div>
             
             {/* Right side - Overview Image */}
-            <div>
-              <div className="w-full rounded-2xl overflow-hidden">
+            <div className="order-first lg:order-last">
+              <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src={fsmImages.overview}
                   alt="Field Service Management Overview"

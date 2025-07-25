@@ -40,16 +40,15 @@ const InventoryManagement = () => {
     platform: "Web Application"
   };
 
-  // Image paths for the Inventory assets - using public folder for reliable access
+  // Image paths for the Inventory assets - using optimized Cloudinary URLs for better performance
   const inventoryImages = {
-    main: "/images/inventory/Main.png",
-    overview: "/images/inventory/Overview.png", 
-    problemSolution: "/images/inventory/Problem_Solution.png",
-    modules: "/images/inventory/Modules.png",
-    tabletDesign1: "/images/inventory/UI Design_Tablet-1.png",
-    tabletDesign2: "/images/inventory/UI Design_Tablet-2.png", 
-    tabletDesign3: "/images/inventory/UI Design_Tablet-3.png",
-    tabletDesign4: "/images/inventory/UI Design_Tablet-4.png"
+    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753450662/Main_ccgupl.png",
+    overview: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1400,h_900,c_limit,dpr_auto,fl_progressive/v1753450664/Overview_r6isj1.png", 
+    modules: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450663/Modules_nlcwo0.png",
+    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450665/UI_Design_Tablet-1_xgrkeo.png",
+    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450666/UI_Design_Tablet-2_jvu3vy.png", 
+    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450667/UI_Design_Tablet-3_qwcsm1.png",
+    tabletDesign4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450668/UI_Design_Tablet-4_lefdk4.png"
   };
 
   // Roadmap steps data
@@ -238,7 +237,7 @@ const InventoryManagement = () => {
       {/* Section 1: Hero Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-start mb-8">
+          <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-center mb-8">
             {/* Left side - Project title and tags */}
             <div className="lg:flex-1 lg:max-w-2xl mb-8 lg:mb-0">
               {/* Back to projects link */}
@@ -326,20 +325,20 @@ const InventoryManagement = () => {
       {/* Section 2: Overview */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
             {/* Left side - Text content */}
-            <div className="pr-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
+            <div className="lg:pr-8 xl:pr-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 lg:mb-10 text-left">
                 <span style={{color: '#7161EF'}}>Overview</span>
               </h2>
-              <p className="text-base lg:text-lg text-accent leading-relaxed">
+              <p className="text-base lg:text-lg xl:text-xl text-accent leading-relaxed lg:leading-8">
                 We collaborated with a manufacturing industry client to redesign their outdated inventory system. Their existing tool only managed basic stock records and lacked features critical to their daily operations. Our goal was to build a more complete solution that would support their entire manufacturing and financial process. The result was a modern, user-friendly system that fit seamlessly into their existing workflow.
               </p>
             </div>
             
             {/* Right side - Overview image */}
-            <div>
-              <div className="w-full rounded-2xl overflow-hidden">
+            <div className="order-first lg:order-last">
+              <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src={inventoryImages.overview}
                   alt="Inventory Management Overview"

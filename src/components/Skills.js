@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { SiFigma, SiAdobexd, SiAdobephotoshop, SiAdobeillustrator } from 'react-icons/si';
-import { FaRegHandPaper } from 'react-icons/fa';
 
 const Skills = () => {
   const skillsRef = useRef(null);
@@ -21,12 +19,12 @@ const Skills = () => {
   ];
 
   const toolProficiency = [
-    { name: 'Figma', icon: <SiFigma className="text-purple-500" /> },
-    { name: 'Adobe XD', icon: <SiAdobexd className="text-pink-500" /> },
-    { name: 'Figjam', icon: <SiFigma className="text-green-500" /> },
-    { name: 'Prottapp', icon: <FaRegHandPaper className="text-blue-500" /> },
-    { name: 'Photoshop', icon: <SiAdobephotoshop className="text-blue-600" /> },
-    { name: 'Illustrator', icon: <SiAdobeillustrator className="text-orange-500" /> }
+    { name: 'Figma', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450725/figma_k2xz1o.svg' },
+    { name: 'Adobe XD', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450723/adobe_xd_nmdv4w.svg' },
+    { name: 'Figjam', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450724/figjam_ltjlor.svg' },
+    { name: 'Prottapp', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450726/prottapp_baolgh.svg' },
+    { name: 'Photoshop', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450722/adobe_photoshop_qtr7kr.svg' },
+    { name: 'Illustrator', icon: 'https://res.cloudinary.com/dcua87ney/image/upload/v1753450721/adobe_illustrator_n19zml.svg' }
   ];
 
   const graphicSkills = [
@@ -84,7 +82,13 @@ const Skills = () => {
               boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.3)'
             }}
           >
-            {hasIcon && icon && <span className="text-base sm:text-lg">{icon}</span>}
+            {hasIcon && icon && (
+              <img 
+                src={icon} 
+                alt={`${children} icon`} 
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain" 
+              />
+            )}
             {children}
           </span>
         </div>
