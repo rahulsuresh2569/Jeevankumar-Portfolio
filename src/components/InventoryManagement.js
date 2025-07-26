@@ -482,7 +482,7 @@ const InventoryManagement = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      {/* <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
             <span style={{color: '#7161EF'}}>UI</span>{' '}
@@ -490,21 +490,21 @@ const InventoryManagement = () => {
           </h2>
           
           {/* Web Application Section */}
-          <div className="mb-12">
+          {/* <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Web Application
             </h3>
           </div>
           
           {/* Tablet Mockups Section */}
-          <div className="mb-16">
+          {/* <div className="mb-16">
             
             {/* Desktop Layout - Zigzag Alignment */}
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
               <div className="space-y-8 lg:space-y-10">
                 
                 {/* Tablet Design 1 - RIGHT ALIGNED */}
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign1}
@@ -515,7 +515,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 2 - LEFT ALIGNED */}
-                <div className="flex justify-start">
+                {/* <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign2}
@@ -526,7 +526,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 3 - RIGHT ALIGNED */}
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign3}
@@ -537,7 +537,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 4 - LEFT ALIGNED */}
-                <div className="flex justify-start">
+                {/* <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign4}
@@ -551,7 +551,7 @@ const InventoryManagement = () => {
             </div>
             
             {/* Mobile Layout - Stacked Design */}
-            <div className="block md:hidden space-y-10">
+            {/* <div className="block md:hidden space-y-10">
               <div className="w-full">
                 <img 
                   src={inventoryImages.tabletDesign1}
@@ -583,7 +583,7 @@ const InventoryManagement = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 8: Project Summary Card */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">

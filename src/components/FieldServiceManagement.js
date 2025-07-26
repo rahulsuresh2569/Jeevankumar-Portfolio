@@ -464,7 +464,7 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      {/* <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
             <span className="text-yellow-400">UI</span>{' '}
@@ -472,7 +472,7 @@ const FieldServiceManagement = () => {
           </h2>
           
           {/* Web Application for Admin Title */}
-          <div className="mb-12">
+          {/* <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Web Application
               <br />
@@ -481,14 +481,14 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* Tablet Mockups */}
-          <div className="mb-16">
+          {/* <div className="mb-16">
             
             {/* Desktop Layout - Zigzag Alignment */}
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
               <div className="space-y-8 lg:space-y-10">
                 
                 {/* Tablet Design 1 - RIGHT ALIGNED */}
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign1}
@@ -499,7 +499,7 @@ const FieldServiceManagement = () => {
                 </div>
                 
                 {/* Tablet Design 2 - LEFT ALIGNED */}
-                <div className="flex justify-start">
+                {/* <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign2}
@@ -510,7 +510,7 @@ const FieldServiceManagement = () => {
                 </div>
                 
                 {/* Tablet Design 3 - RIGHT ALIGNED */}
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign3}
@@ -524,7 +524,7 @@ const FieldServiceManagement = () => {
             </div>
             
             {/* Mobile Layout - Stacked Design */}
-            <div className="block md:hidden space-y-10">
+            {/* <div className="block md:hidden space-y-10">
               <div className="w-full">
                 <img 
                   src={fsmImages.tabletDesign1}
@@ -550,7 +550,7 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* Mobile Application for Employee Title */}
-          <div className="mb-12">
+          {/* <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Mobile Application
               <br />
@@ -559,10 +559,10 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* iPhone Mockups */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap justify-center items-start gap-4 sm:gap-6 md:gap-8 lg:gap-12">
               {/* iPhone 1 - Higher position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
+              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone1}
                   alt="iPhone UI Design 1"
@@ -571,7 +571,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 2 - Lower position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
+              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone2}
                   alt="iPhone UI Design 2"
@@ -580,7 +580,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 3 - Higher position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
+              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone3}
                   alt="iPhone UI Design 3"
@@ -589,7 +589,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 4 - Lower position */}
-              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
+              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone4}
                   alt="iPhone UI Design 4"
@@ -599,7 +599,7 @@ const FieldServiceManagement = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 8: Project Summary Card */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
