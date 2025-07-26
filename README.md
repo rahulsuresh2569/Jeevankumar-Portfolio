@@ -2,52 +2,30 @@
 
 A stunning, interactive portfolio website showcasing UI/UX design work through cutting-edge web animations and modern development techniques. This project demonstrates the perfect marriage of creative design and technical excellence.
 
+
 ## 🌟 Live Demo
 
 **🔗 [View Live Portfolio](https://jeevankumark.netlify.app/)**
 
-## � Demo
+## 📸 Demo
 
 ### Portfolio Showcase
 
 <div align="center">
 
-#### 🎯 Hero Section
-*Landing page with animated text and interactive elements*
+#### 🎥 Interactive Portfolio Walkthrough
+*Complete demonstration of all features, animations, and interactions*
 
-<img src="public/images/hero.jpg" alt="Hero Section - Interactive landing page with GSAP animations" width="800"/>
+<video width="800" controls>
+  <source src="https://res.cloudinary.com/dcua87ney/video/upload/v1753519756/Jeevankumar_Portfolio_Demo_orlm3f.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
----
-
-#### 👨‍💻 About Me
-*3D interactive about section with parallax effects*
-
-<img src="public/images/about-me.jpg" alt="About Section - 3D interactive elements and smooth animations" width="800"/>
-
----
-
-#### 🚀 Projects Showcase
-*Scroll-stack project cards with depth effects*
-
-<img src="public/images/projects.jpg" alt="Projects Section - Interactive project cards with hover effects" width="800"/>
-
----
-
-#### 💼 Experience Timeline
-*Animated timeline with progressive reveal*
-
-<img src="public/images/experience.jpg" alt="Experience Section - Interactive timeline with scroll animations" width="800"/>
-
----
-
-#### 💬 Testimonials
-*Auto-rotating carousel with smooth transitions*
-
-<img src="public/images/testimonials.jpg" alt="Testimonials Section - Interactive carousel with magnetic effects" width="800"/>
+*Experience the full portfolio with smooth animations, 3D effects, and interactive elements in action*
 
 </div>
 
-## �📖 About
+## 📖 About
 
 This portfolio was created to showcase Jeevankumar's UI/UX design expertise through an immersive, interactive web experience. The project pushes the boundaries of modern web development, featuring complex animations, smooth interactions, and performance-optimized design that rivals award-winning websites.
 
