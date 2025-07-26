@@ -1,33 +1,25 @@
 # Jeevankumar Portfolio
 
-A stunning, interactive portfolio website showcasing UI/UX design work through cutting-edge web animations and modern development techniques. This project demonstrates the perfect marriage of creative design and technical excellence.
+This portfolio was created to showcase Jeevankumar's UI/UX design expertise through an immersive, interactive web experience. The project pushes the boundaries of modern web development, featuring complex animations, smooth interactions, and performance-optimized design that rivals award-winning websites.
 
 
 ## 🌟 Live Demo
 
 **🔗 [View Live Portfolio](https://jeevankumark.netlify.app/)**
 
-## 📸 Demo
+*Experience the full portfolio with smooth animations, 3D effects, and interactive elements in action*
 
-### Portfolio Showcase
+## 📸 Demo
 
 <div align="center">
 
+https://github.com/user-attachments/assets/6174b5c8-60dc-4380-af9c-7f46df72b919
+
 #### 🎥 Interactive Portfolio Walkthrough
+
 *Complete demonstration of all features, animations, and interactions*
 
-<video width="800" controls>
-  <source src="https://res.cloudinary.com/dcua87ney/video/upload/v1753519756/Jeevankumar_Portfolio_Demo_orlm3f.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-*Experience the full portfolio with smooth animations, 3D effects, and interactive elements in action*
-
 </div>
-
-## 📖 About
-
-This portfolio was created to showcase Jeevankumar's UI/UX design expertise through an immersive, interactive web experience. The project pushes the boundaries of modern web development, featuring complex animations, smooth interactions, and performance-optimized design that rivals award-winning websites.
 
 ## ✨ Key Features
 
