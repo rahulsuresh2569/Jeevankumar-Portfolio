@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Remove local image imports and use Cloudinary URLs
 const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753215053/Inventory_2_qmbfhm.png",
-  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753220738/FSM_3_pp6afr.png",
+  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753604220/FSM_project_rez27d.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1753305296/Aidit_fhxqif.png",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };
@@ -180,7 +180,7 @@ const Projects = () => {
 
   // Button gradient colors for each project
   const buttonGradients = [
-    { from: '#E8B513', to: '#FFEBAC', textColor: 'black' }, // Project 1: Yellow
+    { from: '#916CDA', to: '#B198FF', textColor: 'white' }, // Project 1: Purple (FSM)
     { from: '#7161EF', to: '#9E92FF', textColor: 'white' }, // Project 2: Purple
     { from: '#25BD18', to: '#80E777', textColor: 'black' }, // Project 3: Green
     { from: '#3D8361', to: '#6CC298', textColor: 'white' }  // Project 4: Teal

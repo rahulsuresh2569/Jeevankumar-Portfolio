@@ -9,7 +9,7 @@ import useDynamicFavicon from '../hooks/useDynamicFavicon';
 
 const FieldServiceManagement = () => {
   const designProcessRef = useRef(null);
-  const glowColor = "252, 211, 77"; // Yellow glow to match the page theme (#FCD34D)
+  const glowColor = "145, 108, 218"; // Purple glow to match the page theme (#916CDA)
   
   // Initialize dynamic favicon functionality to match main page
   useDynamicFavicon();
@@ -43,17 +43,17 @@ const FieldServiceManagement = () => {
 
   // Image paths for the FSM assets - using optimized Cloudinary URLs for better performance
   const fsmImages = {
-    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753450577/Main_h6p0qu.png",
+    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753603323/Main_orcxct.png",
     overview: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1400,h_900,c_limit,dpr_auto,fl_progressive/v1753450578/Overview_bwncht.png", 
     problemSolution: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450578/Problem_Solution_jv0rsb.png",
     modules: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450577/Modules_mzmfj0.png",
-    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450579/UI_Design_Tablet_1_ee5ms2.png",
-    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450580/UI_Design_Tablet_2_swuqky.png", 
-    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450581/UI_Design_Tablet_3_ppaxty.png",
-    iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450575/iPhone_1_vur2y2.png",
-    iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450576/iPhone_2_j74tw7.png",
-    iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450575/iPhone_3_ttfqjz.png",
-    iPhone4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753450576/iPhone_4_lvqila.png"
+    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_1_xyzphp.png",
+    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_2_oligga.png", 
+    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_3_nv77qe.png",
+    iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753559723/iPhone_1_aoivvl.png",
+    iPhone2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753559723/iPhone_2_bfzfph.png",
+    iPhone3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753559723/iPhone_3_lffg1v.png",
+    iPhone4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753559724/iPhone_4_octqrm.png"
   };
 
   // Roadmap steps data
@@ -338,7 +338,7 @@ const FieldServiceManagement = () => {
             {/* Left side - Content */}
             <div className="lg:pr-8 xl:pr-12">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 lg:mb-10 text-left">
-                <span className="text-yellow-400">Overview</span>
+                <span style={{color: '#916CDA'}}>Overview</span>
               </h2>
               <p className="text-base lg:text-lg xl:text-xl text-accent leading-relaxed lg:leading-8">
                 This project focused on building a Field Service Management (FSM) system to streamline field operations for the client. It enables real-time tracking of service orders, employee progress, and resource usage. The platform includes modules for inventory, leave, customer management, and invoicing. Both web and mobile apps were designed for admins and employees to ensure smooth coordination and updates.
@@ -378,7 +378,7 @@ const FieldServiceManagement = () => {
           {/* Section Heading */}
           <div className="mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
-              <span className="text-yellow-400">My Journey in</span>
+              <span style={{color: '#916CDA'}}>My Journey in</span>
               <br />
               <span className="text-white">this Project</span>
             </h2>
@@ -388,9 +388,9 @@ const FieldServiceManagement = () => {
         {/* Roadmap Component */}
         <ProjectRoadmap 
           steps={roadmapSteps} 
-          themeColor="#FCD34D" 
-          textColor="text-black" 
-          borderColor="border-yellow-400/50" 
+          themeColor="#916CDA" 
+          textColor="text-white" 
+          borderColor="border-purple-400/50" 
         />
       </section>
 
@@ -406,7 +406,7 @@ const FieldServiceManagement = () => {
         
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
-            <span className="text-yellow-400">Design</span>{' '}
+            <span style={{color: '#916CDA'}}>Design</span>{' '}
             <span className="text-white">Process</span>
           </h2>
           
@@ -448,7 +448,7 @@ const FieldServiceManagement = () => {
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
-            <span className="text-yellow-400">Modules &</span>
+            <span style={{color: '#916CDA'}}>Modules &</span>
             <br />
             <span className="text-white">Sub Module</span>
           </h2>
@@ -464,15 +464,15 @@ const FieldServiceManagement = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      {/* <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
-            <span className="text-yellow-400">UI</span>{' '}
+            <span style={{color: '#916CDA'}}>UI</span>{' '}
             <span className="text-white">Design</span>
           </h2>
           
           {/* Web Application for Admin Title */}
-          {/* <div className="mb-12">
+          <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Web Application
               <br />
@@ -481,14 +481,14 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* Tablet Mockups */}
-          {/* <div className="mb-16">
+          <div className="mb-16">
             
             {/* Desktop Layout - Zigzag Alignment */}
-            {/* <div className="hidden md:block">
+            <div className="hidden md:block">
               <div className="space-y-8 lg:space-y-10">
                 
                 {/* Tablet Design 1 - RIGHT ALIGNED */}
-                {/* <div className="flex justify-end">
+                <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign1}
@@ -499,7 +499,7 @@ const FieldServiceManagement = () => {
                 </div>
                 
                 {/* Tablet Design 2 - LEFT ALIGNED */}
-                {/* <div className="flex justify-start">
+                <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign2}
@@ -510,7 +510,7 @@ const FieldServiceManagement = () => {
                 </div>
                 
                 {/* Tablet Design 3 - RIGHT ALIGNED */}
-                {/* <div className="flex justify-end">
+                <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={fsmImages.tabletDesign3}
@@ -524,7 +524,7 @@ const FieldServiceManagement = () => {
             </div>
             
             {/* Mobile Layout - Stacked Design */}
-            {/* <div className="block md:hidden space-y-10">
+            <div className="block md:hidden space-y-10">
               <div className="w-full">
                 <img 
                   src={fsmImages.tabletDesign1}
@@ -550,7 +550,7 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* Mobile Application for Employee Title */}
-          {/* <div className="mb-12">
+          <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Mobile Application
               <br />
@@ -559,10 +559,10 @@ const FieldServiceManagement = () => {
           </div>
           
           {/* iPhone Mockups */}
-          {/* <div>
+          <div>
             <div className="flex flex-wrap justify-center items-start gap-4 sm:gap-6 md:gap-8 lg:gap-12">
               {/* iPhone 1 - Higher position */}
-              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone1}
                   alt="iPhone UI Design 1"
@@ -571,7 +571,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 2 - Lower position */}
-              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone2}
                   alt="iPhone UI Design 2"
@@ -580,7 +580,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 3 - Higher position */}
-              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52">
                 <img 
                   src={fsmImages.iPhone3}
                   alt="iPhone UI Design 3"
@@ -589,7 +589,7 @@ const FieldServiceManagement = () => {
               </div>
               
               {/* iPhone 4 - Lower position */}
-              {/* <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
+              <div className="rounded-lg overflow-hidden w-36 xs:w-40 sm:w-44 md:w-48 lg:w-52 transform translate-y-4 sm:translate-y-6 md:translate-y-8 lg:translate-y-12">
                 <img 
                   src={fsmImages.iPhone4}
                   alt="iPhone UI Design 4"
@@ -599,7 +599,7 @@ const FieldServiceManagement = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Section 8: Project Summary Card */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -607,9 +607,9 @@ const FieldServiceManagement = () => {
           <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
             {/* Caution Icon - Top Right Corner */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{backgroundColor: '#916CDA'}}>
                 <svg 
-                  className="w-6 h-6 sm:w-7 sm:h-7 text-black font-bold" 
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-white font-bold" 
                   fill="currentColor" 
                   viewBox="0 0 24 24"
                 >
@@ -641,8 +641,8 @@ const FieldServiceManagement = () => {
             <div className="flex justify-center items-center gap-4 mb-12 w-fit mx-auto">
               {/* Long white line - matches actual text width */}
               <div className="h-1 bg-white w-[200px] sm:w-[280px] md:w-[380px] lg:w-[500px] xl:w-[620px]"></div>
-              {/* Yellow accent line */}
-              <div className="h-1 bg-yellow-400 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32"></div>
+              {/* Purple accent line */}
+              <div className="h-1 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32" style={{backgroundColor: '#916CDA'}}></div>
             </div>
           </div>
           
