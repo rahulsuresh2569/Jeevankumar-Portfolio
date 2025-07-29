@@ -5,8 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Remove local image imports and use Cloudinary URLs
 const cloudinaryImages = {
-  inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753215053/Inventory_2_qmbfhm.png",
-  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753604220/FSM_project_rez27d.png",
+  inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753799887/inventory_2_fe3mqs.png",
+  fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753797862/FSM_jozpz2.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1753305296/Aidit_fhxqif.png",
   tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
 };

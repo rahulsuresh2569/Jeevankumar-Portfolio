@@ -9,7 +9,7 @@ import useDynamicFavicon from '../hooks/useDynamicFavicon';
 
 const InventoryManagement = () => {
   const designProcessRef = useRef(null);
-  const glowColor = "113, 97, 239"; // Purple glow to match the design theme (#7161EF)
+  const glowColor = "97, 130, 239"; // Blue glow to match the design theme (#6182EF)
   
   // Initialize dynamic favicon functionality to match main page
   useDynamicFavicon();
@@ -43,13 +43,13 @@ const InventoryManagement = () => {
 
   // Image paths for the Inventory assets - using optimized Cloudinary URLs for better performance
   const inventoryImages = {
-    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753450662/Main_ccgupl.png",
+    main: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1000,c_limit,dpr_auto,fl_progressive/v1753799727/Main_cp9uun.png",
     overview: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1400,h_900,c_limit,dpr_auto,fl_progressive/v1753450664/Overview_r6isj1.png", 
     modules: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450663/Modules_nlcwo0.png",
-    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450665/UI_Design_Tablet-1_xgrkeo.png",
-    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450666/UI_Design_Tablet-2_jvu3vy.png", 
-    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450667/UI_Design_Tablet-3_qwcsm1.png",
-    tabletDesign4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753450668/UI_Design_Tablet-4_lefdk4.png"
+    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753799726/UI_Design_Tablet-1_rquwhl.png",
+    tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753799726/UI_Design_Tablet-2_ictljx.png", 
+    tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753799727/UI_Design_Tablet-3_wjcbwj.png",
+    tabletDesign4: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753799727/UI_Design_Tablet-4_q8eshg.png"
   };
 
   // Roadmap steps data
@@ -133,7 +133,7 @@ const InventoryManagement = () => {
             --glow-intensity: 0;
             --glow-radius: 200px;
             --glow-color: ${glowColor};
-            --border-color: rgba(113, 97, 239, 0.1);
+            --border-color: rgba(97, 130, 239, 0.1);
             --background-dark: #1f1f1f;
             --white: #ffffff;
           }
@@ -227,7 +227,7 @@ const InventoryManagement = () => {
           
           .design-process-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(113, 97, 239, 0.1);
+            box-shadow: 0 8px 32px rgba(97, 130, 239, 0.1);
           }
         `}
       </style>
@@ -330,7 +330,7 @@ const InventoryManagement = () => {
             {/* Left side - Text content */}
             <div className="lg:pr-8 xl:pr-12">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 lg:mb-10 text-left">
-                <span style={{color: '#7161EF'}}>Overview</span>
+                <span style={{color: '#6182EF'}}>Overview</span>
               </h2>
               <p className="text-base lg:text-lg xl:text-xl text-accent leading-relaxed lg:leading-8">
                 We collaborated with a manufacturing industry client to redesign their outdated inventory system. Their existing tool only managed basic stock records and lacked features critical to their daily operations. Our goal was to build a more complete solution that would support their entire manufacturing and financial process. The result was a modern, user-friendly system that fit seamlessly into their existing workflow.
@@ -396,7 +396,7 @@ const InventoryManagement = () => {
           {/* Section Title */}
           <div className="mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
-              <span style={{color: '#7161EF'}}>My Journey in</span>
+              <span style={{color: '#6182EF'}}>My Journey in</span>
               <br />
               <span className="text-white">this Project</span>
             </h2>
@@ -406,9 +406,9 @@ const InventoryManagement = () => {
         {/* Roadmap Component */}
         <ProjectRoadmap 
           steps={roadmapSteps} 
-          themeColor="#7161EF" 
+          themeColor="#6182EF" 
           textColor="text-white" 
-          borderColor="border-purple-400/50" 
+          borderColor="border-blue-400/50" 
         />
       </section>
 
@@ -424,7 +424,7 @@ const InventoryManagement = () => {
         
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
-            <span style={{color: '#7161EF'}}>Design</span>{' '}
+            <span style={{color: '#6182EF'}}>Design</span>{' '}
             <span className="text-white">Process</span>
           </h2>
           
@@ -466,7 +466,7 @@ const InventoryManagement = () => {
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
-            <span style={{color: '#7161EF'}}>Modules &</span>
+            <span style={{color: '#6182EF'}}>Modules &</span>
             <br />
             <span className="text-white">Sub Module</span>
           </h2>
@@ -482,29 +482,29 @@ const InventoryManagement = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      {/* <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
-            <span style={{color: '#7161EF'}}>UI</span>{' '}
+            <span style={{color: '#6182EF'}}>UI</span>{' '}
             <span className="text-white">Design</span>
           </h2>
           
           {/* Web Application Section */}
-          {/* <div className="mb-12">
+          <div className="mb-12">
             <h3 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-semibold text-accent text-left">
               Web Application
             </h3>
           </div>
           
           {/* Tablet Mockups Section */}
-          {/* <div className="mb-16">
+          <div className="mb-16">
             
             {/* Desktop Layout - Zigzag Alignment */}
-            {/* <div className="hidden md:block">
+            <div className="hidden md:block">
               <div className="space-y-8 lg:space-y-10">
                 
                 {/* Tablet Design 1 - RIGHT ALIGNED */}
-                {/* <div className="flex justify-end">
+                <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign1}
@@ -515,7 +515,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 2 - LEFT ALIGNED */}
-                {/* <div className="flex justify-start">
+                <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign2}
@@ -526,7 +526,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 3 - RIGHT ALIGNED */}
-                {/* <div className="flex justify-end">
+                <div className="flex justify-end">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign3}
@@ -537,7 +537,7 @@ const InventoryManagement = () => {
                 </div>
                 
                 {/* Tablet Design 4 - LEFT ALIGNED */}
-                {/* <div className="flex justify-start">
+                <div className="flex justify-start">
                   <div className="w-96 lg:w-[500px] xl:w-[650px] 2xl:w-[750px]">
                     <img 
                       src={inventoryImages.tabletDesign4}
@@ -551,7 +551,7 @@ const InventoryManagement = () => {
             </div>
             
             {/* Mobile Layout - Stacked Design */}
-            {/* <div className="block md:hidden space-y-10">
+            <div className="block md:hidden space-y-10">
               <div className="w-full">
                 <img 
                   src={inventoryImages.tabletDesign1}
@@ -583,7 +583,7 @@ const InventoryManagement = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Section 8: Project Summary Card */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -591,7 +591,7 @@ const InventoryManagement = () => {
           <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
             {/* Caution Icon - Top Right Corner */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{backgroundColor: '#7161EF'}}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{backgroundColor: '#6182EF'}}>
                 <svg 
                   className="w-6 h-6 sm:w-7 sm:h-7 text-white font-bold" 
                   fill="currentColor" 
@@ -626,7 +626,7 @@ const InventoryManagement = () => {
               {/* Main line */}
               <div className="h-1 bg-white w-[200px] sm:w-[280px] md:w-[380px] lg:w-[500px] xl:w-[620px]"></div>
               {/* Accent line */}
-              <div className="h-1 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32" style={{backgroundColor: '#7161EF'}}></div>
+              <div className="h-1 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32" style={{backgroundColor: '#6182EF'}}></div>
             </div>
           </div>
           

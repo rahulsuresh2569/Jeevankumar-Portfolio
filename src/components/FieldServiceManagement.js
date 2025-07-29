@@ -47,7 +47,7 @@ const FieldServiceManagement = () => {
     overview: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1400,h_900,c_limit,dpr_auto,fl_progressive/v1753450578/Overview_bwncht.png", 
     problemSolution: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450578/Problem_Solution_jv0rsb.png",
     modules: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1600,h_1200,c_limit,dpr_auto,fl_progressive/v1753450577/Modules_mzmfj0.png",
-    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_1_xyzphp.png",
+    tabletDesign1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753798886/UI_Design_Tablet_1_gag3rs.png",
     tabletDesign2: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_2_oligga.png", 
     tabletDesign3: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_1200,h_900,c_limit,dpr_auto,fl_progressive/v1753603552/UI_Design_Tablet_3_nv77qe.png",
     iPhone1: "https://res.cloudinary.com/dcua87ney/image/upload/f_auto,q_auto,w_400,h_800,c_limit,dpr_auto,fl_progressive/v1753559723/iPhone_1_aoivvl.png",
