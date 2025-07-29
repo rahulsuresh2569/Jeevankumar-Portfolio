@@ -262,7 +262,7 @@ const OtherProjects = () => {
           </div>
 
           {/* Overall Projects Done Section */}
-          <div className="mt-16 sm:mt-20 pb-16 sm:pb-20">
+          <div className="mt-16 sm:mt-20">
             {/* Stats Section Header */}
             <div className="text-center mb-8 sm:mb-12">
               <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4 px-4">
@@ -306,7 +306,7 @@ const OtherProjects = () => {
             </div>
 
             {/* For Mock Projects Button */}
-            <div className="text-center mt-12">
+            <div className="text-center mt-20">
               <button 
                 onClick={() => window.open('https://www.behance.net/jeevankumar352', '_blank', 'noopener,noreferrer')}
                 className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-secondary/20 text-secondary/80 hover:border-secondary/40 hover:text-secondary rounded-full font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
