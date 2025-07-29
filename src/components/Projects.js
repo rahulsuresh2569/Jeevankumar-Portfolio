@@ -8,7 +8,7 @@ const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753799887/inventory_2_fe3mqs.png",
   fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753797862/FSM_jozpz2.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1753305296/Aidit_fhxqif.png",
-  tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1752740022/Tyns_o6gtwv.jpg",
+  tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1753815123/Tyns_z0rlyi.png",
 };
 
 // Project Scroll Stack Item Component
@@ -181,8 +181,8 @@ const Projects = () => {
   // Button gradient colors for each project
   const buttonGradients = [
     { from: '#916CDA', to: '#B198FF', textColor: 'white' }, // Project 1: Purple (FSM)
-    { from: '#7161EF', to: '#9E92FF', textColor: 'white' }, // Project 2: Purple
-    { from: '#25BD18', to: '#80E777', textColor: 'black' }, // Project 3: Green
+    { from: '#6182EF', to: '#8BA3F7', textColor: 'white' }, // Project 2: Blue (Inventory)
+    { from: '#FCC81E', to: '#FFD700', textColor: 'black' }, // Project 3: Yellow/Orange (Tyns)
     { from: '#3D8361', to: '#6CC298', textColor: 'white' }  // Project 4: Teal
   ];
 
@@ -215,18 +215,20 @@ const Projects = () => {
       link: "/inventory-management",
       isInternal: true
     },
-    // {
-    //   id: 3,
-    //   tag: "Real Time Project",
-    //   title: "Tyns",
-    //   category: "B2C",
-    //   type: "Product Design",
-    //   industry: "Donation app",
-    //   platform: "Mobile Application",
-    //   description: "Modern e-commerce platform focusing on seamless shopping experience and personalized product discovery.",
-    //   image: cloudinaryImages.tyns,
-    //   ctaText: "Detail View"
-    // },
+    {
+      id: 3,
+      tag: "Real Time Project",
+      title: "Tyns",
+      category: "B2C",
+      type: "Product Design",
+      industry: "URL Shortener",
+      platform: "Web Application",
+      description: "URL shortening and QR code generation tool that allows users to quickly shorten links, customize them, and get real-time analytics.",
+      image: cloudinaryImages.tyns,
+      ctaText: "Detail View",
+      link: "/tyns",
+      isInternal: true
+    },
     {
       id: 4,
       tag: "Mock Project",

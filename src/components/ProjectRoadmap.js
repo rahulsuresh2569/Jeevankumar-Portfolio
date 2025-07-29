@@ -65,7 +65,7 @@ const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black
                 return (
                   <div key={stepNumber} className="absolute w-full" style={{ top: stepTop }}>
                     {/* Main Grid Container */}
-                    <div className="w-full" style={{ marginLeft: '-25px' }}>
+                    <div className="w-full" style={{ marginLeft: '-15px' }}>
                       <div 
                         className="relative w-full grid gap-2"
                         style={{ gridTemplateColumns: 'repeat(12, minmax(0, 1fr))' }}
@@ -75,7 +75,7 @@ const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black
                           className="relative flex justify-start"
                           style={{ gridColumn: position.markerColumn }}
                         >
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${textColor} text-xl z-30 shadow-lg`} style={{backgroundColor: themeColor}}>
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg z-30 shadow-lg ${themeColor === '#FCC81E' ? 'text-black' : textColor}`} style={{backgroundColor: themeColor}}>
                             {stepNumber}
                           </div>
                         </div>
@@ -85,8 +85,8 @@ const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black
                           className="relative"
                           style={{ gridColumn: position.gridColumn }}
                         >
-                          <div className={`roadmap-card bg-gray-800/90 backdrop-blur-sm rounded-2xl p-5 min-h-20 flex items-center relative shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300`}>
-                            <p className="text-white text-sm lg:text-base leading-relaxed relative z-20">
+                          <div className={`roadmap-card bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 min-h-16 flex items-center relative shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300`}>
+                            <p className="text-white text-base lg:text-lg leading-relaxed relative z-20">
                               {step.description}
                             </p>
                           </div>
@@ -114,7 +114,7 @@ const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black
                   <div className="flex items-start space-x-4">
                     {/* Step Number with Connecting Line */}
                     <div className="flex flex-col items-center">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${textColor} text-lg z-20 shadow-lg`} style={{backgroundColor: themeColor}}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-base z-20 shadow-lg ${themeColor === '#FCC81E' ? 'text-black' : textColor}`} style={{backgroundColor: themeColor}}>
                         {stepNumber}
                       </div>
                       
@@ -125,8 +125,8 @@ const ProjectRoadmap = ({ steps, themeColor = '#FACC13', textColor = 'text-black
                     </div>
                     
                     {/* Content Card */}
-                    <div className="flex-1 bg-gray-800/90 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300">
-                      <p className="text-white text-sm leading-relaxed">
+                    <div className="flex-1 bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-700/50 hover:bg-gray-700/90 transition-colors duration-300">
+                      <p className="text-white text-base leading-relaxed">
                         {step.description}
                       </p>
                     </div>
