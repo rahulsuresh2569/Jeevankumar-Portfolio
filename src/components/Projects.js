@@ -8,7 +8,7 @@ const cloudinaryImages = {
   inventory: "https://res.cloudinary.com/dcua87ney/image/upload/v1753799887/inventory_2_fe3mqs.png",
   fieldManagement: "https://res.cloudinary.com/dcua87ney/image/upload/v1753797862/FSM_jozpz2.png",
   aidit: "https://res.cloudinary.com/dcua87ney/image/upload/v1753305296/Aidit_fhxqif.png",
-  tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1753815123/Tyns_z0rlyi.png",
+  tyns: "https://res.cloudinary.com/dcua87ney/image/upload/v1753820701/Tyns_ush18a.png",
 };
 
 // Project Scroll Stack Item Component

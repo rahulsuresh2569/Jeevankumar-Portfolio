@@ -237,7 +237,7 @@ const Tyns = () => {
       <Navbar isProjectPage={true} />
       
       {/* Section 1: Project Header with Main Image */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Top section with title and tags */}
           <div className="flex flex-col lg:flex-row pt-20 lg:justify-between lg:pt-20 lg:items-center mb-8">
@@ -313,7 +313,7 @@ const Tyns = () => {
           
           {/* Main Project Image - Full Width */}
           <div className="w-full">
-            <div className="w-full h-96 lg:h-[500px] xl:h-[600px] rounded-lg overflow-hidden">
+            <div className="w-full h-96 lg:h-[500px] xl:h-[600px] rounded-3xl overflow-hidden">
               <img 
                 src={tynsImages.main}
                 alt="Tyns URL Shortener and QR Code Generator Main View"
@@ -329,7 +329,7 @@ const Tyns = () => {
       </section>
 
       {/* Section 2: Overview */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
             {/* Left side - Content */}
@@ -357,7 +357,7 @@ const Tyns = () => {
       </section>
 
       {/* Section 3: Problem & Solution */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="space-y-16 lg:space-y-20">
             
@@ -392,10 +392,10 @@ const Tyns = () => {
       </section>
 
       {/* Section 4: My Journey in This Project */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Heading */}
-          <div className="mb-24">
+          <div className="mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
               <span style={{color: '#FCC81E'}}>My Journey in</span>
               <br />
@@ -414,7 +414,7 @@ const Tyns = () => {
       </section>
 
       {/* Section 5: Design Process */}
-      <section className="design-process-section py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-primary">
+      <section className="design-process-section py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-primary">
         {/* Global Spotlight Effect */}
         <GlobalSpotlight
           gridRef={designProcessRef}
@@ -424,7 +424,7 @@ const Tyns = () => {
         />
         
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-10 lg:mb-12 text-left">
             <span style={{color: '#FCC81E'}}>Design</span>{' '}
             <span className="text-white">Process</span>
           </h2>
@@ -464,9 +464,9 @@ const Tyns = () => {
       </section>
 
       {/* Section 6: Modules & Sub-modules */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-left">
             <span style={{color: '#FCC81E'}}>Modules &</span>
             <br />
             <span className="text-white">Sub Module</span>
@@ -485,7 +485,7 @@ const Tyns = () => {
       </section>
 
       {/* Section 7: UI Design */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8 text-left">
             <span style={{color: '#FCC81E'}}>UI</span>{' '}
@@ -500,7 +500,7 @@ const Tyns = () => {
           </div>
           
           {/* Tablet Mockups */}
-          <div className="mb-16">
+          <div className="mb-12">
             
             {/* Desktop Layout - Zigzag Alignment */}
             <div className="hidden md:block">
@@ -571,18 +571,32 @@ const Tyns = () => {
       </section>
 
       {/* Section 8: Project Summary Card */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="relative bg-gray-800 border border-gray-600 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
             {/* Caution Icon - Top Right Corner */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{backgroundColor: '#FCC81E'}}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
                 <svg 
-                  className="w-6 h-6 sm:w-7 sm:h-7 text-black font-bold" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
+                  className="w-10 h-10 sm:w-12 sm:h-12" 
+                  viewBox="0 0 24 24" 
+                  fill="none"
                 >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    fill="#FCC81E"
+                    stroke="#FCC81E"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M12 8V13M12 16H12.01"
+                    stroke="#000000"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             </div>
@@ -598,10 +612,10 @@ const Tyns = () => {
       </section>
 
       {/* Section 9: Thank You & Back to Projects */}
-      <section className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Thank You Text with Underline Design */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold text-white mb-8 tracking-tight leading-none">
               THANK YOU
             </h2>
