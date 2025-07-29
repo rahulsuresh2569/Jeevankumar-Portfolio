@@ -260,6 +260,15 @@ const Projects = () => {
   }, []);
 
   useLayoutEffect(() => {
+    // Check if we're on mobile screen
+    const isMobile = window.innerWidth < 768; // md breakpoint
+    
+    if (isMobile) {
+      // For mobile: no animations, just return early
+      return;
+    }
+
+    // Desktop: Apply scroll stack animation
     gsap.registerPlugin(ScrollTrigger);
     
     const section = sectionRef.current;
@@ -400,25 +409,180 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Scroll Stack Container - Natural document flow like scroll-stack.js */}
+      {/* Scroll Stack Container - Desktop: Scroll stack animation, Mobile: Simple list */}
       <div 
         ref={scrollStackContainerRef}
-        className="w-full px-4 sm:px-6 md:px-8 lg:px-10 pb-[20rem] sm:pb-[10rem] md:pb-[12rem] lg:pb-[15rem] xl:pb-[25rem]"
+        className="w-full px-4 sm:px-6 md:px-8 lg:px-10 pb-8 md:pb-[20rem] md:sm:pb-[10rem] md:md:pb-[12rem] md:lg:pb-[15rem] md:xl:pb-[25rem]"
       >
-        <div className="scroll-stack-inner pt-[3vh] sm:pt-[4vh] md:pt-[5vh] max-w-7xl mx-auto">
-          {/* Cards laid out in natural document flow */}
-          {projectsData.map((project, index) => (
-            <ProjectScrollStackItem
-              key={project.id}
-              project={project}
-              index={index}
-              buttonGradients={buttonGradients}
-              itemClassName="bg-primary border border-secondary/10 h-auto shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-              navigate={navigate}
-            />
-          ))}
-          {/* End spacer for proper animation completion */}
-          <div className="scroll-stack-end w-full h-px" />
+        <div className="scroll-stack-inner md:pt-[3vh] md:sm:pt-[4vh] md:md:pt-[5vh] max-w-7xl mx-auto">
+          {/* Mobile: Simple list layout */}
+          <div className="block md:hidden space-y-8">
+            {projectsData.map((project, index) => (
+              <div
+                key={project.id}
+                className="relative w-full min-h-[320px] sm:min-h-[350px] h-auto rounded-[40px] border-none overflow-hidden bg-primary border border-secondary/10 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              >
+                {/* Mobile Project Layout */}
+                <div className="grid items-stretch grid-cols-1 h-full">
+                  {/* Project Image */}
+                  <div className="w-full h-64 relative overflow-hidden cursor-pointer">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-center"
+                      loading="lazy"
+                      onClick={() => {
+                        if (project.link) {
+                          if (project.isInternal) {
+                            navigate(project.link);
+                          } else {
+                            window.open(project.link, '_blank', 'noopener,noreferrer');
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="bg-white p-6 flex flex-col shadow-lg">
+                    <div className="flex-1 flex flex-col justify-between text-left min-h-0">
+                      {/* Content Area - Top Section */}
+                      <div className="flex-shrink-0">
+                        {/* Project Tag */}
+                        <div className="mb-3">
+                          <span className="inline-block text-xs font-normal text-blue-600">
+                            {project.tag}
+                          </span>
+                        </div>
+                        
+                        {/* Project Title */}
+                        <h3 className="text-lg font-bold text-gray-900 leading-tight mb-4">
+                          {project.title}
+                        </h3>
+                      </div>
+                      
+                      {/* Project Metadata - Middle Section */}
+                      <div className="flex-1 min-h-0">
+                        <div className="space-y-2.5 mb-5">
+                          {/* First line: First 2 tags with dot between them */}
+                          <div className="flex items-center gap-2">
+                            <span className="inline-block px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.category}
+                            </span>
+                            <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                            <span className="inline-block px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.industry}
+                            </span>
+                          </div>
+                          
+                          {/* Second line: Third tag */}
+                          <div>
+                            <span className="inline-block px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.platform}
+                            </span>
+                          </div>
+                          
+                          {/* Third line: Fourth tag */}
+                          <div>
+                            <span className="inline-block px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                              {project.type}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {/* Divider Line */}
+                        <div className="w-full h-px bg-gray-200"></div>
+                      </div>
+                    
+                      {/* Bottom CTA Button */}
+                      <div className="flex justify-start pt-4 flex-shrink-0">
+                        {project.link ? (
+                          project.isInternal ? (
+                            <Link 
+                              to={project.link}
+                              className="group relative inline-flex items-center gap-2 font-medium text-xs px-4 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                              style={{
+                                background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                                color: buttonGradients[index]?.textColor,
+                                boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+                              }}
+                            >
+                              <span>Detail View</span>
+                              <svg 
+                                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </Link>
+                          ) : (
+                            <a 
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group relative inline-flex items-center gap-2 font-medium text-xs px-4 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                              style={{
+                                background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                                color: buttonGradients[index]?.textColor,
+                                boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+                              }}
+                            >
+                              <span>Detail View</span>
+                              <svg 
+                                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </a>
+                          )
+                        ) : (
+                          <button 
+                            className="group relative inline-flex items-center gap-2 font-medium text-xs px-4 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                            style={{
+                              background: `linear-gradient(to right, ${buttonGradients[index]?.from}, ${buttonGradients[index]?.to})`,
+                              color: buttonGradients[index]?.textColor,
+                              boxShadow: `0 4px 15px ${buttonGradients[index]?.from}25`
+                            }}
+                          >
+                            <span>Detail View</span>
+                            <svg 
+                              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Scroll stack layout */}
+          <div className="hidden md:block">
+            {projectsData.map((project, index) => (
+              <ProjectScrollStackItem
+                key={project.id}
+                project={project}
+                index={index}
+                buttonGradients={buttonGradients}
+                itemClassName="bg-primary border border-secondary/10 h-auto shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                navigate={navigate}
+              />
+            ))}
+            {/* End spacer for proper animation completion */}
+            <div className="scroll-stack-end w-full h-px" />
+          </div>
         </div>
       </div>
     </section>
