@@ -23,9 +23,9 @@ const Experience = () => {
     position: 'UI UX Designer',
     period: 'Oct, 2023 - Jun, 2025',
     descriptions: [
-      'I worked on web & mobile applications, websites, and various design projects (logos, posters, banners), delivering effective solutions while continuously learning and improving.',
-      'Ensuring designs align with client requirements while maintaining a user-friendly and intuitive design system',
-      'Collaborating with team and adept at delivering user-friendly designs while maintaining technical constraints.'
+      'Designed both web & mobile applications, websites, and various design projects (logos, posters, banners), delivering effective solutions while continuously learning and improving.',
+      'Designed and delivered responsive web/mobile applications for B2B clients, increasing user engagement and simplifying complex workflows.',
+      'Collaborated with cross-functional teams to deliver user-friendly designs that aligned with technical constraints, ensuring smooth development and on-time delivery.'
     ]
   };
 
