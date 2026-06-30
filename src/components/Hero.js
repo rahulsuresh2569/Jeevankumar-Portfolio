@@ -207,7 +207,7 @@ const Hero = () => {
           {/* Third Row: Resume Button - Centered */}
           <div className="flex justify-center pt-2 sm:pt-3 md:pt-4 lg:pt-6 xl:pt-8">
             <motion.a
-              href="/resume"
+              href="https://long-rain-520.linkyhost.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex justify-center items-center rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-white text-sm sm:text-base md:text-lg lg:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"

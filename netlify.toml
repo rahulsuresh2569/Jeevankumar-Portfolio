@@ -3,12 +3,6 @@
   command = "npm run build"
 
 [[redirects]]
-  from = "/Jeevankumar-Resume.pdf"
-  to = "/Jeevankumar-Resume.pdf"
-  status = 200
-  force = false
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

@@ -18,7 +18,6 @@ import NotFound from './components/NotFound';
 import FieldServiceManagement from './components/FieldServiceManagement';
 import InventoryManagement from './components/InventoryManagement';
 import Tyns from './components/Tyns';
-import ResumePage from './components/ResumePage';
 import useDynamicFavicon from './hooks/useDynamicFavicon';
 import { initGA, trackPageView, trackScrollDepth } from './utils/analytics';
 import './App.css';
@@ -162,7 +161,6 @@ function App() {
         <Route path="/field-service-management" element={<FieldServiceManagement />} />
         <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/tyns" element={<Tyns />} />
-        <Route path="/resume" element={<ResumePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

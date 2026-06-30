@@ -15,10 +15,4 @@
 *.xml     /:splat     200
 
 # Handle SPA routing - redirect all other routes to index.html
-/*    /index.html   200fy redirects file for SPA routing
-
-# Handle SPA routing - redirect all routes to index.html except for static assets
 /*    /index.html   200
-
-# Serve static files directly (this rule should come after SPA routing)
-/Jeevankumark-Resume.pdf    /Jeevankumar-Resume.pdf    200

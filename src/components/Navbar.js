@@ -393,7 +393,7 @@ const Navbar = ({ isProjectPage = false }) => {
               
               <div ref={resumeButtonCompactRef}>
                 <motion.a
-                  href="/resume"
+                  href="https://long-rain-520.linkyhost.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
@@ -466,11 +466,11 @@ const Navbar = ({ isProjectPage = false }) => {
                      className="opacity-0 pointer-events-none"
                      style={{ transform: 'scale(0.8)' }}
                    >
-                     <motion.a
-                       href="/resume"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
+                    <motion.a
+                      href="https://long-rain-520.linkyhost.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-6 py-2.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl"
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
                        transition={{ duration: 0.2 }}
@@ -541,7 +541,7 @@ const Navbar = ({ isProjectPage = false }) => {
                 </motion.a>
                 
                 <motion.a
-                  href="/resume"
+                  href="https://long-rain-520.linkyhost.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMobileMenu}
